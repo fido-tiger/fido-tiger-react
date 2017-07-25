@@ -1,0 +1,21 @@
+ {
+  "development": {
+    "user": "root",
+    "password": "root",
+    "database": "fidoandtiger_db",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "test": {
+    "user": "root",
+    "password": "root",
+    "database": "fidoandtiger_db",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "production": {
+    "database": "fidoandtiger_db",
+    "use_env_variable": "JAWSDB_URL",
+    "dialect": "mysql"
+  }
+}
