@@ -1,4 +1,4 @@
-const bCrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 
 const db = require('../models/');
 const PassportLocalStrategy = require('passport-local').Strategy;
@@ -15,7 +15,7 @@ module.exports = new PassportLocalStrategy({
     passReqToCallback: true
 }, (req, email, password, done) => {
     var generateHash = function(password) {
-        return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
+        return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
     };
 
     db.Client.findOne({ where: { email: email } }).then(function(user) {

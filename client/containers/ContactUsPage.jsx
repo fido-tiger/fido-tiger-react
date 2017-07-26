@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Auth from '../modules/Auth';
-import LoginForm from '../components/LoginForm.jsx';
+import ContactUs from '../components/ContactUs.jsx';
 
 
-class LoginPage extends React.Component {
+class ContactUsPage extends React.Component {
 
   /**
    * Class constructor.
@@ -106,7 +106,7 @@ class LoginPage extends React.Component {
    */
   render() {
     return (
-      <LoginForm
+      <ContactUs
         onSubmit={this.processForm}
         onChange={this.changeUser}
         errors={this.state.errors}
@@ -118,8 +118,8 @@ class LoginPage extends React.Component {
 
 }
 
-LoginPage.contextTypes = {
+ContactUsPage.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
-export default LoginPage;
+export default ContactUsPage;

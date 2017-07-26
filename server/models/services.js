@@ -1,13 +1,13 @@
 module.exports = function(sequelize, DataTypes) {
     var Services = sequelize.define("Services", {
-    	begin_date: {
-    		type: DataTypes.STRING
-    	},
-    	end_date: {
-    		type:DataTypes.STRING
-    	},
+        begin_date: {
+            type: DataTypes.STRING
+        },
+        end_date: {
+            type: DataTypes.STRING
+        },
         pet_name: {
-            type:DataTypes.STRING
+            type: DataTypes.STRING
         },
         temperament: {
             type: DataTypes.STRING
@@ -15,17 +15,18 @@ module.exports = function(sequelize, DataTypes) {
         medications: {
             type: DataTypes.STRING
         },
-    	event_note: {
-    		type: DataTypes.STRING
-    	},
-    	options: {
-    		type: DataTypes.STRING,
-    		validate: {
-    		notNull: true,
-    		msg:"Must choose an option"
-    		}
-    	}
+        event_note: {
+            type: DataTypes.STRING
+        },
+        options: {
+            type: DataTypes.STRING,
+            validate: {
+                notNull: true,
+                msg: "Must choose an option"
+            }
+        }
+
     });
-    return Services
+    return Services;
 };
-    
+

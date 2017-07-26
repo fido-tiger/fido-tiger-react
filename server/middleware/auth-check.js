@@ -1,16 +1,17 @@
 const jwt = require('jsonwebtoken');
 const Client = require('../models/client');
-const config = require('../../config');
+const config = require('../../config/index.json');
 
 
 /**
  *  The Auth Checker middleware function.
  */
 module.exports = (req, res, next) => {
+    console.log(req.headers);
     if (!req.headers.authorization) {
         return res.status(401).end();
     }
-
+    
     // get the last part from a authorization header string like "bearer token-value"
     const token = req.headers.authorization.split(' ')[1];
 
@@ -25,9 +26,9 @@ module.exports = (req, res, next) => {
         return Client.findOne({
             where: { uuid: req.user.uuid },
         }), (userErr, data) => {
-            if (userErr || !data) {
+            if (userErr || !user) {
                 return res.status(401).end();
-            } else
+            }
                 return next();
         };
         // (userId, (userErr, user) => {
