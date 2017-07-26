@@ -1,9 +1,16 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardText } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import PropTypes from 'prop-types';
 
+const homeCardStyle = {
+  width: '97%',
+  margin:'15px',
+  padding:'7px',
+  textAlign: 'left'
+};
 
 const SignUpForm = ({
   onSubmit,
@@ -11,7 +18,7 @@ const SignUpForm = ({
   errors,
   user,
 }) => (
-  <Card className="container">
+  <Card style={homeCardStyle} className="container">
     <form action="/" onSubmit={onSubmit}>
       <h2 className="card-heading">Sign Up</h2>
 

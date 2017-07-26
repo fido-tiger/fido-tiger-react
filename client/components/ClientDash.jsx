@@ -1,13 +1,13 @@
 import React from 'react';
-import { Card, CardTitle } from 'material-ui/Card';
-import Paper from 'material-ui/Paper';
-const homePaperStyle = {
-    height: '100vh',
-    width: '100%',
-    margin: 0,
-    textAlign: 'center',
-    display: 'inline-block',
-};
+import Auth from '../modules/Auth';
+import PropTypes from 'prop-types';
+import { Link, Route, Redirect } from 'react-router-dom';
+
+import { Card, CardTitle, CardText } from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
+
+
+
 const homeCardStyle = {
   width: '97%',
   margin:'15px',
@@ -15,13 +15,22 @@ const homeCardStyle = {
    textAlign: 'left',
 };
 
-const ClientDash = () => (
-  <Paper style={homePaperStyle} zDepth={1}>
+const ClientDash = ({data}) => (
+  <div>
   <Card style={homeCardStyle} className="container">
     <CardTitle title="User Dashboard" subtitle='"My Favorite Pet App!"' />    
     <div className="col-sm-8">
-    <h3>Hello User</h3>
-    
+     {data && <CardText>{data}</CardText>}
+        {Auth.isUserAuthenticated() ? (
+      <div className="top-bar-right">
+      <Link to="/logout"><FlatButton label="Log Out"/></Link>
+      </div>
+    ) : (
+      <div className="top-bar-right">
+      <Link to="/login"><FlatButton label="Log In"/></Link>
+      <Link to="/signup"><FlatButton label="Sign Up"/></Link>
+      </div>
+    )}
     </div>
   </Card>
   <Card style={homeCardStyle} className="container">
@@ -29,8 +38,11 @@ const ClientDash = () => (
   <h2>More Stuff</h2>
   </div>
   </Card>
-  </Paper>
+  </div>
 );
+ClientDash.propTypes = {
+  data: PropTypes.string.isRequired
+};
 
 export default ClientDash;
 

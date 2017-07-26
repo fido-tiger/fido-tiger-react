@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Auth from '../modules/Auth';
 import LoginForm from '../components/LoginForm.jsx';
 
@@ -68,6 +69,7 @@ class LoginPage extends React.Component {
 
         // change the current URL to /
         console.log(this.context);
+        console.log(xhr.response);
         this.context.router.history.replace('/client');
       } else {
         // failure
