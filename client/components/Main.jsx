@@ -10,11 +10,12 @@ import DashboardPage from '../containers/DashboardPage.jsx';
 import LoginPage from '../containers/LoginPage.jsx';
 import SignUpPage from '../containers/SignUpPage.jsx';
 import ContactUs from '../components/ContactUs.jsx';
+import SignUpForm from '../components/SignUpForm.jsx';
 
 const routes = [{
         path: '/',
         exact: true,
-        component: SignUpPage
+        component: ContactUs
         // render: (location, callback) => {
         //     if (Auth.isUserAuthenticated()) {
         //         return(

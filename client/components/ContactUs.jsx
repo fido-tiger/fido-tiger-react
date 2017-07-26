@@ -1,7 +1,8 @@
-import React from "react";
-import { Card, CardTitle } from 'material-ui/Card';
-import Paper from 'material-ui/Paper';
-
+import React, { PropTypes } from 'react';
+import { Link } from 'react-router-dom';
+import { Card, CardText } from 'material-ui/Card';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 
 const ContactUs = ({
@@ -10,7 +11,7 @@ const ContactUs = ({
 	errors,
 	user,
 }) => (
-		<Card className="main-container">
+		<Card className="container">
 			<form action="/" onSubmit={onSubmit}>
 					<h2 className="card-heading">Contact Us</h2>
 
@@ -67,8 +68,8 @@ const ContactUs = ({
 ContactUs.propTypes = {
 	onSubmit: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
-	errors: PropTypes.func.isRequired,
-	question: PropTypes.func.isRequired
+	errors: PropTypes.object.isRequired,
+	user: PropTypes.object.isRequired,
 };
 
 export default ContactUs;
