@@ -6,6 +6,7 @@ import { Card } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
 import HomePage from '../components/HomePage.jsx';
+import ClientDash from '../components/ClientDash.jsx';
 import DashboardPage from '../containers/DashboardPage.jsx';
 import LoginPage from '../containers/LoginPage.jsx';
 import SignUpPage from '../containers/SignUpPage.jsx';
@@ -43,7 +44,7 @@ const routes = [{
         }
     }, {
         path: '/client',
-        // component: ClientDash,
+        component: ClientDash,
         routes: [{
             path: '/client/service',
             // component: ServiceRequest
