@@ -9,11 +9,12 @@ import HomePage from '../components/HomePage.jsx';
 import DashboardPage from '../containers/DashboardPage.jsx';
 import LoginPage from '../containers/LoginPage.jsx';
 import SignUpPage from '../containers/SignUpPage.jsx';
+import ContactUs from '../components/ContactUs.jsx';
 
 const routes = [{
         path: '/',
         exact: true,
-        component: HomePage
+        component: SignUpPage
         // render: (location, callback) => {
         //     if (Auth.isUserAuthenticated()) {
         //         return(

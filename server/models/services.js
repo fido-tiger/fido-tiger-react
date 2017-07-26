@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         medications: {
             type: DataTypes.STRING
-        }
+        },
     	event_note: {
     		type: DataTypes.STRING
     	},
@@ -26,4 +26,5 @@ module.exports = function(sequelize, DataTypes) {
     		}
     	}
     });
+}
     
