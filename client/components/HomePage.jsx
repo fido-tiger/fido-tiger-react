@@ -12,7 +12,7 @@ const homePaperStyle = {
 const homeCardStyle = {
   margin:'15px',
   padding:'7px',
-   textAlign: 'left',
+  textAlign: 'left',
 };
 const homePageStyle = {
 
