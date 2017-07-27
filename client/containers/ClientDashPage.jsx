@@ -14,10 +14,10 @@ class ClientDashPage extends React.Component {
   }
     componentDidMount() {
     const xhr = new XMLHttpRequest();
-    xhr.open('get', '/api/client');
+    xhr.open('get', '/auth/client');
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     // set the authorization HTTP header
-    xhr.setRequestHeader('Authorization', `bearer ${Auth.getToken()}`);
+    // xhr.setRequestHeader('Authorization', `bearer ${Auth.getToken()}`);
     xhr.responseType = 'json';
     xhr.addEventListener('load', () => {
       if (xhr.status === 200) {

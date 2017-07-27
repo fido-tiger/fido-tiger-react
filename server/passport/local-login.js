@@ -23,6 +23,8 @@ module.exports = new PassportLocalStrategy({
 
     // find a user by email address
     return db.Client.findOne({where:{ email: userData.email }}, (err, user) => {
+        var passcheck = user.comparePassword(user.password);
+        console.log(passcheck);
         console.log(user);
         if (err) { 
           return done(err);

@@ -3,7 +3,7 @@ const validator = require('validator');
 const passport = require('passport');
 
 const router = new express.Router();
-
+var db = require('../models/');
 /**
  * Validate the sign up form
  *
@@ -74,6 +74,12 @@ function validateLoginForm(payload) {
     errors
   };
 }
+router.post('/client', (req, res, next) => {
+    return res.status(200).json({
+    message: "You're authorized to see this secret message."
+  });
+});
+
 
 router.post('/signup', (req, res, next) => {
   const validationResult = validateSignupForm(req.body);
@@ -116,6 +122,10 @@ router.post('/signup', (req, res, next) => {
 });
 
 router.post('/login', (req, res, next) => {
+      db.Client.findOne({where:{ email: req.body.email }}, (err, user) => {
+        var passcheck = user.comparePassword(user.password);
+        console.log(passcheck);
+      });
   const validationResult = validateLoginForm(req.body);
   if (!validationResult.success) {
     return res.status(400).json({

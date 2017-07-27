@@ -4,7 +4,7 @@ module.exports = function(sequelize, DataTypes) {
     const Client = sequelize.define("Client", {
         uuid: {
             type: DataTypes.INTEGER,
-            // defaultValue: DataTypes.UUIDV1,
+            //defaultValue: DataTypes.UUIDV1,
             autoIncrement: true,
             primaryKey: true
         },
