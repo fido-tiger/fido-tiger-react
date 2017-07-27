@@ -33,7 +33,7 @@ const clientRoutes = ({ routes }) => (
 const routes = [{
         path: '/',
         exact: true,
-        component: ContactUsPage
+        component: HomePage
     }, {
         path: '/home',
         exact: true,
@@ -58,6 +58,9 @@ const routes = [{
     }, {
         path: '/signup',
         component: SignUpPage
+    },{
+        path: '/contact',
+        component: ContactUsPage
     }, {
         path: '/logout',
         render: (nextState, replace) => {
@@ -142,6 +145,7 @@ class Main extends React.Component {
             <Link to="/signup"><FlatButton label="Sign Up"/></Link>
             </div>
           )}
+          <Link to="/contact"><FlatButton label="Contact Us"/></Link>
         </div>
               
     </Card>
