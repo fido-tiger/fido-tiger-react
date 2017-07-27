@@ -22,7 +22,7 @@ module.exports = new PassportLocalStrategy({
     };
 
     // find a user by email address
-    return db.Client.findOne({ email: userData.email }, (err, user) => {
+    return db.Client.findOne({where:{ email: userData.email }}, (err, user) => {
         console.log(user);
         if (err) { 
           return done(err);
@@ -55,8 +55,6 @@ module.exports = new PassportLocalStrategy({
             const data = {
                 name: user.name
             };
-            console.log(user);
-            console.log(token);
             return done(null, token, data);
         });
     });
