@@ -4,8 +4,10 @@ const db = require('../models/');
 const router = new express.Router();
 
 router.get('/client', (req, res) => {
-  res.status(200).json({
-    message: "You're authorized to see this secret message."
+  console.log('HELLLLLLOOO');
+  db.Client.findOne({where: {uuid: req.body.uuid}}).then(function(user) {
+    console.log('HELLLLLLOOO!!!');
+
   });
 });
 

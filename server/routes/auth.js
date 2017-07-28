@@ -59,7 +59,7 @@ function validateLoginForm(payload) {
     errors.email = 'Please provide your email address.';
   }
 
-  if (!payload || typeof payload.password !== 'string' || payload.password.trim().length === 0) {
+  if (!payload || typeof payload.password !== 'string' || payload.password.trim().length < 8) {
     isFormValid = false;
     errors.password = 'Please provide your password.';
   }
@@ -83,7 +83,6 @@ router.post('/client', (req, res, next) => {
 
 router.post('/signup', (req, res, next) => {
   const validationResult = validateSignupForm(req.body);
-  console.log(req.body);
   if (!validationResult.success) {
     return res.status(400).json({
       success: false,
@@ -122,10 +121,6 @@ router.post('/signup', (req, res, next) => {
 });
 
 router.post('/login', (req, res, next) => {
-      db.Client.findOne({where:{ email: req.body.email }}, (err, user) => {
-        var passcheck = user.comparePassword(user.password);
-        console.log(passcheck);
-      });
   const validationResult = validateLoginForm(req.body);
   if (!validationResult.success) {
     return res.status(400).json({

@@ -131,7 +131,7 @@ class Main extends React.Component {
       <Card>
         <div className="top-bar">
           <div className="top-bar-left">
-          <Link to={"/about"}><FlatButton primary label="Fido and Tiger"/></Link>
+          <Link to={"/home"}><FlatButton primary label="Fido and Tiger"/></Link>
           <Route path="/"/>
           </div>
           {Auth.isUserAuthenticated() ? (
