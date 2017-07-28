@@ -4,9 +4,9 @@ const PassportLocalStrategy = require('passport-local').Strategy;
 const db = require('../models/');
 const config = require('../../config/index.json');
 
-const comparePassword = (password, callback) => {
+/*const comparePassword = (password, callback) => {
     bcrypt.compare(password, this.password, callback);
-};
+};*/
 /**
  * Return the Passport Local Strategy object.
  */

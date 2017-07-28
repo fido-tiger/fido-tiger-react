@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Auth from '../modules/Auth';
 import ServiceForm from '../components/ServiceForm.jsx'
 
-class ServiceForm extends React.Component {
+class ServiceFormPage extends React.Component {
 
 	constructor(props, context) {
 		super(props, context);

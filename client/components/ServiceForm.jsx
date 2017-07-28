@@ -11,17 +11,9 @@ import InfiniteCalendar, {
 import 'react-infinite-calendar/styles.css';
 
 const CalendarWithRange = withRange(Calendar);
-<InfiniteCalendar
-	width={200}
-	height={400}
-	selected={today}
-	displayOptions={{
-		layout: 'portrait',
-		showHeader: true,
-		showOverlay: true,
-		showTodayHelper: true
-	}}
-	/>
+var today = new Date()
+
+
 const ServiceForm = ({
 	onSubmit,
 	onChange,
@@ -32,15 +24,13 @@ const ServiceForm = ({
 	<form action ="/client/service" onSubmit={onSubmit}>
 		<h2 className="card-heading">Services Form</h2>
 
-		{errors.summary && <p className="error-message">{errors.summary}</p>}
+		
 
 					<div className="field-line">
 							<TextField
 									floatingLabelText="Name"
 									name="name"
-									errorText={errors.name}
-									onChange={onChange}
-									value={user.name}
+							
 							/>			
 					</div>
 
@@ -48,30 +38,37 @@ const ServiceForm = ({
 			<InfiniteCalendar
 				Component={withRange(Calendar)}
 				name="calendar"
-				errorText={errors.calendar}
-				onChange={onChange}
-				value={user.calendar}
+				
+				
 			/>
+		</div>
+		<div>
+		<InfiniteCalendar
+	width={200}
+	height={200}
+	selected={today}
+	displayOptions={{
+		layout: 'portrait',
+		showHeader: true,
+		showOverlay: true,
+		showTodayHelper: true
+	}}/>
 		</div>
 
 		<div className="field-line">
 			<TextField
 				floatingLabelText="Pet Name"
 				name="pet_name"
-				errorText={errors.pet_name}
-				onChange={onChange}
-				value={user.pet_name}
+				
 			/>
 		</div>
 
-		{*needs to be drop down form*}
-		<div className="field-line">
+	<div className="field-line">
 			<TextField
 				floatingLabelText="Temperament"
 				name="temperament"
-				errorText={errors.temperament}
-				onChange={onChange}
-				value={user.temperament}
+				
+			
 			/>
 		</div>
 
@@ -79,9 +76,8 @@ const ServiceForm = ({
 			<TextField
 				floatingLabelText="Medications"
 				name="medications"
-				errorText={errors.medications}
-				onChange={onChange}
-				value={user.medications}
+				
+				
 			/>
 		</div>
 
@@ -89,9 +85,8 @@ const ServiceForm = ({
 			<TextField
 				floatingLabelText="Event Notes"
 				name="event_notes"
-				errorText={errors.event_notes}
-				onChange={onChange}
-				value={user.event_notes}
+				
+				
 			/>
 		</div>
 
@@ -99,9 +94,8 @@ const ServiceForm = ({
 			<TextField
 				floatingLabelText="Options"
 				name="options"
-				errorText={errors.options}
-				onChange={onChange}
-				value={user.options}
+				
+				
 			/>
 		</div>
 
@@ -113,12 +107,12 @@ const ServiceForm = ({
 </Card>
 );
 
-ServiceForm.propTypes= {
+/*ServiceForm.propTypes= {
 	onSubmit: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
 	errors: PropTypes.object.isRequired,
 	user: PropTypes.object.isRequired,
-};
+};*/
 
 export default ServiceForm;
 
@@ -127,27 +121,3 @@ export default ServiceForm;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-)

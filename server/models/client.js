@@ -30,7 +30,7 @@ module.exports = function(sequelize, DataTypes) {
         Client.belongsTo(models.Client);
     };
     Client.prototype.comparePassword = function(password) {
-        return bcrypt.compareSync(password, this.password);
+        return bcrypt.compare(password, this.password, callback);
     };
 
 
