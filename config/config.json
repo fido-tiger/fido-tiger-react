@@ -1,28 +1,9 @@
  {
   "development": {
     "user": "root",
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-    "password": 
-=======
-    "password": "Lvc2344!6962" ,
->>>>>>> Stashed changes
-=======
-    "password": "Lvc2344!6962" ,
->>>>>>> Stashed changes
 
-=======
     "password": "root",
->>>>>>> 9cacc945c14975821a59d4449c1302d358b3e542
-=======
-    "password": "caeser",
->>>>>>> efeb41b5fc2dcd38bcb69036923b13aea8957af8
-=======
-    "password": "root",
->>>>>>> 5a2d3fcaae46ec22f63896d21b29d02e87fc3dff
+
     "database": "fidoandtiger_db",
     "host": "localhost",
     "dialect": "mysql"
