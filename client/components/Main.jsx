@@ -35,7 +35,7 @@ const clientRoutes = ({ routes }) => (
 const routes = [{
         path: '/',
         exact: true,
-        component: HomePage
+        component: NewClientFormPage
 
     }, {
         path: '/client',
