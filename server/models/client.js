@@ -1,8 +1,10 @@
+var bcrypt = require('bcrypt');
+
 module.exports = function(sequelize, DataTypes) {
-    var Client = sequelize.define("Client", {
+    const Client = sequelize.define("Client", {
         uuid: {
             type: DataTypes.INTEGER,
-            // defaultValue: DataTypes.UUIDV1,
+            //defaultValue: DataTypes.UUIDV1,
             autoIncrement: true,
             primaryKey: true
         },
@@ -21,7 +23,17 @@ module.exports = function(sequelize, DataTypes) {
             notNull: true,
             allowNull: false
         },
-        status: {type: DataTypes.ENUM('active','inactive'),defaultValue:'active' }
+        status: { type: DataTypes.ENUM('active', 'inactive'), defaultValue: 'active' }
+
     });
+    Client.associate = function(models) {
+        Client.belongsTo(models.Client);
+    };
+    Client.prototype.comparePassword = function(password) {
+        return bcrypt.compare(password, this.password, callback);
+    };
+
+
+
     return Client;
 };

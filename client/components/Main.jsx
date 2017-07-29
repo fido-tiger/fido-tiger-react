@@ -14,6 +14,7 @@ import ServiceRequest from './ServiceRequest.jsx';
 import DashboardPage from '../containers/DashboardPage.jsx';
 import LoginPage from '../containers/LoginPage.jsx';
 import SignUpPage from '../containers/SignUpPage.jsx';
+import ServiceForm from './ServiceForm.jsx';
 
 
 /*
@@ -34,7 +35,8 @@ const clientRoutes = ({ routes }) => (
 const routes = [{
         path: '/',
         exact: true,
-        component: NewClientFormPage
+        component: HomePage
+
     }, {
         path: '/home',
         exact: true,
@@ -63,6 +65,9 @@ const routes = [{
         path: '/newclient',
         component: NewClientFormPage
     },{
+        path: '/contact',
+        component: ContactUsPage
+    }, {
         path: '/logout',
         render: (nextState, replace) => {
             Auth.deauthenticateUser();
@@ -146,6 +151,7 @@ class Main extends React.Component {
             <Link to="/signup"><FlatButton label="Sign Up"/></Link>
             </div>
           )}
+          <Link to="/contact"><FlatButton label="Contact Us"/></Link>
         </div>
               
     </Card>
