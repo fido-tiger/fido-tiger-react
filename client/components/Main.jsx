@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Card } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
+import { red900 } from 'material-ui/styles/colors';
 
 import HomePage from './HomePage.jsx';
 import ContactUsPage from '../containers/ContactUsPage.jsx';
@@ -148,7 +149,7 @@ class Main extends React.Component {
           </div>
           {Auth.isUserAuthenticated() ? (
             <div className="top-bar-right">
-            <Link to="/logout"><FlatButton style={defaultButtonStyle} label="Log Out"/></Link>
+            <Link to="/logout"><FlatButton backgroundColor={red900} style={defaultButtonStyle} label="Log Out"/></Link>
             <Link to="/client"><FlatButton label="Dashboard"/>
             </Link><Link to="/client/service"><FlatButton label="Schedule Service"/></Link>
             </div>
