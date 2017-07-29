@@ -14,8 +14,9 @@ const NewClientForm = ({
 		<form action="/" onSubmit={onSubmit}>
 			<h2 className="card-heading">Sign Up</h2>
 
-		{/*	{errors.summary && <p className="error-message">
-				{errors.summary}</p>}*/}
+				{errors.summary ? (<p className="error-message">
+				  {errors.summary}</p>) : undefined}
+
 
 			<div className="field-line">
 				<TextField
@@ -105,7 +106,7 @@ const NewClientForm = ({
 
 );
 
-NewClientForm.PropTypes = {
+NewClientForm.propTypes = {
 	onSubmit: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
 	// errors: PropTypes.object.isRequired,

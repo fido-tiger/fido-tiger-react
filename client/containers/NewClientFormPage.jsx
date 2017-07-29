@@ -5,8 +5,8 @@ import NewClientForm from '../components/NewClientForm.jsx';
 
 class NewClientFormPage extends React.Component {
 
-	constructor(props, context) {
-		super(props, context);
+	constructor(props) {
+		super(props);
 
 		const storedMessage = localStorage.getItem('successMessage');
     	let successMessage = '';
@@ -47,36 +47,37 @@ class NewClientFormPage extends React.Component {
 		const phone = encodeURIComponent(this.state.user.phone);
 		const email = encodeURIComponent(this.state.user.email);
 		const formData = `fname=${fname}&lname=${lname}&strtaddy=${strtaddy}&city=${city}&state=${state}&zip=${zip}&phone=${phone}&email==${email}`;
+		const self = this;
 
-	// 	const xhr = new XMLHttpRequest();
-	// 	xhr.open('post', '/auth/login');
-	// 	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	// 	xhr.responseType = 'json';
-	// 	xhr.addEventListener('load', () => {
-	// 		if (xhr.status === 200) {
-	// 			// success
+		const xhr = new XMLHttpRequest();
+		xhr.open('post', '/auth/login');
+		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		xhr.responseType = 'json';
+		xhr.addEventListener('load', () => {
+			if (xhr.status === 200) {
+				// success
 
-	// 			this.setState({
-	// 				errors: {}
-	// 			});
+				self.setState({
+					errors: {}
+				});
 
-	// 			localStorage.setItem('successMessage', xhr.response.message);
+				localStorage.setItem('successMessage', xhr.response.message);
 
-	// 			console.log(this.content);
-	// 			this.context.router.history.replace('login');
-	// 		} else {
-	// 			// failure
+				console.log(this.content);
+				selfs.context.router.history.replace('login');
+			} else {
+				// failure
 
-	// 			const errors = xhr.response.errors ? xhr.response.errors : {};
-	// 			errors.summary = xhr.response.message;
+				const errors = xhr.response.errors ? xhr.response.errors : {};
+				errors.summary = xhr.response.message;
 
-	// 			this.setState({
-	// 				errors
-	// 			});
-	// 		}
-	// 	});
-	// 	xhr.send(formData);
-	 }
+				self.setState({
+					errors
+				});
+			}
+		});
+		xhr.send(formData);
+	}
 
 	changeUser(event) {
 		const field = event.target.fname & lname;
@@ -90,7 +91,7 @@ class NewClientFormPage extends React.Component {
 
 
 	render() {
-		console.log(this.state.errors);
+		console.log('ERRORS:', this.state.errors);
 		return (
 			<NewClientForm
 				onSubmit={this.processForm}
@@ -106,4 +107,4 @@ class NewClientFormPage extends React.Component {
 
 
 
-export default NewClientForm;
+export default NewClientFormPage;
