@@ -8,10 +8,7 @@ import { AppCard } from 'material-ui/Card';
 
 import {
   BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect,
-  withRouter
+  Route
   } from 'react-router-dom';
 
 import routes from './componentRoutes.js';

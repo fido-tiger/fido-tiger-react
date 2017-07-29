@@ -8,6 +8,7 @@ import Paper from 'material-ui/Paper';
 
 import HomePage from './HomePage.jsx';
 import ContactUsPage from '../containers/ContactUsPage.jsx';
+import NewClientFormPage from '../containers/NewClientFormPage.jsx';
 import ClientDashPage from '../containers/ClientDashPage.jsx';
 import ServiceRequest from './ServiceRequest.jsx';
 import DashboardPage from '../containers/DashboardPage.jsx';
@@ -35,8 +36,9 @@ const routes = [{
         path: '/',
         exact: true,
         component: HomePage
+
     }, {
-        path: '/home',
+        path: '/client',
         exact: true,
         render: (location, callback) => {
             if (Auth.isUserAuthenticated()) {
@@ -59,6 +61,9 @@ const routes = [{
     }, {
         path: '/signup',
         component: SignUpPage
+    },{
+        path: '/newclient',
+        component: NewClientFormPage
     },{
         path: '/contact',
         component: ContactUsPage
@@ -131,7 +136,7 @@ class Main extends React.Component {
       <Card>
         <div className="top-bar">
           <div className="top-bar-left">
-          <Link to={"/about"}><FlatButton primary label="Fido and Tiger"/></Link>
+          <Link to={"/home"}><FlatButton primary label="Fido and Tiger"/></Link>
           <Route path="/"/>
           </div>
           {Auth.isUserAuthenticated() ? (

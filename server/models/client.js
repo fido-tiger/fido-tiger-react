@@ -25,15 +25,23 @@ module.exports = function(sequelize, DataTypes) {
         },
         status: { type: DataTypes.ENUM('active', 'inactive'), defaultValue: 'active' }
 
+    }, {
+        hooks: {
+            beforeValidate: generateHash = function(data) {
+                bcrypt.hashSync(data.get('password'), bcrypt.genSaltSync(8), null);
+            }
+        }
+
     });
     Client.associate = function(models) {
         Client.belongsTo(models.Client);
     };
-    Client.prototype.comparePassword = function(password) {
-        return bcrypt.compare(password, this.password, callback);
+    Client.prototype.comparePassword = function(password, callback) {
+        bcrypt.compare(password, this.password, callback);
     };
-
-
+    // Client.prototype.generateHash = function(data) {
+    //     bcrypt.hashSync(data.get('password'), bcrypt.genSaltSync(8), null);
+    // };
 
     return Client;
 };

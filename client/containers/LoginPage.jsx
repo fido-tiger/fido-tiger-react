@@ -69,9 +69,7 @@ class LoginPage extends React.Component {
         Auth.authenticateUser(xhr.response.token);
 
 
-        // change the current URL to /
-        console.log(this.context);
-        console.log(xhr.response);
+        // change the current URL to /client
         this.context.router.history.replace('/client');
       } else {
         // failure
