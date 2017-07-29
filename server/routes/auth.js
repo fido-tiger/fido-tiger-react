@@ -81,6 +81,57 @@ router.post('/client', (req, res, next) => {
 });
 
 
+function validateNewClientForm(payload) {
+  const errors = {};
+  let isFormValid = true;
+  let message = '';
+
+ if (!payload || typeof payload.fname !== 'string' || payload.fname.trim().length === 0) {
+    isFormValid = false;
+    errors.name = 'Please provide your first name.';
+  }
+
+  if (!payload || typeof payload.lname !== 'string' || payload.lname.trim().length === 0) {
+    isFormValid = false;
+    errors.name = 'Please provide your last name.';
+  }
+
+  if (!payload || typeof payload.address !== 'string' || payload.address.trim().length === 0) {
+    isFormValid = false;
+    errors.address = 'Please provide a valid address.';
+  }
+
+  if (!payload || typeof payload.city !== 'string' || payload.city.trim().length === 0) {
+    isFormValid = false;
+    errors.city = 'Please provide a city.';
+  }
+
+  if (!payload || typeof payload.zip !== 'string' || payload.zip.trim().length < 5) {
+    isFormValid = false;
+    errors.zip = 'Please provide a valid zip code.';
+  }
+  
+  if (!payload || typeof payload.email !== 'string' || payload.email.trim().length === 0) {
+    isFormValid = false;
+    errors.email = 'Please provide your email address.';
+  }  
+
+  if (!payload || typeof payload.phone !== 'string' || payload.phone.trim().length < 10) {
+    isFormValid = false;
+    errors.phone = 'Please provide a valid phone number';
+  } 
+
+  if (!isFormValid) {
+    message = 'Check the form for errors.';
+  }
+
+  return {
+    success: isFormValid,
+    message,
+    errors
+  };
+}
+
 router.post('/signup', (req, res, next) => {
   const validationResult = validateSignupForm(req.body);
   console.log(req.body);
@@ -161,5 +212,44 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
+router.post('/newclient', (req, res, next) => {
+  const validationResult = validateNewClientForm(req.body);
+  console.log(req.body);
+  if (!validationResult.success) {
+    return res.status(400).json({
+      success: false,
+      message: validationResult.message,
+      errors: validationResult.errors
+    });
+  }
+
+
+  return passport.authenticate('local-signup', (err) => {
+    if (err) {
+      console.log(err);
+        if (err.name === 'MongoError' && err.code === 11000) {
+          // the 11000 Mongo code is for a duplication email error
+          // the 409 HTTP status code is for conflict error
+          return res.status(409).json({
+            success: false,
+            message: 'Check the form for errors.',
+            errors: {
+              email: 'This email is already taken.'
+            }
+          });
+      }
+
+      return res.status(400).json({
+        success: false,
+        message: 'Could not process the form.'
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: 'You have successfully signed up! Now you should be able to log in.'
+    });
+  })(req, res, next);
+});
 
 module.exports = router;

@@ -8,6 +8,7 @@ import Paper from 'material-ui/Paper';
 
 import HomePage from './HomePage.jsx';
 import ContactUsPage from '../containers/ContactUsPage.jsx';
+import NewClientFormPage from '../containers/NewClientFormPage.jsx';
 import ClientDashPage from '../containers/ClientDashPage.jsx';
 import ServiceRequest from './ServiceRequest.jsx';
 import DashboardPage from '../containers/DashboardPage.jsx';
@@ -35,6 +36,7 @@ const routes = [{
         path: '/',
         exact: true,
         component: HomePage
+
     }, {
         path: '/home',
         exact: true,
@@ -59,6 +61,9 @@ const routes = [{
     }, {
         path: '/signup',
         component: SignUpPage
+    },{
+        path: '/newclient',
+        component: NewClientFormPage
     },{
         path: '/contact',
         component: ContactUsPage
