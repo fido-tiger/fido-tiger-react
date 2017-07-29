@@ -14,7 +14,7 @@ import ServiceRequest from './ServiceRequest.jsx';
 import DashboardPage from '../containers/DashboardPage.jsx';
 import LoginPage from '../containers/LoginPage.jsx';
 import SignUpPage from '../containers/SignUpPage.jsx';
-import ServiceForm from './ServiceForm.jsx';
+// import ServiceFormPage from '../containers/ServiceFormPage.jsx';
 
 
 /*
@@ -35,7 +35,7 @@ const clientRoutes = ({ routes }) => (
 const routes = [{
         path: '/',
         exact: true,
-        component: NewClientFormPage,
+        component: HomePage
 
     }, {
         path: '/client',
