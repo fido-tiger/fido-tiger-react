@@ -21,8 +21,8 @@ var today = new Date();
 const ServiceForm = ({
 	onSubmit,
 	onChange,
-	errors,
-	user,
+	// errors,
+	// user,
 }) => (
 <Card className="container">
 	<form action ="/client/service" onSubmit={onSubmit}>
@@ -38,22 +38,20 @@ const ServiceForm = ({
 		<Divider/>
 
 		<div className="field-line">
-					<InfiniteCalendar
-						Component={withRange(Calendar)}
-						name="calendar"	
-						/>
-		</div>
-		<div>
-						<InfiniteCalendar
-					width={200}
-					height={200}
-					selected={today}
-					displayOptions={{
-						layout: 'portrait',
-						showHeader: true,
-						showOverlay: true,
-						showTodayHelper: true
-					}}/>
+
+			<InfiniteCalendar
+				Component={withRange(Calendar)}
+				name="calendar"	
+				width={200}
+				height={200}
+				selected={today}
+				displayOptions={{
+					layout: 'portrait',
+					showHeader: true,
+					showOverlay: true,
+					showTodayHelper: true
+					}}
+			/>
 		</div>
 		<Divider />
 
@@ -67,16 +65,7 @@ const ServiceForm = ({
 		</div>
 		<Divider />
 
-		<div className="field-line">
-			<DropDownMenu value={this.state.value}
-			onChange={this.handleChange} hintText="Temperament">
-				<MenuItem value={1} label="friendly" />
-				<MenuItem value={2} label="dog-aggressive" />
-				<MenuItem value={3} label="people-aggresive" />
-				<MenuItem value={4} label="Relaxed" />
-			</DropDownMenu>
-				
-		</div>
+		
 		<Divider />
 
 		<div className="field-line">
@@ -108,7 +97,7 @@ const ServiceForm = ({
 				name="event_notes"
 				multiLine={true}
 				rows={4}
-				rowsMax{6}
+				rowsMax={6}
 				
 			/>
 		</div>
@@ -119,14 +108,8 @@ const ServiceForm = ({
 		</div>
 	</form>
 </Card>
-);
 
-ServiceForm.propTypes= {
-	onSubmit: PropTypes.func.isRequired,
-	onChange: PropTypes.func.isRequired,
-	errors: PropTypes.object.isRequired,
-	user: PropTypes.object.isRequired,
-};
+);
 
 export default ServiceForm;
 

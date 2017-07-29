@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import Auth from '../modules/Auth';
 import ServiceForm from '../components/ServiceForm.jsx'
 
-export default class ServiceFormPage extends React.Component {
+class ServiceFormPage extends React.Component {
+
 
     constructor(props, context) {
         super(props, context);
@@ -91,9 +92,11 @@ export default class ServiceFormPage extends React.Component {
         });
     }
 
-    render() {
-        return (
-            <ServiceFormPage
+ 
+
+render() {
+	return (
+		<ServiceFormPage
 			onSubmit={this.processForm}
 			handleChange={this.handleChange}
 			/>
