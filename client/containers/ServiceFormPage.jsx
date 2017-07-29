@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Auth from '../modules/Auth';
 import ServiceForm from '../components/ServiceForm.jsx'
 
-export default class ServiceFormPage extends React.Component {
+class ServiceFormPage extends React.Component {
 
     constructor(props, context) {
         super(props, context);
@@ -35,7 +35,7 @@ export default class ServiceFormPage extends React.Component {
         this.changeUser = this.changeUser.bind(this);
 
     }
-    
+
 
     /*handleChange = (event, index, value) => this.setState({value});
      */

@@ -129,6 +129,13 @@ const homePaperStyle = {
     display: 'inline-block'
 };
 
+const defaultButtonStyle = {
+ color:"blue"
+};
+
+/*
+** RENDER
+***************************/
 class Main extends React.Component {
     render() {
         return (
@@ -136,12 +143,12 @@ class Main extends React.Component {
       <Card>
         <div className="top-bar">
           <div className="top-bar-left">
-          <Link to={"/home"}><FlatButton primary label="Fido and Tiger"/></Link>
+          <Link to={"/"}><FlatButton primary label="Fido and Tiger"/></Link>
           <Route path="/"/>
           </div>
           {Auth.isUserAuthenticated() ? (
             <div className="top-bar-right">
-            <Link to="/logout"><FlatButton label="Log Out"/></Link>
+            <Link to="/logout"><FlatButton style={defaultButtonStyle} label="Log Out"/></Link>
             <Link to="/client"><FlatButton label="Dashboard"/>
             </Link><Link to="/client/service"><FlatButton label="Schedule Service"/></Link>
             </div>
