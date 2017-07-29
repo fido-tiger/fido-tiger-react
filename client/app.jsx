@@ -8,10 +8,7 @@ import { AppCard } from 'material-ui/Card';
 
 import {
   BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect,
-  withRouter
+  Route
   } from 'react-router-dom';
 
 import routes from './componentRoutes.js';
@@ -22,6 +19,8 @@ import DashboardPage from './containers/DashboardPage.jsx';
 import LoginPage from './containers/LoginPage.jsx';
 import SignUpPage from './containers/SignUpPage.jsx';
 import Auth from './modules/Auth';
+
+
 
 // remove tap delay, essential for MaterialUI to work properly
 injectTapEventPlugin();

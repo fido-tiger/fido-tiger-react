@@ -27,12 +27,12 @@ const avatarStyle = {
   margin: '5px'
 };
 
-const ClientDash = ({data}) => (
+const ClientDash = ({secretData}) => (
   <div>
   <Card style={homeCardStyle} className="container">
     <CardTitle title="User Dashboard" subtitle='"My Favorite Pet App!"' />    
     <div className="col-sm-8">
-     {data && <CardText>{data}</CardText>}
+     {secretData && <CardText>{secretData}</CardText>}
         {Auth.isUserAuthenticated() ? (
       <div className="top-bar-right">
       <Link to="/logout"><FlatButton label="Log Out"/></Link>
@@ -76,7 +76,7 @@ const ClientDash = ({data}) => (
   </div>
 );
 ClientDash.propTypes = {
-  data: PropTypes.string.isRequired
+  secretData: PropTypes.string.isRequired
 };
 
 export default ClientDash;

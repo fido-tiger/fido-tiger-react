@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const Client = require('../models/client');
+const db = require('../models/');
 const config = require('../../config/index.json');
 
 
@@ -7,7 +7,7 @@ const config = require('../../config/index.json');
  *  The Auth Checker middleware function.
  */
 module.exports = (req, res, next) => {
-    console.log(req.headers);
+
     if (!req.headers.authorization) {
         return res.status(401).end();
     }
@@ -23,8 +23,8 @@ module.exports = (req, res, next) => {
         const userId = decoded.sub;
 
         // check if a user exists
-        return Client.findOne({
-            where: { uuid: req.user.uuid },
+        return db.Client.findOne({
+            where: { uuid: req.body.uuid },
         }), (userErr, data) => {
             if (userErr || !user) {
                 return res.status(401).end();
