@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import Auth from '../modules/Auth';
 import ServiceForm from '../components/ServiceForm.jsx'
 
-class ServiceFormPage extends React.Component {
+export default class ServiceFormPage extends React.Component {
 
 	constructor(props, context) {
 		super(props, context);
+		this.state = {value: 2};
 
 	const storedMessage = localStorage.getItem('successMessage');
     let successMessage = '';
@@ -34,6 +35,8 @@ class ServiceFormPage extends React.Component {
 
 
 	}
+
+handleChange = (event, index, value) => this.setState({value});
 
 
 
@@ -81,8 +84,7 @@ render() {
 	return (
 		<ServiceFormPage
 			onSubmit={this.processForm}
-			errors={this.state.errors}
-			user={this.state.user}
+			handleChange={this.handleChange}
 			/>
 		);
 	}
