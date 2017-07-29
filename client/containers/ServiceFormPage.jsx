@@ -5,7 +5,6 @@ import ServiceForm from '../components/ServiceForm.jsx'
 
 class ServiceFormPage extends React.Component {
 
-
     constructor(props, context) {
         super(props, context);
         /*this.state = {value: 2};*/
@@ -36,7 +35,7 @@ class ServiceFormPage extends React.Component {
         this.changeUser = this.changeUser.bind(this);
 
     }
-    
+
 
     /*handleChange = (event, index, value) => this.setState({value});
      */
