@@ -9,5 +9,15 @@ router.get('/client', (req, res, next) => {
   });
 });
 
+router.post('/client/service', (req,res) => {
+	console.log(req.body);
+
+	db.Services.create({
+		begin_date: req.body.begin_date,
+		end_date: req.body.end_date,
+
+	});
+});
+
 
 module.exports = router;
