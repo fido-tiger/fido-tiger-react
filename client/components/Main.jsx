@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Card } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
+import { red900 } from 'material-ui/styles/colors';
 
 import HomePage from './HomePage.jsx';
 import ContactUsPage from '../containers/ContactUsPage.jsx';
@@ -129,6 +130,13 @@ const homePaperStyle = {
     display: 'inline-block'
 };
 
+const defaultButtonStyle = {
+ color:"blue"
+};
+
+/*
+** RENDER
+***************************/
 class Main extends React.Component {
     render() {
         return (
@@ -136,12 +144,12 @@ class Main extends React.Component {
       <Card>
         <div className="top-bar">
           <div className="top-bar-left">
-          <Link to={"/home"}><FlatButton primary label="Fido and Tiger"/></Link>
+          <Link to={"/"}><FlatButton primary label="Fido and Tiger"/></Link>
           <Route path="/"/>
           </div>
           {Auth.isUserAuthenticated() ? (
             <div className="top-bar-right">
-            <Link to="/logout"><FlatButton label="Log Out"/></Link>
+            <Link to="/logout"><FlatButton backgroundColor={red900} style={defaultButtonStyle} label="Log Out"/></Link>
             <Link to="/client"><FlatButton label="Dashboard"/>
             </Link><Link to="/client/service"><FlatButton label="Schedule Service"/></Link>
             </div>
