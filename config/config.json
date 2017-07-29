@@ -2,6 +2,7 @@
   "development": {
     "user": "root",
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< HEAD
@@ -19,13 +20,16 @@
 =======
     "password": "caeser",
 >>>>>>> efeb41b5fc2dcd38bcb69036923b13aea8957af8
+=======
+    "password": "root",
+>>>>>>> 5a2d3fcaae46ec22f63896d21b29d02e87fc3dff
     "database": "fidoandtiger_db",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "user": "root",
-    "password": "caeser",
+    "password": "root",
     "database": "fidoandtiger_db",
     "host": "localhost",
     "dialect": "mysql"

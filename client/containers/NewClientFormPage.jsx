@@ -48,35 +48,35 @@ class NewClientFormPage extends React.Component {
 		const email = encodeURIComponent(this.state.user.email);
 		const formData = `fname=${fname}&lname=${lname}&strtaddy=${strtaddy}&city=${city}&state=${state}&zip=${zip}&phone=${phone}&email==${email}`;
 
-		const xhr = new XMLHttpRequest();
-		xhr.open('post', '/auth/login');
-		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-		xhr.responseType = 'json';
-		xhr.addEventListener('load', () => {
-			if (xhr.status === 200) {
-				// success
+	// 	const xhr = new XMLHttpRequest();
+	// 	xhr.open('post', '/auth/login');
+	// 	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	// 	xhr.responseType = 'json';
+	// 	xhr.addEventListener('load', () => {
+	// 		if (xhr.status === 200) {
+	// 			// success
 
-				this.setState({
-					errors: {}
-				});
+	// 			this.setState({
+	// 				errors: {}
+	// 			});
 
-				localStorage.setItem('successMessage', xhr.response.message);
+	// 			localStorage.setItem('successMessage', xhr.response.message);
 
-				console.log(this.content);
-				this.context.router.history.replace('login');
-			} else {
-				// failure
+	// 			console.log(this.content);
+	// 			this.context.router.history.replace('login');
+	// 		} else {
+	// 			// failure
 
-				const errors = xhr.response.errors ? xhr.response.errors : {};
-				errors.summary = xhr.response.message;
+	// 			const errors = xhr.response.errors ? xhr.response.errors : {};
+	// 			errors.summary = xhr.response.message;
 
-				this.setState({
-					errors
-				});
-			}
-		});
-		xhr.send(formData);
-	}
+	// 			this.setState({
+	// 				errors
+	// 			});
+	// 		}
+	// 	});
+	// 	xhr.send(formData);
+	 }
 
 	changeUser(event) {
 		const field = event.target.fname & lname;
@@ -95,7 +95,7 @@ class NewClientFormPage extends React.Component {
 			<NewClientForm
 				onSubmit={this.processForm}
 				onChange={this.changeUser}
-				errors={this.state.errors}
+				// errors={this.state.errors}
 				user={this.state.user}
 			/>
 		);
