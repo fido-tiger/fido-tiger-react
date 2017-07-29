@@ -4,9 +4,9 @@ const PassportLocalStrategy = require('passport-local').Strategy;
 const db = require('../models/');
 const config = require('../../config/index.json');
 
-const comparePassword = (password, callback) => {
+/*const comparePassword = (password, callback) => {
     bcrypt.compare(password, this.password, callback);
-};
+};*/
 /**
  * Return the Passport Local Strategy object.
  */
@@ -22,7 +22,9 @@ module.exports = new PassportLocalStrategy({
     };
 
     // find a user by email address
-    return db.Client.findOne({ email: userData.email }, (err, user) => {
+    return db.Client.findOne({where:{ email: userData.email }}, (err, user) => {
+        var passcheck = user.comparePassword(user.password);
+        console.log(passcheck);
         console.log(user);
         if (err) { 
           return done(err);
@@ -55,8 +57,6 @@ module.exports = new PassportLocalStrategy({
             const data = {
                 name: user.name
             };
-            console.log(user);
-            console.log(token);
             return done(null, token, data);
         });
     });

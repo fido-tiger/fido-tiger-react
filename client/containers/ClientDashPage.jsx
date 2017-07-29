@@ -21,6 +21,7 @@ class ClientDashPage extends React.Component {
     xhr.responseType = 'json';
     xhr.addEventListener('load', () => {
       if (xhr.status === 200) {
+        console.log('Response:' + xhr.response);
         this.setState({
           data: xhr.response.message
         });
@@ -33,7 +34,7 @@ class ClientDashPage extends React.Component {
    * Render the component.
    */
   render() {
-    return (<ClientDash data={this.state.data} />);
+    return (<ClientDash data={this.state.data}/>);
   }
 
 }

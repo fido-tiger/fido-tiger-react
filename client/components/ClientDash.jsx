@@ -5,7 +5,16 @@ import { Link, Route, Redirect } from 'react-router-dom';
 
 import { Card, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-
+import List, {ListItem} from 'material-ui/List';
+import Avatar from 'material-ui/Avatar';
+import {
+  blue300,
+  indigo900,
+  orange200,
+  deepOrange300,
+  pink400,
+  purple500,
+} from 'material-ui/styles/colors';
 
 
 const homeCardStyle = {
@@ -13,6 +22,9 @@ const homeCardStyle = {
   margin:'15px',
   padding:'7px',
    textAlign: 'left',
+};
+const avatarStyle = {
+  margin: '5px'
 };
 
 const ClientDash = ({data}) => (
@@ -36,6 +48,29 @@ const ClientDash = ({data}) => (
   <Card style={homeCardStyle} className="container">
   <div>
   <h2>More Stuff</h2>
+  <List>
+    <ListItem
+    disabled={true}
+    leftAvatar={<Avatar>A</Avatar>}
+    >
+    Letter Avatar
+    </ListItem>
+    <ListItem
+    disabled={true}
+    leftAvatar={
+    <Avatar
+    color={deepOrange300}
+    backgroundColor={purple500}
+    size={30}
+    style={avatarStyle}
+    >
+    A
+    </Avatar>
+    }
+    >
+    User Avatar
+    </ListItem>
+  </List>
   </div>
   </Card>
   </div>
@@ -45,5 +80,10 @@ ClientDash.propTypes = {
 };
 
 export default ClientDash;
+
+
+
+
+
 
 
