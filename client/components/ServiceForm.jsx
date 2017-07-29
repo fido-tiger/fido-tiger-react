@@ -26,10 +26,7 @@ const ServiceForm = ({
 }) => (
 <Card className="container">
 	<form action ="/client/service" onSubmit={onSubmit}>
-		<h2 className="card-heading">Services Form</h2>
-
-		
-
+		<h2 className="card-heading">Services Form</h2>		
 		<div className="field-line">
 			<TextField
 				onChange={this.handleChange}
@@ -41,19 +38,23 @@ const ServiceForm = ({
 		<Divider/>
 
 		<div className="field-line">
-			<InfiniteCalendar
-				Component={withRange(Calendar)}
-				name="calendar"	
-			
-	width={200}
-	height={200}
-	selected={today}
-	displayOptions={{
-		layout: 'portrait',
-		showHeader: true,
-		showOverlay: true,
-		showTodayHelper: true
-	}}/>
+
+					<InfiniteCalendar
+						Component={withRange(Calendar)}
+						name="calendar"	
+						/>
+		</div>
+		<div>
+						<InfiniteCalendar
+					width={200}
+					height={200}
+					selected={today}
+					displayOptions={{
+						layout: 'portrait',
+						showHeader: true,
+						showOverlay: true,
+						showTodayHelper: true
+					}}/>
 		</div>
 		<Divider />
 
@@ -121,12 +122,12 @@ const ServiceForm = ({
 </Card>
 );
 
-/*ServiceForm.propTypes= {
+ServiceForm.propTypes= {
 	onSubmit: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
 	errors: PropTypes.object.isRequired,
 	user: PropTypes.object.isRequired,
-};*/
+};
 
 export default ServiceForm;
 

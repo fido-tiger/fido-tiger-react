@@ -76,7 +76,7 @@ function validateLoginForm(payload) {
 }
 router.get('/client', (req, res, next) => {
     return res.status(200).json({
-    message: "You're authorized to see this secret message."
+    message: "How's this for a secret message dumbass."
   });
 });
 
@@ -218,7 +218,6 @@ router.post('/newclient', (req, res, next) => {
     });
   }
 
-    return res.status(200).end();
 });
 
 module.exports = router;
