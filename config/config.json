@@ -2,14 +2,13 @@
   "development": {
     "user": "root",
 
-    "password": "",
     "database": "fidoandtiger_db",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "user": "root",
-    "password": null,
+    "password": "root",
     "database": "fidoandtiger_db",
     "host": "localhost",
     "dialect": "mysql"

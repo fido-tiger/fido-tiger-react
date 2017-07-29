@@ -14,15 +14,20 @@ const NewClientForm = ({
 		<form action="/" onSubmit={onSubmit}>
 			<h2 className="card-heading">Sign Up</h2>
 
+
+{/*			{errors.summary && <p className="error-message">
+				{errors.summary}</p>}
+
 				{errors.summary ? (<p className="error-message">
-				  {errors.summary}</p>) : undefined}
+				  {errors.summary}</p>) : undefined}*/}
+
 
 
 			<div className="field-line">
 				<TextField
 					floatingLabelText="First Name"
 					name="fname"
-					// errorText={errors.fname}
+					errorText={errors.fname}
 					onChange={onChange}
 					value={user.fname}
 				/>
@@ -32,7 +37,7 @@ const NewClientForm = ({
 				<TextField
 					floatingLabelText="Last Name"
 					name="lname"
-					// errorText={errors.lname}
+					errorText={errors.lname}
 					onChange={onChange}
 					value={user.lname}
 				/>
@@ -42,7 +47,7 @@ const NewClientForm = ({
 				<TextField
 					floatingLabelText="Street Address"
 					name="strtaddy"
-					// errorText={errors.address}
+					errorText={errors.address}
 					onChange={onChange}
 					value={user.address}
 				/>
@@ -52,7 +57,7 @@ const NewClientForm = ({
 				<TextField
 					floatingLabelText="City"
 					name="city"
-					// errorText={errors.city}
+					errorText={errors.city}
 					onChange={onChange}
 					value={user.city}
 				/>
@@ -71,7 +76,7 @@ const NewClientForm = ({
 				<TextField
 					floatingLabelText="Zip Code"
 					name="zip"
-					// errorText={errors.zip}
+					errorText={errors.zip}
 					onChange={onChange}
 					value={user.zip}
 				/>
@@ -81,7 +86,7 @@ const NewClientForm = ({
 				<TextField
 					floatingLabelText="Phone Number"
 					name="phone"
-					// errorText={errors.phone}
+					errorText={errors.phone}
 					onChange={onChange}
 					value={user.phone}
 				/>
@@ -91,7 +96,7 @@ const NewClientForm = ({
 				<TextField
 					floatingLabelText="Email"
 					name="email"
-					// errorText={errors.email}
+					errorText={errors.email}
 					onChange={onChange}
 					value={user.email}
 				/>
@@ -109,7 +114,7 @@ const NewClientForm = ({
 NewClientForm.propTypes = {
 	onSubmit: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
-	// errors: PropTypes.object.isRequired,
+	errors: PropTypes.object.isRequired,
 	user: PropTypes.object.isRequired
 };
 
