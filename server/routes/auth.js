@@ -74,7 +74,7 @@ function validateLoginForm(payload) {
     errors
   };
 }
-router.post('/client', (req, res, next) => {
+router.get('/client', (req, res, next) => {
     return res.status(200).json({
     message: "You're authorized to see this secret message."
   });

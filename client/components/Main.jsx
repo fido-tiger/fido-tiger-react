@@ -38,7 +38,7 @@ const routes = [{
         component: HomePage
 
     }, {
-        path: '/home',
+        path: '/client',
         exact: true,
         render: (location, callback) => {
             if (Auth.isUserAuthenticated()) {
