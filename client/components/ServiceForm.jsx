@@ -44,11 +44,7 @@ const ServiceForm = ({
 			<InfiniteCalendar
 				Component={withRange(Calendar)}
 				name="calendar"	
-			{/*
-				/>
-		</div>
-		<div>
-		<InfiniteCalendar */}
+			
 	width={200}
 	height={200}
 	selected={today}
@@ -112,7 +108,7 @@ const ServiceForm = ({
 				name="event_notes"
 				multiLine={true}
 				rows={4}
-				rowsMax{6}
+				rowsMax={6}
 				
 			/>
 		</div>
