@@ -96,7 +96,7 @@ class NewClientFormPage extends React.Component {
 			<NewClientForm
 				onSubmit={this.processForm}
 				onChange={this.changeUser}
-				errors={this.state.errors}
+				// errors={this.state.errors}
 				user={this.state.user}
 			/>
 		);

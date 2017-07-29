@@ -4,14 +4,12 @@ const PassportLocalStrategy = require('passport-local').Strategy;
 const db = require('../models/');
 const config = require('../../config/index.json');
 
-/*const comparePassword = (password, callback) => {
-    bcrypt.compare(password, this.password, callback);
-};*/
+
 /**
  * Return the Passport Local Strategy object.
  */
 module.exports = new PassportLocalStrategy({
-    emailField: 'email',
+    usernameField: 'email',
     passwordField: 'password',
     session: false,
     passReqToCallback: true
@@ -22,13 +20,7 @@ module.exports = new PassportLocalStrategy({
     };
 
     // find a user by email address
-    return db.Client.findOne({where:{ email: userData.email }}, (err, user) => {
-        var passcheck = user.comparePassword(user.password);
-        console.log(passcheck);
-        console.log(user);
-        if (err) { 
-          return done(err);
-         }
+    db.Client.findOne({ where: { email: email } }).then(function(user) {
 
         if (!user) {
             const error = new Error('Incorrect email or password');
@@ -39,8 +31,7 @@ module.exports = new PassportLocalStrategy({
 
         // check if a hashed user's password is equal to a value saved in the database
         return user.comparePassword(userData.password, (passwordErr, isMatch) => {
-            if (err) { return done(err); }
-
+            
             if (!isMatch) {
                 const error = new Error('Incorrect email or password');
                 error.name = 'IncorrectCredentialsError';
