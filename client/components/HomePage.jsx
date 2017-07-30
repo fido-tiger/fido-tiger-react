@@ -22,7 +22,7 @@ const HomePage = () => (
   <Paper style={homePaperStyle} zDepth={1}>
   
   <Card style={homeCardStyle} className="container" >
-    <div class="card-image">
+    <div className="card-image">
               <img src="./images/catDog.png" width="100%" height="auto"/>
     <CardTitle title="Fido and Tiger Pet Sitting" subtitle='"My Favorite Pet App!"' />    
       <div style={homePageStyle} className="col-sm-12">
@@ -36,29 +36,29 @@ const HomePage = () => (
   <Card style={homeCardStyle} className="container">
     <div style={homePageStyle}>
       <h2>MEET OUR TEAM</h2>
-        <div class="col-sm-3">
-          <div class="thumbnail">
+        <div className="col-sm-3">
+          <div className="thumbnail">
             <img src="./images/boy.png" alt="Thomas" width="25%" height="auto"/>
             <p><strong>Thomas Kearney</strong></p>
           </div>
         </div>
 
-        <div class="col-sm-3">
-          <div class="thumbnail">
+        <div className="col-sm-3">
+          <div className="thumbnail">
             <img src="./images/boy.png" alt="Elliott" width="25%" height="auto"/>
             <p><strong>Elliott Chalmers </strong></p>
           </div>
         </div>
 
-        <div class="col-sm-3">
-         <div class="thumbnail">
+        <div className="col-sm-3">
+         <div className="thumbnail">
            <img src="./images/boy.png" alt="Alex " width="25%" height="auto"/>
            <p><strong>Alex Lovell</strong></p>
          </div>
         </div>
 
-        <div class="col-sm-3">
-          <div class="thumbnail">
+        <div className="col-sm-3">
+          <div className="thumbnail">
             <img src="./images/girl.png" alt="Terri " width="25%" height="auto"/>
             <p><strong>Terri Byers</strong></p>
           </div>

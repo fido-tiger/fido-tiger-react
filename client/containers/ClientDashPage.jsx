@@ -3,16 +3,16 @@ import Auth from '../modules/Auth';
 // import authCheck from '../../server/middleware/auth-check';
 
 import ClientDash from '../components/ClientDash.jsx';
-
 class ClientDashPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            secretData: '',
-            email: this.props.location.state.email,
-            name: this.props.location.state.name
-        };
-    }
+        constructor(props) {
+            super(props);
+            this.state = {
+                secretData: '',
+                email: this.props.location.state.email,
+                name: this.props.location.state.name,
+                registered: true,
+            };
+        }
     componentWillMount() {
         var received = this.props.location.state;
         console.log(received);
@@ -33,7 +33,8 @@ class ClientDashPage extends React.Component {
             if (xhr.status === 200) {
                 console.log(xhr.response);
                 this.setState({
-                    secretData: xhr.response.message
+                    secretData: xhr.response.message,
+                    registered: xhr.response.registered
                 });
             }
         });
@@ -44,7 +45,7 @@ class ClientDashPage extends React.Component {
      * Render the component.
      */
     render() {
-        return (<ClientDash secretData={this.state.secretData} name={this.state.name} email={this.state.email} />);
+        return (<ClientDash secretData={this.state.secretData} name={this.state.name} email={this.state.email} registered={this.state.registered} />);
     }
 
 }

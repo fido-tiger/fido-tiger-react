@@ -62,10 +62,10 @@ const routes = [{
     }, {
         path: '/signup',
         component: SignUpPage
-    },{
+    },/*{
         path: '/newclient',
         component: NewClientFormPage
-    },{
+    },*/{
         path: '/contact',
         component: ContactUsPage
     }, {
@@ -141,6 +141,16 @@ const defaultButtonStyle = {
 ** RENDER
 ***************************/
 class Main extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            user:{
+                email: '',
+                name: ''
+            }
+        }
+    };
+
     render() {
         return (
             <div>
