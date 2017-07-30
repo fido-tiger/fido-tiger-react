@@ -1,5 +1,7 @@
 import React from 'react';
 import Auth from '../modules/Auth';
+// import authCheck from '../../server/middleware/auth-check';
+
 import ClientDash from '../components/ClientDash.jsx';
 
 class ClientDashPage extends React.Component {
@@ -7,11 +9,15 @@ class ClientDashPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      secretData: ''
+      secretData: '',
+      email: this.props.location.state.email,
+      name: this.props.location.state.name
     };
   }
-    componentDidMount() {
-    const xhr = new XMLHttpRequest();
+  componentWillMount() {
+    var received = this.props.location.state;
+    console.log(received);
+  const xhr = new XMLHttpRequest();
     xhr.open('get', '/auth/client');
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     // set the authorization HTTP header
@@ -19,6 +25,7 @@ class ClientDashPage extends React.Component {
     xhr.responseType = 'json';
     xhr.addEventListener('load', () => {
       if (xhr.status === 200) {
+        console.log(xhr.response);
         this.setState({
           secretData: xhr.response.message
         });
@@ -31,7 +38,7 @@ class ClientDashPage extends React.Component {
    * Render the component.
    */
   render() {
-    return (<ClientDash secretData={this.state.secretData} />);
+    return (<ClientDash secretData={this.state.secretData} name={this.state.name} email={this.state.email} />);
   }
 
 }

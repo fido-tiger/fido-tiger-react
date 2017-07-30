@@ -2,7 +2,7 @@ import React from 'react';
 import Auth from '../modules/Auth';
 import PropTypes from 'prop-types';
 import { Link, Route, Redirect } from 'react-router-dom';
-
+// Material UI
 import { Card, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import List, {ListItem} from 'material-ui/List';
@@ -15,24 +15,27 @@ import {
   pink400,
   purple500,
 } from 'material-ui/styles/colors';
+// Component Imports
+import NewClientFormPage from '../containers/NewClientFormPage';
 
 
 const homeCardStyle = {
   width: '97%',
   margin:'15px',
   padding:'7px',
-   textAlign: 'left',
+  textAlign: 'left',
 };
 const avatarStyle = {
   margin: '5px'
 };
-
-const ClientDash = ({secretData}) => (
+/*    Component
+≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
+const ClientDash = ({secretData, name}) => (
   <div>
   <Card style={homeCardStyle} className="container">
     <CardTitle title="User Dashboard" subtitle='"My Favorite Pet App!"' />    
     <div className="col-sm-8">
-     {secretData && <CardText>{secretData}</CardText>}
+     {secretData && <CardText>{secretData}{name}</CardText>}
         {Auth.isUserAuthenticated() ? (
       <div className="top-bar-right">
       <Link to="/logout"><FlatButton label="Log Out"/></Link>
@@ -51,32 +54,20 @@ const ClientDash = ({secretData}) => (
   <List>
     <ListItem
     disabled={true}
-    leftAvatar={<Avatar>A</Avatar>}
+    leftAvatar={<Avatar>ABC</Avatar>}
     >
     Letter Avatar
     </ListItem>
-    <ListItem
-    disabled={true}
-    leftAvatar={
-    <Avatar
-    color={deepOrange300}
-    backgroundColor={purple500}
-    size={30}
-    style={avatarStyle}
-    >
-    A
-    </Avatar>
-    }
-    >
-    User Avatar
-    </ListItem>
+    <NewClientFormPage/>
   </List>
   </div>
   </Card>
   </div>
 );
 ClientDash.propTypes = {
-  secretData: PropTypes.string.isRequired
+  secretData: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired
 };
 
 export default ClientDash;

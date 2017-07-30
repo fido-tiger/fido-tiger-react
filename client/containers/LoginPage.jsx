@@ -26,6 +26,7 @@ class LoginPage extends React.Component {
       successMessage,
       user: {
         email: '',
+        name: '',
         password: ''
       }
     };
@@ -67,10 +68,17 @@ class LoginPage extends React.Component {
 
         // save the token
         Auth.authenticateUser(xhr.response.token);
-
+        console.log(xhr.response.user);
+        console.log(this.state);
 
         // change the current URL to /client
-        this.context.router.history.replace('/client');
+        this.context.router.history.push({
+          pathname: '/client',
+          state: {
+            email: xhr.response.user.email,
+            name: xhr.response.user.name
+            }
+        });
       } else {
         // failure
 
@@ -84,6 +92,7 @@ class LoginPage extends React.Component {
       }
     });
     xhr.send(formData);
+
   }
 
   /**
