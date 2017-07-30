@@ -46,7 +46,7 @@ class ServiceFormPage extends React.Component {
 
         const name = encodeURIComponent(event.target.name.value);
         const calendar = encodeURIComponent(event.target.calendar.value);
-        const pet_name = encodeURIComponent(event.target.pet_name.value;
+        const pet_name = encodeURIComponent(event.target.pet_name.value);
         const temperament = encodeURIComponent(event.target.temperament.value);
         const medications = encodeURIComponent(event.target.medications.value);
         const event_notes = encodeURIComponent(event.target.event_notes.value);
@@ -56,7 +56,7 @@ class ServiceFormPage extends React.Component {
 
 
         const xhr = new XMLHttpRequest();
-        xhr.open('post', '/auth/service');
+        xhr.open('post', '/client/service');
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhr.responseType = 'json';
         xhr.addEventListener('load', () => {
@@ -85,7 +85,7 @@ class ServiceFormPage extends React.Component {
     }
 
     changeUser(event) {
-        const field = event.target.name;
+        const field = event.target.name + " " + event.target.calendar + " " + event.target.pet_name + " " + event.target.temperament + " " + event.target.medications + " " + event.target.event_notes + " " + event.target.options;
         const user = this.state.user;
         user[field] = event.target.value;
 
@@ -101,14 +101,16 @@ render() {
 		<ServiceFormPage
 			onSubmit={this.processForm}
 			handleChange={this.handleChange}
+			errors={this.state.errors}
+			user={this.state.user}
 			/>
         );
     }
 
 }
 
-ServiceFormPage.contextTypes = {
-    router: PropTypes.object.isRequired
-};
+// ServiceFormPage.contextTypes = {
+//     router: PropTypes.object.isRequired
+// };
 
 export default ServiceFormPage;

@@ -38,7 +38,16 @@ const ServiceForm = ({
 			/>			
 		</div>
 		<Divider/>
-
+		<div className="field-line">
+			<TextField
+				onChange={this.handleChange}
+				floatingLabelText="Pet Name"
+				name="pet_name"
+				rowsMax = {2}
+				onChange={onChange}			
+			/>			
+		</div>
+		<Divider />
 		<div className="field-line">
 
 			<InfiniteCalendar
@@ -73,7 +82,7 @@ const ServiceForm = ({
 		<Divider />
 
 		<div className="field-line">
-			<DropDownMenu value={this.state.value}
+			<DropDownMenu value={this.state.value} name="medications"
 			onChange={this.handleChange} label="Medications">
 				<MenuItem value={1} label="Anti-Anxiety" />
 				<MenuItem value={2} label="Pain Killer" />
@@ -85,7 +94,7 @@ const ServiceForm = ({
 		<Divider />
 
 		<div className="field-line">
-			<DropDownMenu value={this.state.value}
+			<DropDownMenu value={this.state.value} name="options"
 			onChange={this.handleChange} label="Pet Options">
 				<MenuItem value={1} label="Walking" />
 				<MenuItem value={2} label="Pet-Taxi" />
@@ -96,7 +105,7 @@ const ServiceForm = ({
 		<Divider />
 
 		<div className="text-field">
-			<TextField onChange={this.handleChange}
+			<TextField onChange={this.handleChange} name="event_notes"
 				floatingLabelText="Event Notes"
 				name="event_notes"
 				multiLine={true}
