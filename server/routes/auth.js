@@ -136,14 +136,14 @@ function validateNewClientForm(payload) {
 /*
  * Client Dashboard
  *≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
-router.get('/client', (req, res, next) => {
+router.post('/client', (req, res, next) => {
     console.log(req.body);
-    // db.Client.findOne({ where: { email: req.body.dataValues.email } }).then(function(user) {
+    db.Client.findOne({ where: { email: req.body.email } }).then(function(user) {
         return res.status(200).json({
             message: `How's this for a secret message `,
-            name: req.body
+            name: user.name
         });
-    // });
+    });
 
 });
 /*
