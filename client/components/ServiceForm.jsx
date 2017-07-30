@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Card, CardTitle } from 'material-ui/Card';
 import Paper from 'material-ui/Paper';
 import DropDownMenu from 'material-ui/DropDownMenu';
@@ -13,6 +13,7 @@ import InfiniteCalendar, {
 } from 'react-infinite-calendar';
 import 'react-infinite-calendar/styles.css';
 
+
 const CalendarWithRange = withRange(Calendar);
 var today = new Date();
 
@@ -21,8 +22,8 @@ var today = new Date();
 const ServiceForm = ({
 	onSubmit,
 	onChange,
-	// errors,
-	// user,
+	errors,
+	user,
 }) => (
 <Card className="container">
 	<form action ="/client/service" onSubmit={onSubmit}>
@@ -32,7 +33,8 @@ const ServiceForm = ({
 				onChange={this.handleChange}
 				floatingLabelText="Name"
 				name="name"
-				rowsMax = {2}			
+				rowsMax = {2}
+				onChange={onChange}			
 			/>			
 		</div>
 		<Divider/>
@@ -45,6 +47,7 @@ const ServiceForm = ({
 				width={200}
 				height={200}
 				selected={today}
+				onChange={onChange}
 				displayOptions={{
 					layout: 'portrait',
 					showHeader: true,
@@ -52,17 +55,18 @@ const ServiceForm = ({
 					showTodayHelper: true
 					}}
 			/>
+
 		</div>
 		<Divider />
 
-		<div className="field-line">
+		{/*<div className="field-line">
 			<TextField
 				onChange={this.handleChange}
 				floatingLabelText="Pet Name"
 				name="pet_name"
 				
 			/>
-		</div>
+		</div>*/}
 		<Divider />
 
 		
@@ -110,6 +114,13 @@ const ServiceForm = ({
 </Card>
 
 );
+
+ServiceForm.propTypes = {
+	onSubmit: PropTypes.func.isRequired,
+	onChange: PropTypes.func.isRequired,
+	errors: PropTypes.object.isRequired,
+	user: PropTypes.object.isRequired
+};
 
 export default ServiceForm;
 

@@ -19,7 +19,7 @@ class ServiceFormPage extends React.Component {
 
         this.state = {
             errors: {},
-            successMessage,
+            successMessage: succe
             user: {
                 name: '',
                 calendar: '',
@@ -44,13 +44,13 @@ class ServiceFormPage extends React.Component {
     processForm(event) {
         event.preventDefault();
 
-        const name = encodeURIComponent(this.state.user.name);
-        const calendar = encodeURIComponent(this.state.user.calendar);
-        const pet_name = encodeURIComponent(this.state.user.pet_name);
-        const temperament = encodeURIComponent(this.state.user.temperament);
-        const medications = encodeURIComponent(this.state.user.medications);
-        const event_notes = encodeURIComponent(this.state.user.event_notes);
-        const options = encodeURIComponent(this.state.user.options);
+        const name = encodeURIComponent(event.target.name.value);
+        const calendar = encodeURIComponent(event.target.calendar.value);
+        const pet_name = encodeURIComponent(event.target.pet_name.value;
+        const temperament = encodeURIComponent(event.target.temperament.value);
+        const medications = encodeURIComponent(event.target.medications.value);
+        const event_notes = encodeURIComponent(event.target.event_notes.value);
+        const options = encodeURIComponent(event.target.options.value);
 
         const xhr = new XMLHttpRequest();
         xhr.open('post', '/auth/service');
