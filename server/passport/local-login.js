@@ -21,14 +21,12 @@ module.exports = new PassportLocalStrategy({
 
     // find a user by email address
     db.Client.findOne({ where: { email: email } }).then(function(user) {
-
         if (!user) {
             const error = new Error('Incorrect email or password');
             error.name = 'IncorrectCredentialsError';
 
             return done(error);
         }
-
         // check if a hashed user's password is equal to a value saved in the database
         return user.comparePassword(userData.password, (passwordErr, isMatch) => {
             
@@ -40,13 +38,15 @@ module.exports = new PassportLocalStrategy({
             }
 
             const payload = {
-                sub: user.uuid
+                sub: user.uuid,
+                name: user.name
             };
 
             // create a token string
             const token = jwt.sign(payload, config.jwtSecret);
             const data = {
-                name: user.name
+                name: user.name,
+                email: user.email
             };
             return done(null, token, data);
         });
