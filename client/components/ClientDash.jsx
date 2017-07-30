@@ -34,32 +34,29 @@ const ClientDash = ({secretData, name}) => (
   <div>
   <Card style={homeCardStyle} className="container">
     <CardTitle title="User Dashboard" subtitle='"My Favorite Pet App!"' />    
-    <div className="col-sm-8">
+    <div className="col-sm-8"> 
+     <List>
+    <ListItem
+    disabled={true}
+    leftAvatar={<Avatar>{name[0]}</Avatar>}
+    >
+    {name}
+    </ListItem>  
+  
      {secretData && <CardText>{secretData}{name}</CardText>}
         {Auth.isUserAuthenticated() ? (
-      <div className="top-bar-right">
+      <ListItem>
       <Link to="/logout"><FlatButton label="Log Out"/></Link>
-      </div>
-    ) : (
-      <div className="top-bar-right">
-      <Link to="/login"><FlatButton label="Log In"/></Link>
-      <Link to="/signup"><FlatButton label="Sign Up"/></Link>
-      </div>
-    )}
+      </ListItem>
+    ) : (null)}
+    </List>
     </div>
   </Card>
   <Card style={homeCardStyle} className="container">
   <div>
   <h2>More Stuff</h2>
-  <List>
-    <ListItem
-    disabled={true}
-    leftAvatar={<Avatar>ABC</Avatar>}
-    >
-    Letter Avatar
-    </ListItem>
-    <NewClientFormPage/>
-  </List>
+
+  <NewClientFormPage/>
   </div>
   </Card>
   </div>
