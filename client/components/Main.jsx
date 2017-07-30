@@ -82,6 +82,9 @@ const routes = [{
         exact: true,
         component: ClientDashPage,
         routes: [{
+            path: '/client/new',
+            component: NewClientFormPage
+        },{
             path: '/client/service',
             component: ServiceRequest
         }, {
@@ -129,8 +132,6 @@ const homePaperStyle = {
     textAlign: 'center',
     display: 'inline-block'
 
-};
-
 
 const barStyle={
 
@@ -173,7 +174,7 @@ class Main extends React.Component {
           </div>
           {Auth.isUserAuthenticated() ? (
             <div className="top-bar-right">
-            <Link to="/logout"><FlatButton backgroundColor={red900} style={defaultButtonStyle} label="Log Out"/></Link>
+            <Link to="/logout"><FlatButton style={defaultButtonStyle} label="Log Out"/></Link>
             <Link to="/client"><FlatButton label="Dashboard"/>
             </Link><Link to="/client/service"><FlatButton label="Schedule Service"/></Link>
             </div>
