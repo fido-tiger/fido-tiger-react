@@ -127,17 +127,41 @@ const homePaperStyle = {
     margin: 0,
     textAlign: 'center',
     display: 'inline-block'
+
 };
+
+const barStyle={
+
+}
+
+const defaultButtonStyle={
+    color:'blue',
+    backgroundColor:'Orange',
+    display: 'inline',
+    textAlign: 'center',
+    padding: '0px',
+    margin:'5px',
+    verticleAlign:'middle',
+    borderRadius:'10px',
+    height:'auto',
+    width:'auto'
+
+}
+
 
 class Main extends React.Component {
     render() {
         return (
             <div>
       <Card>
-        <div className="top-bar">
+        <div style={barStyle} className="top-bar">
+            <img src="./images/FidoLogo.png" width="100%" height="auto"/>
           <div className="top-bar-left">
-          <Link to={"/home"}><FlatButton primary label="Fido and Tiger"/></Link>
-          <Route path="/"/>
+            <Link to={"/home"}><FlatButton primary style={defaultButtonStyle} label="Fido and Tiger"/></Link>
+            <Route path="/"/>
+            <Link to="/login"><FlatButton style = {defaultButtonStyle} label="Log In"/></Link>
+            <Link to="/signup"><FlatButton style = {defaultButtonStyle}label="Sign Up"/></Link>
+            <Link to="/contact"><FlatButton style = {defaultButtonStyle} label="Contact Us"/></Link>
           </div>
           {Auth.isUserAuthenticated() ? (
             <div className="top-bar-right">
@@ -147,11 +171,9 @@ class Main extends React.Component {
             </div>
           ) : (
             <div className="top-bar-right">
-            <Link to="/login"><FlatButton label="Log In"/></Link>
-            <Link to="/signup"><FlatButton label="Sign Up"/></Link>
             </div>
           )}
-          <Link to="/contact"><FlatButton label="Contact Us"/></Link>
+          
         </div>
               
     </Card>
