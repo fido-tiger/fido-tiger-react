@@ -1,6 +1,11 @@
 import React from 'react';
 import { Card, CardTitle } from 'material-ui/Card';
 import Paper from 'material-ui/Paper';
+import {GridList, GridTile} from 'material-ui/GridList';
+import IconButton from 'material-ui/IconButton';
+import Subheader from 'material-ui/Subheader';
+import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+
 
 const homePaperStyle = {
   height: '100vh',
@@ -25,6 +30,44 @@ const homePageStyle = {
  
 };
 
+const styles = {
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+  },
+  gridList: {
+    width: 500,
+    height: 450,
+    overflowY: 'auto',
+  },
+};
+
+const tilesData = [
+  {
+    img: 'images/Thomas2.png',
+    title: 'Thomas Kearney',
+  },
+  {
+    img: 'images/Elliott2.png',
+    title: 'Elliott Chalmers',
+  },
+  {
+    img: 'images/Alex2.png',
+    title: 'Alex Lovell',
+  },
+  {
+    img: 'images/Terri2.png',
+    title: 'Terri Byers',
+  },
+  
+];
+
+/**
+ * A simple example of a scrollable `GridList` containing a [Subheader](/#/components/subheader).
+ */
+
+
 const HomePage = () => (
   <Paper style={homePaperStyle} zDepth={1}>
   
@@ -42,18 +85,23 @@ const HomePage = () => (
   <Card style={homeCardStyle} className="container">
      <div style={homePageStyle}>
        <h2>MEET OUR TEAM</h2>
-         <img src="./images/boy.png" alt="Thomas" width="25%" height="auto"/>
-            <p><strong>Thomas Kearney</strong></p>
-          
-          <img src="./images/boy.png" alt="Elliott" width="25%" height="auto"/>
-            <p><strong>Elliott Chalmers </strong></p>
-         
-         <img src="./images/boy.png" alt="Alex " width="25%" height="auto"/>
-           <p><strong>Alex Lovell</strong></p>
-        
-         <img src="./images/girl.png" alt="Terri " width="25%" height="auto"/>
-           <p><strong>Terri Byers</strong></p>
-    </div>
+          <div style={styles.root}>
+              <GridList
+                cellHeight={180}
+                style={styles.gridList}
+                 >
+                   {tilesData.map((tile) => (
+                      <GridTile
+                        key={tile.img}
+                        title={tile.title}
+                        actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+                      >
+                     <img src={tile.img} />
+                    </GridTile>
+                 ))}
+                </GridList>
+          </div>
+        </div>
    </Card>
   </Paper>
 );
