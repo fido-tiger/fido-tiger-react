@@ -35,7 +35,7 @@ class ServiceFormPage extends React.Component {
         this.changeUser = this.changeUser.bind(this);
 
     }
-    
+
 
     /*handleChange = (event, index, value) => this.setState({value});
      */

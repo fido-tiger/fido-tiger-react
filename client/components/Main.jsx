@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Card } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
+import { red900 } from 'material-ui/styles/colors';
 
 import HomePage from './HomePage.jsx';
 import ContactUsPage from '../containers/ContactUsPage.jsx';
@@ -130,6 +131,7 @@ const homePaperStyle = {
 
 };
 
+
 const barStyle={
 
 }
@@ -149,6 +151,10 @@ const defaultButtonStyle={
 }
 
 
+/*
+** RENDER
+***************************/
+
 class Main extends React.Component {
     render() {
         return (
@@ -157,15 +163,17 @@ class Main extends React.Component {
         <div style={barStyle} className="top-bar">
             <img src="./images/FidoLogo.png" width="100%" height="auto"/>
           <div className="top-bar-left">
-            <Link to={"/home"}><FlatButton primary style={defaultButtonStyle} label="Fido and Tiger"/></Link>
+
+            <Link to={"/"}><FlatButton primary style={defaultButtonStyle} label="Fido and Tiger"/></Link>
             <Route path="/"/>
             <Link to="/login"><FlatButton style = {defaultButtonStyle} label="Log In"/></Link>
             <Link to="/signup"><FlatButton style = {defaultButtonStyle}label="Sign Up"/></Link>
             <Link to="/contact"><FlatButton style = {defaultButtonStyle} label="Contact Us"/></Link>
+
           </div>
           {Auth.isUserAuthenticated() ? (
             <div className="top-bar-right">
-            <Link to="/logout"><FlatButton label="Log Out"/></Link>
+            <Link to="/logout"><FlatButton backgroundColor={red900} style={defaultButtonStyle} label="Log Out"/></Link>
             <Link to="/client"><FlatButton label="Dashboard"/>
             </Link><Link to="/client/service"><FlatButton label="Schedule Service"/></Link>
             </div>
