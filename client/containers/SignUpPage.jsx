@@ -57,7 +57,7 @@ class SignUpPage extends React.Component {
 
         // make a redirect
         console.log(this.context);
-        this.context.router.history.replace('/login');
+        this.context.router.history.push('/login');
       } else {
         // failure
 
