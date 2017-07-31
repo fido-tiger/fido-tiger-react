@@ -27,7 +27,7 @@ class ServiceFormPage extends React.Component {
                 temperament: '',
                 medications: '',
                 event_notes: '',
-                options: '',
+                options: ''
             }
         };
 
@@ -66,7 +66,7 @@ class ServiceFormPage extends React.Component {
                 // localStorage.setItem('successMessage'), xhr.response.message);
 
                 console.log(this.context);
-                this.context.router.history.replace('/login');
+                this.context.router.history.push('/client');
 
             } else {
 

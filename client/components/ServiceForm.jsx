@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardTitle } from 'material-ui/Card';
 import Paper from 'material-ui/Paper';
 import DropDownMenu from 'material-ui/DropDownMenu';
@@ -108,8 +109,7 @@ const ServiceForm = ({
 				name="event_notes"
 				multiLine={true}
 				rows={4}
-				rowsMax{6}
-				
+				rowsMax={6}				
 			/>
 		</div>
 

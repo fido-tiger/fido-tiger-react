@@ -7,3 +7,5 @@ INSERT INTO services (dog_walk, medicine_administer, pet_feed) VALUES ('30 minut
 INSERT INTO services (dog_walk, medicine_administer, pet_feed) VALUES ('None','None','1/2 cups dry food');
 INSERT INTO services (dog_walk, medicine_administer, pet_feed) VALUES ('10 minutes','None','4 cups dry food');
 INSERT INTO services (dog_walk, medicine_administer, pet_feed) VALUES ('20 minutes','None','1 can food');
+
+INSERT INTO Clients Values ();

@@ -6,7 +6,6 @@ import { Card, CardTitle } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
 
-
 const homeCardStyle = {
   width: '97%',
   margin:'15px',
@@ -14,7 +13,7 @@ const homeCardStyle = {
    textAlign: 'left',
 };
 
-const ClientDash = () => (
+const ServiceRequest = () => (
   <div>
   <Card style={homeCardStyle} className="container">
     <CardTitle title="Service Request" subtitle='"My Favorite Pet App!"' />    
@@ -30,6 +29,6 @@ const ClientDash = () => (
   </div>
 );
 
-export default ClientDash;
+export default ServiceRequest;
 
 

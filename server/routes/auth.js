@@ -1,6 +1,7 @@
 const express = require('express');
 const validator = require('validator');
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
 
 const router = new express.Router();
 var db = require('../models/');
@@ -137,12 +138,22 @@ function validateNewClientForm(payload) {
  * Client Dashboard
  *≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
 router.post('/client', (req, res, next) => {
-    console.log(req.body);
+        /*  Decoded Token
+        ≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/    
+        let split = req.headers.authorization.split(' ');
+        let token = split[1];
+        let decoded = jwt.decode(token,{complete:true});
+        console.log(decoded.payload);
+        /*  DB Call
+        ≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
     db.Client.findOne({ where: { email: req.body.email } }).then(function(user) {
         return res.status(200).json({
             message: `How's this for a secret message `,
             name: user.name,
-            registered: user.registered
+            email: user.email,
+            registered: user.registered,
+            employee: user.employee,
+            payload: decoded.payload
         });
     });
 
