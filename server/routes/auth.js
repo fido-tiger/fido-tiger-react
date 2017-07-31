@@ -80,9 +80,61 @@ function validateLoginForm(payload) {
  *≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
 
 function validateNewClientForm(payload) {
+<<<<<<< HEAD
+  const errors = {};
+  let isFormValid = true;
+  let message = '';
+
+ if (!payload || typeof payload.first_name !== 'string' || payload.name.trim().length === 0) {
+    isFormValid = false;
+    errors.name = 'Please provide your first name.';
+  }
+
+  if (!payload || typeof payload.last_name !== 'string' || payload.lname.trim().length === 0) {
+    isFormValid = false;
+    errors.name = 'Please provide your ARGH name.';
+  }
+
+  if (!payload || typeof payload.street_address !== 'string' || payload.address.trim().length === 0) {
+    isFormValid = false;
+    errors.address = 'Please provide a valid address.';
+  }
+
+  if (!payload || typeof payload.city !== 'string' || payload.city.trim().length === 0) {
+    isFormValid = false;
+    errors.city = 'Please provide a city.';
+  }
+
+  if (!payload || typeof payload.zip !== 'string' || payload.zip.trim().length < 5) {
+    isFormValid = false;
+    errors.zip = 'Please provide a valid zip code.';
+  }
+  
+  if (!payload || typeof payload.email !== 'string' || payload.email.trim().length === 0) {
+    isFormValid = false;
+    errors.email = 'Please provide your email address.';
+  }  
+
+  if (!payload || typeof payload.phone !== 'string' || payload.phone.trim().length < 10) {
+    isFormValid = false;
+    errors.phone = 'Please provide a valid phone number';
+  } 
+
+  if (!isFormValid) {
+    message = 'Check the form for errors.';
+  }
+
+  return {
+    success: isFormValid,
+    message,
+    errors
+  };
+}
+=======
     const errors = {};
     let isFormValid = true;
     let message = '';
+>>>>>>> 1bf876b9b8cafd8a6c6e96ee8923cd02fbbbbf08
 
     if (!payload || typeof payload.fname !== 'string' || payload.fname.trim().length === 0) {
         isFormValid = false;
