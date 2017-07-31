@@ -80,7 +80,7 @@ function validateLoginForm(payload) {
  *≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
 
 function validateNewClientForm(payload) {
-<<<<<<< HEAD
+
   const errors = {};
   let isFormValid = true;
   let message = '';
@@ -130,46 +130,35 @@ function validateNewClientForm(payload) {
     errors
   };
 }
-=======
+
+
+/* Service Form validation */
+
+function validateNewServiceForm(payload) {
     const errors = {};
     let isFormValid = true;
     let message = '';
->>>>>>> 1bf876b9b8cafd8a6c6e96ee8923cd02fbbbbf08
 
-    if (!payload || typeof payload.fname !== 'string' || payload.fname.trim().length === 0) {
+    if (!payload || typeof payload.name !== 'string' || payload.name.trim().length === 0) {
         isFormValid = false;
-        errors.name = 'Please provide your first name.';
+        errors.name = 'Please provide your full name.';
     }
 
-    if (!payload || typeof payload.lname !== 'string' || payload.lname.trim().length === 0) {
+    if (!payload || typeof payload.pet_name !== 'string' || payload.pet_name.trim().length === 0) {
         isFormValid = false;
-        errors.name = 'Please provide your last name.';
+        errors.name = 'Please provide your pet name.';
     }
 
-    if (!payload || typeof payload.address !== 'string' || payload.address.trim().length === 0) {
+    if (!payload || typeof payload.calendar !== 'string' || payload.calendar.trim().length === 0) {
         isFormValid = false;
-        errors.address = 'Please provide a valid address.';
+        errors.calendar = 'Please provide a date range.';
     }
 
-    if (!payload || typeof payload.city !== 'string' || payload.city.trim().length === 0) {
+    if (!payload || typeof payload.options !== 'string' || payload.options.trim().length === 0) {
         isFormValid = false;
-        errors.city = 'Please provide a city.';
+        errors.zip = 'Please provide a valid pet option.';
     }
 
-    if (!payload || typeof payload.zip !== 'string' || payload.zip.trim().length < 5) {
-        isFormValid = false;
-        errors.zip = 'Please provide a valid zip code.';
-    }
-
-    if (!payload || typeof payload.email !== 'string' || payload.email.trim().length === 0) {
-        isFormValid = false;
-        errors.email = 'Please provide your email address.';
-    }
-
-    if (!payload || typeof payload.phone !== 'string' || payload.phone.trim().length < 10) {
-        isFormValid = false;
-        errors.phone = 'Please provide a valid phone number';
-    }
 
     if (!isFormValid) {
         message = 'Check the form for errors.';
@@ -292,6 +281,21 @@ router.post('/login', (req, res, next) => {
         });
     })(req, res, next);
 });
+
+/*Service Routes
+*******************************/
+router.post('/client/service', (req, res, next) => {
+    const validationResult = validateNewServiceForm(req.body);
+    if (!validationResult.success) {
+        return res.status(400).json({
+            success: false,
+            message: validationResult.message,
+            errors: validationResult.errors
+        });
+    }
+
+});
+
 
 
 

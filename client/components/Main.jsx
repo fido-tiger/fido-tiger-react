@@ -11,11 +11,12 @@ import HomePage from './HomePage.jsx';
 import ContactUsPage from '../containers/ContactUsPage.jsx';
 import NewClientFormPage from '../containers/NewClientFormPage.jsx';
 import ClientDashPage from '../containers/ClientDashPage.jsx';
-import ServiceRequest from './ServiceRequest.jsx';
+// import ServiceRequest from './ServiceRequest.jsx';
 import DashboardPage from '../containers/DashboardPage.jsx';
 import LoginPage from '../containers/LoginPage.jsx';
 import SignUpPage from '../containers/SignUpPage.jsx';
-// import ServiceFormPage from '../containers/ServiceFormPage.jsx';
+import ServiceFormPage from '../containers/ServiceFormPage.jsx';
+
 
 
 /*
@@ -85,8 +86,8 @@ const routes = [{
             path: '/client/new',
             component: NewClientFormPage
         },{
-            path: '/client/service',
-            component: ServiceRequest
+            // path: '/client/service',
+            // component: ServiceFormPage
         }, {
             path: '/client/calendar',
             // component: ClientCalendar
@@ -96,7 +97,7 @@ const routes = [{
         }]
     }, {
         path: '/client/service',
-        component: ServiceRequest,
+        component: ServiceFormPage,
         routes: [{
             path: '/employee/schedule',
             // component: Schedule
@@ -131,13 +132,13 @@ const homePaperStyle = {
     margin: 0,
     textAlign: 'center',
     display: 'inline-block'
-
 }
+
+
 const barStyle={
-
 }
 
-const defaultButtonStyle={
+const defaultButtonStyle = {
     color:'blue',
     backgroundColor:'Orange',
     display: 'inline',
@@ -171,7 +172,7 @@ class Main extends React.Component {
         return (
             <div>
       <Card>
-        <div style={barStyle} className="top-bar">
+        <div className="top-bar">
             <img src="./images/FidoLogo.png" width="100%" height="auto"/>
           <div className="top-bar-left">
 
@@ -184,9 +185,10 @@ class Main extends React.Component {
           </div>
           {Auth.isUserAuthenticated() ? (
             <div className="top-bar-right">
-            <Link to="/logout"><FlatButton style={defaultButtonStyle} label="Log Out"/></Link>
-            <Link to="/client"><FlatButton label="Dashboard"/>
-            </Link><Link to="/client/service"><FlatButton label="Schedule Service"/></Link>
+
+            <Link to="/logout"><FlatButton backgroundColor={red900} style={defaultButtonStyle} label="Log Out"/></Link>
+            <Link to="/client"><FlatButton label="Dashboard"/></Link>
+            <Link to="/client/service"><FlatButton label="Schedule Service"/></Link>
             </div>
           ) : (
             <div className="top-bar-right">
