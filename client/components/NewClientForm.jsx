@@ -26,7 +26,7 @@ const NewClientForm = ({
 			<div className="field-line">
 				<TextField
 					floatingLabelText="First Name"
-					name="name"
+					name="first_name"
 					errorText={errors.name}
 					onChange={onChange}
 					/>
@@ -35,8 +35,8 @@ const NewClientForm = ({
 			<div className="field-line">
 				<TextField
 					floatingLabelText="Last Name"
-					name="lname"
-					errorText={errors.lname}
+					name="last_name"
+					errorText={errors.name}
 					onChange={onChange}
 					/>
 			</div>
@@ -44,8 +44,8 @@ const NewClientForm = ({
 			<div className="field-line">
 				<TextField
 					floatingLabelText="Street Address"
-					name="strtaddy"
-					errorText={errors.strtaddy}
+					name="street_address"
+					errorText={errors.address}
 					onChange={onChange}
 					/>
 			</div>
@@ -70,7 +70,7 @@ const NewClientForm = ({
 			<div className="field-line">
 				<TextField
 					floatingLabelText="Zip Code"
-					name="zip"
+					name="zip_code"
 					errorText={errors.zip}
 					onChange={onChange}
 					/>

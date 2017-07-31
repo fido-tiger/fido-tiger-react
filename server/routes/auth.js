@@ -86,17 +86,17 @@ function validateNewClientForm(payload) {
   let isFormValid = true;
   let message = '';
 
- if (!payload || typeof payload.name !== 'string' || payload.name.trim().length === 0) {
+ if (!payload || typeof payload.first_name !== 'string' || payload.name.trim().length === 0) {
     isFormValid = false;
     errors.name = 'Please provide your first name.';
   }
 
-  if (!payload || typeof payload.lname !== 'string' || payload.lname.trim().length === 0) {
+  if (!payload || typeof payload.last_name !== 'string' || payload.lname.trim().length === 0) {
     isFormValid = false;
-    errors.name = 'Please provide your last name.';
+    errors.name = 'Please provide your ARGH name.';
   }
 
-  if (!payload || typeof payload.address !== 'string' || payload.address.trim().length === 0) {
+  if (!payload || typeof payload.street_address !== 'string' || payload.address.trim().length === 0) {
     isFormValid = false;
     errors.address = 'Please provide a valid address.';
   }
