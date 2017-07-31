@@ -11,7 +11,7 @@ import HomePage from './HomePage.jsx';
 import ContactUsPage from '../containers/ContactUsPage.jsx';
 import NewClientFormPage from '../containers/NewClientFormPage.jsx';
 import ClientDashPage from '../containers/ClientDashPage.jsx';
-import ServiceRequest from './ServiceRequest.jsx';
+// import ServiceRequest from './ServiceRequest.jsx';
 import DashboardPage from '../containers/DashboardPage.jsx';
 import LoginPage from '../containers/LoginPage.jsx';
 import SignUpPage from '../containers/SignUpPage.jsx';
@@ -86,8 +86,8 @@ const routes = [{
             path: '/client/new',
             component: NewClientFormPage
         },{
-            path: '/client/service',
-            component: ServiceFormPage
+            // path: '/client/service',
+            // component: ServiceFormPage
         }, {
             path: '/client/calendar',
             // component: ClientCalendar
@@ -97,7 +97,7 @@ const routes = [{
         }]
     }, {
         path: '/client/service',
-        component: ServiceRequest,
+        component: ServiceFormPage,
         routes: [{
             path: '/employee/schedule',
             // component: Schedule
@@ -132,24 +132,46 @@ const homePaperStyle = {
     margin: 0,
     textAlign: 'center',
     display: 'inline-block'
-};
+}
+
+// const barStyle={
+
+// }
 
 const defaultButtonStyle = {
- color:"black"
-};
+    color:'blue',
+    backgroundColor:'Orange',
+    display: 'inline',
+    textAlign: 'center',
+    padding: '0px',
+    margin:'5px',
+    verticleAlign:'middle',
+    borderRadius:'10px',
+    height:'auto',
+    width:'auto'
+
+}
+
 
 /*
 ** RENDER
 ***************************/
+
 class Main extends React.Component {
     render() {
         return (
             <div>
       <Card>
         <div className="top-bar">
+            <img src="./images/FidoLogo.png" width="100%" height="auto"/>
           <div className="top-bar-left">
-          <Link to={"/"}><FlatButton primary label="Fido and Tiger"/></Link>
-          <Route path="/"/>
+
+            <Link to={"/"}><FlatButton primary style={defaultButtonStyle} label="Fido and Tiger"/></Link>
+            <Route path="/"/>
+            <Link to="/login"><FlatButton style = {defaultButtonStyle} label="Log In"/></Link>
+            <Link to="/signup"><FlatButton style = {defaultButtonStyle}label="Sign Up"/></Link>
+            <Link to="/contact"><FlatButton style = {defaultButtonStyle} label="Contact Us"/></Link>
+
           </div>
           {Auth.isUserAuthenticated() ? (
             <div className="top-bar-right">
@@ -160,11 +182,9 @@ class Main extends React.Component {
             </div>
           ) : (
             <div className="top-bar-right">
-            <Link to="/login"><FlatButton label="Log In"/></Link>
-            <Link to="/signup"><FlatButton label="Sign Up"/></Link>
             </div>
           )}
-          <Link to="/contact"><FlatButton label="Contact Us"/></Link>
+          
         </div>
               
     </Card>

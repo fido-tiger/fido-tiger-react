@@ -30,7 +30,6 @@ const ServiceForm = ({
 		<h2 className="card-heading">Services Form</h2>		
 		<div className="field-line">
 			<TextField
-				onChange={this.handleChange}
 				floatingLabelText="Name"
 				name="name"
 				rowsMax = {2}
@@ -40,7 +39,6 @@ const ServiceForm = ({
 		<Divider/>
 		<div className="field-line">
 			<TextField
-				onChange={this.handleChange}
 				floatingLabelText="Pet Name"
 				name="pet_name"
 				rowsMax = {2}
@@ -83,7 +81,7 @@ const ServiceForm = ({
 
 		<div className="field-line">
 			<DropDownMenu value={this.state.value} name="medications"
-			onChange={this.handleChange} label="Medications">
+			onChange={onChange} label="Medications">
 				<MenuItem value={1} label="Anti-Anxiety" />
 				<MenuItem value={2} label="Pain Killer" />
 				<MenuItem value={3} label="Glucosamine" />
@@ -95,7 +93,7 @@ const ServiceForm = ({
 
 		<div className="field-line">
 			<DropDownMenu value={this.state.value} name="options"
-			onChange={this.handleChange} label="Pet Options">
+			onChange={onChange} label="Pet Options">
 				<MenuItem value={1} label="Walking" />
 				<MenuItem value={2} label="Pet-Taxi" />
 				<MenuItem value={3} label="Pet-Sitting" />
@@ -105,7 +103,7 @@ const ServiceForm = ({
 		<Divider />
 
 		<div className="text-field">
-			<TextField onChange={this.handleChange} name="event_notes"
+			<TextField onChange={onChange} name="event_notes"
 				floatingLabelText="Event Notes"
 				name="event_notes"
 				multiLine={true}

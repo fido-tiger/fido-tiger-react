@@ -100,7 +100,7 @@ render() {
 	return (
 		<ServiceFormPage
 			onSubmit={this.processForm}
-			handleChange={this.handleChange}
+			// onChange={this.onChange}
 			errors={this.state.errors}
 			user={this.state.user}
 			/>
