@@ -88,6 +88,8 @@ const routes = [{
         },{
             // path: '/client/service',
             // component: ServiceFormPage
+            path: '/client/service',
+            component: ServiceRequest
         }, {
             path: '/client/calendar',
             // component: ClientCalendar
@@ -134,13 +136,16 @@ const homePaperStyle = {
     display: 'inline-block'
 }
 
+};
+
 
 const barStyle={
 }
 
-const defaultButtonStyle = {
-    color:'blue',
-    backgroundColor:'Orange',
+
+const defaultButtonStyle={
+    color:'#281004',
+    backgroundColor:'#8E694B',
     display: 'inline',
     textAlign: 'center',
     padding: '0px',
@@ -185,10 +190,12 @@ class Main extends React.Component {
           </div>
           {Auth.isUserAuthenticated() ? (
             <div className="top-bar-right">
-
             <Link to="/logout"><FlatButton backgroundColor={red900} style={defaultButtonStyle} label="Log Out"/></Link>
             <Link to="/client"><FlatButton label="Dashboard"/></Link>
             <Link to="/client/service"><FlatButton label="Schedule Service"/></Link>
+            <Link to="/logout"><FlatButton backgroundColor={red900} style={defaultButtonStyle} label="Log Out"/></Link>
+            <Link to="/client"><FlatButton label="Dashboard"/>
+            </Link><Link to="/client/service"><FlatButton label="Schedule Service"/></Link>
             </div>
           ) : (
             <div className="top-bar-right">

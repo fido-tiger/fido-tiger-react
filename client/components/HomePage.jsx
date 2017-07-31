@@ -13,9 +13,10 @@ const homePaperStyle = {
 };
 
 const homeCardStyle = {
-  margin:'20px',
+  margin:'175px',
   padding:'7px',
   textAlign: 'center',
+
 };
 
 const homePageStyle = {
@@ -27,6 +28,8 @@ const homePageStyle = {
   height:'auto',
   width: '100%',
   margin:0,
+  display:'inline-block',
+
  
 };
 
