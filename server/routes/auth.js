@@ -86,7 +86,7 @@ function validateNewClientForm(payload) {
   let isFormValid = true;
   let message = '';
 
- if (!payload || typeof payload.fname !== 'string' || payload.fname.trim().length === 0) {
+ if (!payload || typeof payload.name !== 'string' || payload.name.trim().length === 0) {
     isFormValid = false;
     errors.name = 'Please provide your first name.';
   }
