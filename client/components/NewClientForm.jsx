@@ -26,31 +26,28 @@ const NewClientForm = ({
 			<div className="field-line">
 				<TextField
 					floatingLabelText="First Name"
-					name="fname"
-					errorText={errors.fname}
+					name="first_name"
+					errorText={errors.name}
 					onChange={onChange}
-					value={user.fname}
-				/>
+					/>
 			</div>
 			
 			<div className="field-line">
 				<TextField
 					floatingLabelText="Last Name"
-					name="lname"
-					errorText={errors.lname}
+					name="last_name"
+					errorText={errors.name}
 					onChange={onChange}
-					value={user.lname}
-				/>
+					/>
 			</div>
 
 			<div className="field-line">
 				<TextField
 					floatingLabelText="Street Address"
-					name="strtaddy"
+					name="street_address"
 					errorText={errors.address}
 					onChange={onChange}
-					value={user.address}
-				/>
+					/>
 			</div>
 
 			<div className="field-line">
@@ -59,8 +56,7 @@ const NewClientForm = ({
 					name="city"
 					errorText={errors.city}
 					onChange={onChange}
-					value={user.city}
-				/>
+					/>
 			</div>
 
 			<div className="field-line">
@@ -68,18 +64,16 @@ const NewClientForm = ({
 					floatingLabelText="State"
 					name="state"
 					onChange={onChange}
-					value={user.state}
-				/>
+					/>
 			</div>
 			
 			<div className="field-line">
 				<TextField
 					floatingLabelText="Zip Code"
-					name="zip"
+					name="zip_code"
 					errorText={errors.zip}
 					onChange={onChange}
-					value={user.zip}
-				/>
+					/>
 			</div>
 			
 			<div className="field-line">
@@ -88,8 +82,7 @@ const NewClientForm = ({
 					name="phone"
 					errorText={errors.phone}
 					onChange={onChange}
-					value={user.phone}
-				/>
+					/>
 			</div>
 
 			<div className="field-line">
@@ -98,8 +91,7 @@ const NewClientForm = ({
 					name="email"
 					errorText={errors.email}
 					onChange={onChange}
-					value={user.email}
-				/>
+					/>
 			</div>
 
 			<div className="button-line">

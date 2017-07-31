@@ -51,7 +51,7 @@ class ServiceFormPage extends React.Component {
         const medications = encodeURIComponent(event.target.medications.value);
         const event_notes = encodeURIComponent(event.target.event_notes.value);
         const options = encodeURIComponent(event.target.options.value);
-        const formData = `name=${name}&calendar=${calendar}&pet_name=${pet_name}&temperament=${temperament}&medications=${medications}&event_notes=${event_notes}&options=${options}`;
+        const formData = `name=${name}&begin_date=${begin_date}&end_date=${end_date}&pet_name=${pet_name}&temperament=${temperament}&medications=${medications}&event_notes=${event_notes}&options=${options}`;
 
 
 
@@ -98,7 +98,7 @@ class ServiceFormPage extends React.Component {
 
 render() {
 	return (
-		<ServiceFormPage
+		<ServiceForm
 			onSubmit={this.processForm}
 			// onChange={this.onChange}
 			errors={this.state.errors}
@@ -109,8 +109,8 @@ render() {
 
 }
 
-// ServiceFormPage.contextTypes = {
-//     router: PropTypes.object.isRequired
-// };
+ServiceFormPage.contextTypes = {
+    router: PropTypes.object.isRequired
+};
 
 export default ServiceFormPage;

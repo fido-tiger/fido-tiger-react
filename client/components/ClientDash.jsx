@@ -18,7 +18,8 @@ import {
 // Component Imports
 import NewClientFormPage from '../containers/NewClientFormPage';
 
-
+/*    CSS
+≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
 const homeCardStyle = {
   width: '97%',
   margin:'15px',
@@ -28,9 +29,12 @@ const homeCardStyle = {
 const avatarStyle = {
   margin: '5px'
 };
+/*    Conditional
+≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
+// const isRegistered = props.registered;
 /*    Component
 ≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
-const ClientDash = ({secretData, name}) => (
+const ClientDash = ({secretData, name, email, registered}) => (
   <div>
   <Card style={homeCardStyle} className="container">
     <CardTitle title="User Dashboard" subtitle='"My Favorite Pet App!"' />    
@@ -40,7 +44,7 @@ const ClientDash = ({secretData, name}) => (
     disabled={true}
     leftAvatar={<Avatar>{name[0]}</Avatar>}
     >
-    {name}
+    {name}{email}{`${registered}`}
     </ListItem>  
   
      {secretData && <CardText>{secretData}{name}</CardText>}
@@ -55,8 +59,8 @@ const ClientDash = ({secretData, name}) => (
   <Card style={homeCardStyle} className="container">
   <div>
   <h2>More Stuff</h2>
-
-  <NewClientFormPage/>
+  {!registered ? (
+  <NewClientFormPage/> ) : (null)} 
   </div>
   </Card>
   </div>
@@ -64,7 +68,8 @@ const ClientDash = ({secretData, name}) => (
 ClientDash.propTypes = {
   secretData: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired
+  email: PropTypes.string.isRequired,
+  registered: PropTypes.bool.isRequired
 };
 
 export default ClientDash;

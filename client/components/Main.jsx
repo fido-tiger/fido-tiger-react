@@ -37,7 +37,7 @@ const clientRoutes = ({ routes }) => (
 const routes = [{
         path: '/',
         exact: true,
-        component: HomePage
+        component: NewClientFormPage
 
     }, {
         path: '/client',
@@ -63,10 +63,10 @@ const routes = [{
     }, {
         path: '/signup',
         component: SignUpPage
-    },{
+    },/*{
         path: '/newclient',
         component: NewClientFormPage
-    },{
+    },*/{
         path: '/contact',
         component: ContactUsPage
     }, {
@@ -134,9 +134,9 @@ const homePaperStyle = {
     display: 'inline-block'
 }
 
-// const barStyle={
 
-// }
+const barStyle={
+}
 
 const defaultButtonStyle = {
     color:'blue',
@@ -158,6 +158,16 @@ const defaultButtonStyle = {
 ***************************/
 
 class Main extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            user:{
+                email: '',
+                name: ''
+            }
+        }
+    };
+
     render() {
         return (
             <div>

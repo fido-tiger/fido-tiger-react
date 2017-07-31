@@ -66,18 +66,6 @@ const ServiceForm = ({
 		</div>
 		<Divider />
 
-		{/*<div className="field-line">
-			<TextField
-				onChange={this.handleChange}
-				floatingLabelText="Pet Name"
-				name="pet_name"
-				
-			/>
-		</div>*/}
-		<Divider />
-
-		
-		<Divider />
 
 		<div className="field-line">
 			<DropDownMenu value={this.state.value} name="medications"
