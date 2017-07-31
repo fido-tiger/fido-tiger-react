@@ -12,34 +12,34 @@ var db = require('../models/');
  *                   errors tips, and a global message for the whole form.
  */
 function validateSignupForm(payload) {
-  const errors = {};
-  let isFormValid = true;
-  let message = '';
+    const errors = {};
+    let isFormValid = true;
+    let message = '';
 
-  if (!payload || typeof payload.email !== 'string' || !validator.isEmail(payload.email)) {
-    isFormValid = false;
-    errors.email = 'Please provide a correct email address.';
-  }
+    if (!payload || typeof payload.email !== 'string' || !validator.isEmail(payload.email)) {
+        isFormValid = false;
+        errors.email = 'Please provide a correct email address.';
+    }
 
-  if (!payload || typeof payload.password !== 'string' || payload.password.trim().length < 8) {
-    isFormValid = false;
-    errors.password = 'Password must have at least 8 characters.';
-  }
+    if (!payload || typeof payload.password !== 'string' || payload.password.trim().length < 8) {
+        isFormValid = false;
+        errors.password = 'Password must have at least 8 characters.';
+    }
 
-  if (!payload || typeof payload.name !== 'string' || payload.name.trim().length === 0) {
-    isFormValid = false;
-    errors.name = 'Please provide your name.';
-  }
+    if (!payload || typeof payload.name !== 'string' || payload.name.trim().length === 0) {
+        isFormValid = false;
+        errors.name = 'Please provide your name.';
+    }
 
-  if (!isFormValid) {
-    message = 'Check the form for errors.';
-  }
+    if (!isFormValid) {
+        message = 'Check the form for errors.';
+    }
 
-  return {
-    success: isFormValid,
-    message,
-    errors
-  };
+    return {
+        success: isFormValid,
+        message,
+        errors
+    };
 }
 
 /**
@@ -50,38 +50,37 @@ function validateSignupForm(payload) {
  *                   errors tips, and a global message for the whole form.
  */
 function validateLoginForm(payload) {
-  const errors = {};
-  let isFormValid = true;
-  let message = '';
+    const errors = {};
+    let isFormValid = true;
+    let message = '';
 
-  if (!payload || typeof payload.email !== 'string' || payload.email.trim().length === 0) {
-    isFormValid = false;
-    errors.email = 'Please provide your email address.';
-  }
+    if (!payload || typeof payload.email !== 'string' || payload.email.trim().length === 0) {
+        isFormValid = false;
+        errors.email = 'Please provide your email address.';
+    }
 
-  if (!payload || typeof payload.password !== 'string' || payload.password.trim().length < 8) {
-    isFormValid = false;
-    errors.password = 'Please provide your password.';
-  }
+    if (!payload || typeof payload.password !== 'string' || payload.password.trim().length < 8) {
+        isFormValid = false;
+        errors.password = 'Please provide your password.';
+    }
 
-  if (!isFormValid) {
-    message = 'Check the form for errors.';
-  }
+    if (!isFormValid) {
+        message = 'Check the form for errors.';
+    }
 
-  return {
-    success: isFormValid,
-    message,
-    errors
-  };
+    return {
+        success: isFormValid,
+        message,
+        errors
+    };
 }
-router.get('/client', (req, res, next) => {
-    return res.status(200).json({
-    message: "How's this for a secret message dumbass."
-  });
-});
 
+/*
+ * Validate New Client
+ *≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
 
 function validateNewClientForm(payload) {
+<<<<<<< HEAD
   const errors = {};
   let isFormValid = true;
   let message = '';
@@ -131,93 +130,169 @@ function validateNewClientForm(payload) {
     errors
   };
 }
+=======
+    const errors = {};
+    let isFormValid = true;
+    let message = '';
+>>>>>>> 1bf876b9b8cafd8a6c6e96ee8923cd02fbbbbf08
 
-router.post('/signup', (req, res, next) => {
-  const validationResult = validateSignupForm(req.body);
-  if (!validationResult.success) {
-    return res.status(400).json({
-      success: false,
-      message: validationResult.message,
-      errors: validationResult.errors
-    });
-  }
-
-
-  return passport.authenticate('local-signup', (err) => {
-    if (err) {
-      console.log(err);
-        if (err.name === 'MongoError' && err.code === 11000) {
-          // the 11000 Mongo code is for a duplication email error
-          // the 409 HTTP status code is for conflict error
-          return res.status(409).json({
-            success: false,
-            message: 'Check the form for errors.',
-            errors: {
-              email: 'This email is already taken.'
-            }
-          });
-      }
-
-      return res.status(400).json({
-        success: false,
-        message: 'Could not process the form.'
-      });
+    if (!payload || typeof payload.fname !== 'string' || payload.fname.trim().length === 0) {
+        isFormValid = false;
+        errors.name = 'Please provide your first name.';
     }
 
-    return res.status(200).json({
-      success: true,
-      message: 'You have successfully signed up! Now you should be able to log in.'
-    });
-  })(req, res, next);
-});
+    if (!payload || typeof payload.lname !== 'string' || payload.lname.trim().length === 0) {
+        isFormValid = false;
+        errors.name = 'Please provide your last name.';
+    }
 
-router.post('/login', (req, res, next) => {
-  const validationResult = validateLoginForm(req.body);
-  if (!validationResult.success) {
-    return res.status(400).json({
-      success: false,
-      message: validationResult.message,
-      errors: validationResult.errors
-    });
-  }
+    if (!payload || typeof payload.address !== 'string' || payload.address.trim().length === 0) {
+        isFormValid = false;
+        errors.address = 'Please provide a valid address.';
+    }
 
+    if (!payload || typeof payload.city !== 'string' || payload.city.trim().length === 0) {
+        isFormValid = false;
+        errors.city = 'Please provide a city.';
+    }
 
-  return passport.authenticate('local-login', (err, token, userData) => {
-    if (err) {
-      if (err.name === 'IncorrectCredentialsError') {
-        return res.status(400).json({
-          success: false,
-          message: err.message
+    if (!payload || typeof payload.zip !== 'string' || payload.zip.trim().length < 5) {
+        isFormValid = false;
+        errors.zip = 'Please provide a valid zip code.';
+    }
+
+    if (!payload || typeof payload.email !== 'string' || payload.email.trim().length === 0) {
+        isFormValid = false;
+        errors.email = 'Please provide your email address.';
+    }
+
+    if (!payload || typeof payload.phone !== 'string' || payload.phone.trim().length < 10) {
+        isFormValid = false;
+        errors.phone = 'Please provide a valid phone number';
+    }
+
+    if (!isFormValid) {
+        message = 'Check the form for errors.';
+    }
+
+    return {
+        success: isFormValid,
+        message,
+        errors
+    };
+}
+/*
+**  ROUTES 
+≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠
+≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠**/
+/*
+ * Client Dashboard
+ *≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
+router.post('/client', (req, res, next) => {
+    console.log(req.body);
+    db.Client.findOne({ where: { email: req.body.email } }).then(function(user) {
+        return res.status(200).json({
+            message: `How's this for a secret message `,
+            name: user.name,
+            registered: user.registered
         });
-      }
+    });
 
-      return res.status(400).json({
-        success: false,
-        message: 'Could not process the form.'
-      });
+});
+/*
+ * New Client
+ *≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
+router.post('/newclient', (req, res, next) => {
+    const validationResult = validateNewClientForm(req.body);
+    if (!validationResult.success) {
+        return res.status(400).json({
+            success: false,
+            message: validationResult.message,
+            errors: validationResult.errors
+        });
+    }
+
+});
+/*
+ * Signup
+ *≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
+router.post('/signup', (req, res, next) => {
+    const validationResult = validateSignupForm(req.body);
+    if (!validationResult.success) {
+        return res.status(400).json({
+            success: false,
+            message: validationResult.message,
+            errors: validationResult.errors
+        });
     }
 
 
-    return res.json({
-      success: true,
-      message: 'You have successfully logged in!',
-      token,
-      user: userData
-    });
-  })(req, res, next);
+    return passport.authenticate('local-signup', (err) => {
+        if (err) {
+            console.log(err);
+            if (err.name === 'MongoError' && err.code === 11000) {
+                // the 11000 Mongo code is for a duplication email error
+                // the 409 HTTP status code is for conflict error
+                return res.status(409).json({
+                    success: false,
+                    message: 'Check the form for errors.',
+                    errors: {
+                        email: 'This email is already taken.'
+                    }
+                });
+            }
+
+            return res.status(400).json({
+                success: false,
+                message: 'Could not process the form.'
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: 'You have successfully signed up! Now you should be able to log in.'
+        });
+    })(req, res, next);
+});
+/*
+ * Login
+ *≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
+router.post('/login', (req, res, next) => {
+    const validationResult = validateLoginForm(req.body);
+    if (!validationResult.success) {
+        return res.status(400).json({
+            success: false,
+            message: validationResult.message,
+            errors: validationResult.errors
+        });
+    }
+
+
+    return passport.authenticate('local-login', (err, token, userData) => {
+
+        if (err) {
+            if (err.name === 'IncorrectCredentialsError') {
+                return res.status(400).json({
+                    success: false,
+                    message: err.message
+                });
+            }
+
+            return res.status(400).json({
+                success: false,
+                message: 'Could not process the form.'
+            });
+        }
+
+        return res.json({
+            success: true,
+            message: 'You have successfully logged in!',
+            token,
+            user: userData
+        });
+    })(req, res, next);
 });
 
-router.post('/newclient', (req, res, next) => {
-  const validationResult = validateNewClientForm(req.body);
-  console.log(req.body);
-  if (!validationResult.success) {
-    return res.status(400).json({
-      success: false,
-      message: validationResult.message,
-      errors: validationResult.errors
-    });
-  }
 
-});
 
 module.exports = router;

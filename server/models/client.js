@@ -4,7 +4,7 @@ module.exports = function(sequelize, DataTypes) {
     const Client = sequelize.define("Client", {
         uuid: {
             type: DataTypes.INTEGER,
-            //defaultValue: DataTypes.UUIDV1,
+            
             autoIncrement: true,
             primaryKey: true
         },
@@ -23,6 +23,12 @@ module.exports = function(sequelize, DataTypes) {
             notNull: true,
             allowNull: false
         },
+        registered: {
+            type: DataTypes.BOOLEAN,
+            notNull: true,
+            allowNull: false,
+            defaultValue: false
+        },
         status: { type: DataTypes.ENUM('active', 'inactive'), defaultValue: 'active' }
 
     }, {
@@ -39,9 +45,6 @@ module.exports = function(sequelize, DataTypes) {
     Client.prototype.comparePassword = function(password, callback) {
         bcrypt.compare(password, this.password, callback);
     };
-    // Client.prototype.generateHash = function(data) {
-    //     bcrypt.hashSync(data.get('password'), bcrypt.genSaltSync(8), null);
-    // };
 
     return Client;
 };
