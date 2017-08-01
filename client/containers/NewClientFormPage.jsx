@@ -47,6 +47,7 @@ class NewClientFormPage extends React.Component {
         const phone = encodeURIComponent(event.target.phone.value);
         const email = encodeURIComponent(event.target.email.value);
         const formData = `first_name=${name}&last_name=${name}&street_address=${address}&city=${city}&state=${state}&zip_code=${zip_code}&phone=${phone}&email=${email}`;
+
         const self = this;
 
         console.log("FNAME: " + event.target.name.value);

@@ -4,7 +4,6 @@ module.exports = function(sequelize, DataTypes) {
     const Client = sequelize.define("Client", {
         uuid: {
             type: DataTypes.INTEGER,
-            
             autoIncrement: true,
             primaryKey: true
         },
@@ -24,6 +23,12 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
         },
         registered: {
+            type: DataTypes.BOOLEAN,
+            notNull: true,
+            allowNull: false,
+            defaultValue: false
+        },
+        employee: {
             type: DataTypes.BOOLEAN,
             notNull: true,
             allowNull: false,

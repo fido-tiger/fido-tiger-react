@@ -27,7 +27,7 @@ class ServiceFormPage extends React.Component {
                 temperament: '',
                 medications: '',
                 event_notes: '',
-                options: '',
+                options: ''
             }
         };
 
@@ -44,16 +44,19 @@ class ServiceFormPage extends React.Component {
     processForm(event) {
         event.preventDefault();
 
-        const name = encodeURIComponent(this.state.user.name);
-        const calendar = encodeURIComponent(this.state.user.calendar);
-        const pet_name = encodeURIComponent(this.state.user.pet_name);
-        const temperament = encodeURIComponent(this.state.user.temperament);
-        const medications = encodeURIComponent(this.state.user.medications);
-        const event_notes = encodeURIComponent(this.state.user.event_notes);
-        const options = encodeURIComponent(this.state.user.options);
+        const name = encodeURIComponent(event.target.name.value);
+        const calendar = encodeURIComponent(event.target.calendar.value);
+        const pet_name = encodeURIComponent(event.target.pet_name.value);
+        const temperament = encodeURIComponent(event.target.temperament.value);
+        const medications = encodeURIComponent(event.target.medications.value);
+        const event_notes = encodeURIComponent(event.target.event_notes.value);
+        const options = encodeURIComponent(event.target.options.value);
+        const formData = `name=${name}&begin_date=${begin_date}&end_date=${end_date}&pet_name=${pet_name}&temperament=${temperament}&medications=${medications}&event_notes=${event_notes}&options=${options}`;
+
+
 
         const xhr = new XMLHttpRequest();
-        xhr.open('post', '/auth/service');
+        xhr.open('post', '/client/service');
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhr.responseType = 'json';
         xhr.addEventListener('load', () => {
@@ -66,7 +69,7 @@ class ServiceFormPage extends React.Component {
                 // localStorage.setItem('successMessage'), xhr.response.message);
 
                 console.log(this.context);
-                this.context.router.history.replace('/login');
+                this.context.router.history.push('/client');
 
             } else {
 
@@ -82,7 +85,7 @@ class ServiceFormPage extends React.Component {
     }
 
     changeUser(event) {
-        const field = event.target.name;
+        const field = event.target.name + " " + event.target.calendar + " " + event.target.pet_name + " " + event.target.temperament + " " + event.target.medications + " " + event.target.event_notes + " " + event.target.options;
         const user = this.state.user;
         user[field] = event.target.value;
 
@@ -91,11 +94,17 @@ class ServiceFormPage extends React.Component {
         });
     }
 
-    render() {
-        return (
-            <ServiceFormPage
+
+ 
+
+render() {
+	return (
+		<ServiceForm
+
 			onSubmit={this.processForm}
-			handleChange={this.handleChange}
+			onChange={this.changeUser}
+			errors={this.state.errors}
+			user={this.state.user}
 			/>
         );
     }

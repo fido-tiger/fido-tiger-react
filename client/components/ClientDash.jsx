@@ -40,12 +40,12 @@ const ClientDash = ({secretData, name, email, registered}) => (
     <CardTitle title="User Dashboard" subtitle='"My Favorite Pet App!"' />    
     <div className="col-sm-8"> 
      <List>
-    <ListItem
+    {email && <ListItem
     disabled={true}
     leftAvatar={<Avatar>{name[0]}</Avatar>}
     >
     {name}{email}{`${registered}`}
-    </ListItem>  
+    </ListItem>  }
   
      {secretData && <CardText>{secretData}{name}</CardText>}
         {Auth.isUserAuthenticated() ? (

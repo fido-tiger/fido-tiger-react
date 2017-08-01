@@ -37,9 +37,12 @@ module.exports = new PassportLocalStrategy({
                 return done(error);
             }
 
+            /*  Token Payload
+            ≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
             const payload = {
                 sub: user.uuid,
-                name: user.name
+                name: user.name,
+                employee: user.employee
             };
 
             // create a token string

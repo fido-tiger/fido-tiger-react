@@ -1,5 +1,7 @@
 import React from 'react';
+
 import Auth from '../modules/Auth';
+
 // import authCheck from '../../server/middleware/auth-check';
 
 import ClientDash from '../components/ClientDash.jsx';
@@ -8,16 +10,20 @@ class ClientDashPage extends React.Component {
             super(props);
             this.state = {
                 secretData: '',
-                email: this.props.location.state.email,
-                name: this.props.location.state.name,
+                email: '',
+                name: '',
                 registered: true,
             };
         }
     componentWillMount() {
         var received = this.props.location.state;
         console.log(received);
+/*        let token = Auth.getToken();
+        let decoded = jwt.decode(token,{complete:true});
+        console.log(decoded.payload);*/
         /* XHR formData
         ≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
+
         const email = encodeURIComponent(this.props.location.state.email);
         const name = encodeURIComponent(this.props.location.state.name);
         const formData = `email=${email}&name=${name}`;
@@ -34,7 +40,11 @@ class ClientDashPage extends React.Component {
                 console.log(xhr.response);
                 this.setState({
                     secretData: xhr.response.message,
-                    registered: xhr.response.registered
+                    name: xhr.response.name,
+                    email: xhr.response.email,
+                    registered: xhr.response.registered,
+                    employee: xhr.response.employee,
+                    payload:xhr.response.payload
                 });
             }
         });

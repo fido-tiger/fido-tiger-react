@@ -1,6 +1,7 @@
 const express = require('express');
 const validator = require('validator');
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
 
 const router = new express.Router();
 var db = require('../models/');
@@ -131,6 +132,45 @@ function validateNewClientForm(payload) {
   };
 }
 
+/* Service Form validation */
+
+function validateNewServiceForm(payload) {
+    const errors = {};
+    let isFormValid = true;
+    let message = '';
+
+    if (!payload || typeof payload.name !== 'string' || payload.name.trim().length === 0) {
+        isFormValid = false;
+        errors.name = 'Please provide your full name.';
+    }
+
+    if (!payload || typeof payload.pet_name !== 'string' || payload.pet_name.trim().length === 0) {
+        isFormValid = false;
+        errors.name = 'Please provide your pet name.';
+    }
+
+    if (!payload || typeof payload.calendar !== 'string' || payload.calendar.trim().length === 0) {
+        isFormValid = false;
+        errors.calendar = 'Please provide a date range.';
+    }
+
+    if (!payload || typeof payload.options !== 'string' || payload.options.trim().length === 0) {
+        isFormValid = false;
+        errors.zip = 'Please provide a valid pet option.';
+    }
+
+
+    if (!isFormValid) {
+        message = 'Check the form for errors.';
+    }
+
+    return {
+        success: isFormValid,
+        message,
+        errors
+    };
+}
+
 /*
 **  ROUTES 
 ≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠
@@ -139,12 +179,22 @@ function validateNewClientForm(payload) {
  * Client Dashboard
  *≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
 router.post('/client', (req, res, next) => {
-    console.log(req.body);
+        /*  Decoded Token
+        ≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/    
+        let split = req.headers.authorization.split(' ');
+        let token = split[1];
+        let decoded = jwt.decode(token,{complete:true});
+        console.log(decoded.payload);
+        /*  DB Call
+        ≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
     db.Client.findOne({ where: { email: req.body.email } }).then(function(user) {
         return res.status(200).json({
             message: `How's this for a secret message `,
             name: user.name,
-            registered: user.registered
+            email: user.email,
+            registered: user.registered,
+            employee: user.employee,
+            payload: decoded.payload
         });
     });
 
@@ -242,6 +292,21 @@ router.post('/login', (req, res, next) => {
         });
     })(req, res, next);
 });
+
+/*Service Routes
+*******************************/
+router.post('/client/service', (req, res, next) => {
+    const validationResult = validateNewServiceForm(req.body);
+    if (!validationResult.success) {
+        return res.status(400).json({
+            success: false,
+            message: validationResult.message,
+            errors: validationResult.errors
+        });
+    }
+
+});
+
 
 
 
