@@ -1,4 +1,6 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types'
+import { render } from 'react-dom';
 import { Card, CardTitle } from 'material-ui/Card';
 import Paper from 'material-ui/Paper';
 import DropDownMenu from 'material-ui/DropDownMenu';
@@ -17,7 +19,11 @@ import 'react-infinite-calendar/styles.css';
 const CalendarWithRange = withRange(Calendar);
 var today = new Date();
 
-
+const styles = {
+  customWidth: {
+    width: 200,
+  },
+};
 
 const ServiceForm = ({
 	onSubmit,
@@ -51,8 +57,8 @@ const ServiceForm = ({
 			<InfiniteCalendar
 				Component={withRange(Calendar)}
 				name="calendar"	
-				width={300}
-				height={250}
+				width={500}
+				height={350}
 				selected={today}
 				onChange={onChange}
 				displayOptions={{
@@ -68,31 +74,31 @@ const ServiceForm = ({
 
 
 		<div className="field-line">
-			<DropDownMenu name="medications" floatingLabelText="Medications"
+			<DropDownMenu name="medications"
 			onChange={onChange}>
-				<MenuItem value={1} label="Anti-Anxiety" />
-				<MenuItem value={2} label="Pain Killer" />
-				<MenuItem value={3} label="Glucosamine" />
-				<MenuItem value={4} label="Daily Vitamin" />
-				<MenuItem value={5} label= "Cancer Treatment" />
+				<MenuItem value={1} primaryText="Anti-Anxiety" />
+				<MenuItem value={2} primaryText="Pain Killer" />
+				<MenuItem value={3} primaryText="Glucosamine" />
+				<MenuItem value={4} primaryText="Daily Vitamin" />
+				<MenuItem value={5} primaryText= "Cancer Treatment" />
 			</DropDownMenu>
 		</div>
 		
 
 		<div className="field-line">
-			<DropDownMenu  name="options" floatingLabelText="Pet Options"
+			<DropDownMenu  name="options"
 			onChange={onChange}>
-				<MenuItem value={1} label="Walking" />
-				<MenuItem value={2} label="Pet-Taxi" />
-				<MenuItem value={3} label="Pet-Sitting" />
-				<MenuItem value={4} label="Feeding" />
+				<MenuItem value={1} primaryText="Walking" />
+				<MenuItem value={2} primaryText="Pet-Taxi" />
+				<MenuItem value={3} primaryText="Pet-Sitting" />
+				<MenuItem value={4} primaryText="Feeding" />
 			</DropDownMenu>
 		</div>
 		
 
 		<div className="text-field">
 			<TextField onChange={onChange} name="event_notes"
-				floatingLabelText="Event Notes"
+				
 				multiLine={true}
 				rows={4}
 				rowsMax={6}
