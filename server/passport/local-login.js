@@ -42,6 +42,8 @@ module.exports = new PassportLocalStrategy({
             const payload = {
                 sub: user.uuid,
                 name: user.name,
+                email: user.email,
+                registered: user.registered,
                 employee: user.employee
             };
 
@@ -49,7 +51,9 @@ module.exports = new PassportLocalStrategy({
             const token = jwt.sign(payload, config.jwtSecret);
             const data = {
                 name: user.name,
-                email: user.email
+                email: user.email,
+                registered: user.registered,
+                employee: user.employee
             };
             return done(null, token, data);
         });
