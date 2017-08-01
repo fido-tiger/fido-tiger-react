@@ -128,6 +128,7 @@ class ServiceFormPage extends React.Component {
 
 
 
+
     render() {
         return (
             <ServiceForm
@@ -138,6 +139,7 @@ class ServiceFormPage extends React.Component {
 			errors={this.state.errors}
 			user={this.state.user}
 			/>
+
         );
     }
 

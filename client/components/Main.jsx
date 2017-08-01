@@ -129,15 +129,16 @@ const homePaperStyle = {
     width: '100%',
     margin: 0,
     textAlign: 'center',
-    display: 'inline-block'
+    display: 'inline-block',
+    backgroundColor:'#EDEBE9',
+
 }
 
 const barStyle = {}
 
 const defaultButtonStyle = {
-
-    color: 'blue',
-    backgroundColor: 'Orange',
+    color:'#281004',
+    backgroundColor:'#8E694B',
     display: 'inline',
     textAlign: 'center',
     padding: '0px',

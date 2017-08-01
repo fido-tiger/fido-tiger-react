@@ -18,7 +18,6 @@ const NewClientForm = ({
 
 			{errors.summary && <p className="error-message">
 				{errors.summary}</p>}
-
 				{errors.summary ? (<p className="error-message">
 				  {errors.summary}</p>) : undefined}
 
@@ -103,20 +102,3 @@ NewClientForm.propTypes = {
 };
 
 export default NewClientForm;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
