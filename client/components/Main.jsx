@@ -16,10 +16,7 @@ import DashboardPage from '../containers/DashboardPage.jsx';
 import LoginPage from '../containers/LoginPage.jsx';
 import SignUpPage from '../containers/SignUpPage.jsx';
 import ServiceFormPage from '../containers/ServiceFormPage.jsx';
-<<<<<<< HEAD
-=======
 
->>>>>>> 4877174f6802ff365746a56ddca12e9f0210c6e6
 
 
 /*
@@ -90,13 +87,8 @@ const routes = [{
         routes: [{
             path: '/client/new',
             component: NewClientFormPage
-<<<<<<< HEAD
         }, {
             path: '/client/service',
-=======
-        },{
-            // path: '/client/service',
->>>>>>> 4877174f6802ff365746a56ddca12e9f0210c6e6
             // component: ServiceFormPage
         }, {
             path: '/client/calendar',
@@ -142,23 +134,16 @@ const homePaperStyle = {
     textAlign: 'center',
     display: 'inline-block'
 }
-<<<<<<< HEAD
-const barStyle = {
-=======
->>>>>>> 4877174f6802ff365746a56ddca12e9f0210c6e6
+
 
 
 const barStyle={
 }
 
 const defaultButtonStyle = {
-<<<<<<< HEAD
+
     color: 'blue',
     backgroundColor: 'Orange',
-=======
-    color:'blue',
-    backgroundColor:'Orange',
->>>>>>> 4877174f6802ff365746a56ddca12e9f0210c6e6
     display: 'inline',
     textAlign: 'center',
     padding: '0px',
@@ -196,13 +181,8 @@ class Main extends React.Component {
         return (
             <div>
       <Card>
-<<<<<<< HEAD
         <div style={barStyle} className="top-bar">
             {/*<img src="./images/FidoLogo.png" width="100%" height="auto"/>*/}
-=======
-        <div className="top-bar">
-            <img src="./images/FidoLogo.png" width="100%" height="auto"/>
->>>>>>> 4877174f6802ff365746a56ddca12e9f0210c6e6
           <div className="top-bar-left">
 
             <Link to={"/"}><FlatButton primary style={defaultButtonStyle} label="Fido and Tiger"/></Link>
@@ -213,16 +193,9 @@ class Main extends React.Component {
           </div>
           {Auth.isUserAuthenticated() ? (
             <div className="top-bar-right">
-<<<<<<< HEAD
             <Link to="/logout"><FlatButton style={defaultButtonStyle} label="Log Out"/></Link>
             <Link to="/client"><FlatButton style = {defaultButtonStyle} label="Dashboard"/>
             </Link><Link to="/client/service"><FlatButton style = {defaultButtonStyle} label="Schedule Service"/></Link>
-=======
-
-            <Link to="/logout"><FlatButton backgroundColor={red900} style={defaultButtonStyle} label="Log Out"/></Link>
-            <Link to="/client"><FlatButton label="Dashboard"/></Link>
-            <Link to="/client/service"><FlatButton label="Schedule Service"/></Link>
->>>>>>> 4877174f6802ff365746a56ddca12e9f0210c6e6
             </div>
           ) : (
             <div className="top-bar-right">

@@ -100,7 +100,6 @@ class ServiceFormPage extends React.Component {
 render() {
 	return (
 		<ServiceForm
-
 			onSubmit={this.processForm}
 			onChange={this.changeUser}
 			errors={this.state.errors}
