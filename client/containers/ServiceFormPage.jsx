@@ -100,7 +100,7 @@ render() {
 	return (
 		<ServiceForm
 			onSubmit={this.processForm}
-			// onChange={this.onChange}
+			onChange={this.changeUser}
 			errors={this.state.errors}
 			user={this.state.user}
 			/>
