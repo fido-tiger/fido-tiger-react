@@ -75,7 +75,7 @@ const ServiceForm = ({
 
 		<div className="field-line">
 			<DropDownMenu name="medications"
-			onChange={onChange}>
+			onChange={onChange} style={styles.customWidth}>
 				<MenuItem value={1} primaryText="Anti-Anxiety" />
 				<MenuItem value={2} primaryText="Pain Killer" />
 				<MenuItem value={3} primaryText="Glucosamine" />
