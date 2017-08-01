@@ -81,6 +81,7 @@ function validateLoginForm(payload) {
  *≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
 
 function validateNewClientForm(payload) {
+
   const errors = {};
   let isFormValid = true;
   let message = '';
@@ -131,6 +132,46 @@ function validateNewClientForm(payload) {
   };
 }
 
+
+
+/* Service Form validation */
+
+function validateNewServiceForm(payload) {
+    const errors = {};
+    let isFormValid = true;
+    let message = '';
+
+    if (!payload || typeof payload.name !== 'string' || payload.name.trim().length === 0) {
+        isFormValid = false;
+        errors.name = 'Please provide your full name.';
+    }
+
+    if (!payload || typeof payload.pet_name !== 'string' || payload.pet_name.trim().length === 0) {
+        isFormValid = false;
+        errors.name = 'Please provide your pet name.';
+    }
+
+    if (!payload || typeof payload.calendar !== 'string' || payload.calendar.trim().length === 0) {
+        isFormValid = false;
+        errors.calendar = 'Please provide a date range.';
+    }
+
+    if (!payload || typeof payload.options !== 'string' || payload.options.trim().length === 0) {
+        isFormValid = false;
+        errors.zip = 'Please provide a valid pet option.';
+    }
+
+
+    if (!isFormValid) {
+        message = 'Check the form for errors.';
+    }
+
+    return {
+        success: isFormValid,
+        message,
+        errors
+    };
+}
 
 /*
 **  ROUTES 
@@ -253,6 +294,21 @@ router.post('/login', (req, res, next) => {
         });
     })(req, res, next);
 });
+
+/*Service Routes
+*******************************/
+router.post('/client/service', (req, res, next) => {
+    const validationResult = validateNewServiceForm(req.body);
+    if (!validationResult.success) {
+        return res.status(400).json({
+            success: false,
+            message: validationResult.message,
+            errors: validationResult.errors
+        });
+    }
+
+});
+
 
 
 
