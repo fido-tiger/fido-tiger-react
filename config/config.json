@@ -1,7 +1,8 @@
  {
   "development": {
     "user": "root",
-    "password":"caeser", 
+    "password":"Lvc2344!6962",
+
     "database": "fidoandtiger_db",
     "host": "localhost",
     "dialect": "mysql"

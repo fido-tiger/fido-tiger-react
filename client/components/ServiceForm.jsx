@@ -1,5 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+
 import { render } from 'react-dom';
 import { Card, CardTitle } from 'material-ui/Card';
 import Paper from 'material-ui/Paper';
@@ -122,9 +123,3 @@ ServiceForm.propTypes = {
 };
 
 export default ServiceForm;
-
-				
-
-
-
-
