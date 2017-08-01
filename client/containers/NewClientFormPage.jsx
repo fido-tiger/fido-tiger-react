@@ -96,7 +96,7 @@ class NewClientFormPage extends React.Component {
 
 
     changeUser(event) {
-        const field = event.target.fname + " " + event.target.lname;
+        const field = event.target.name;
         const user = this.state.user;
         user[field] = event.target.value;
 

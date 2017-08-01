@@ -86,15 +86,6 @@ const NewClientForm = ({
 					/>
 			</div>
 
-			{/*<div className="field-line">
-				<TextField
-					floatingLabelText="Email"
-					name="email"
-					errorText={errors.email}
-					onChange={onChange}
-					/>
-			</div>*/}
-
 			<div className="button-line">
 							<RaisedButton type="submit" label="Submit" primary />
 			</div>
