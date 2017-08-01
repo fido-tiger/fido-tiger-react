@@ -106,9 +106,9 @@ function validateNewClientForm(payload) {
     errors.city = 'Please provide a city.';
   }
 
-  if (!payload || typeof payload.zip !== 'string' || payload.zip.trim().length < 5) {
+  if (!payload || typeof payload.zip_code !== 'string' || payload.zip_code.trim().length < 5) {
     isFormValid = false;
-    errors.zip = 'Please provide a valid zip code.';
+    errors.zip_code = 'Please provide a valid zip code.';
   }
   
   if (!payload || typeof payload.email !== 'string' || payload.email.trim().length === 0) {
@@ -131,8 +131,6 @@ function validateNewClientForm(payload) {
     errors
   };
 }
-
-
 
 /* Service Form validation */
 
