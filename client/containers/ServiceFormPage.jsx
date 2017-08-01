@@ -89,6 +89,8 @@ class ServiceFormPage extends React.Component {
         const user = this.state.user;
         user[field] = event.target.value;
 
+        handleChange = (event, index, value) => this.setState({value});
+
         this.setState({
             user
         });

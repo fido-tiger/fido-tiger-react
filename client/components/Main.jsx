@@ -18,7 +18,6 @@ import SignUpPage from '../containers/SignUpPage.jsx';
 import ServiceFormPage from '../containers/ServiceFormPage.jsx';
 
 
-
 /*
  ** ROUTE COMPONENTS
  ** components for subroutes 
@@ -63,12 +62,10 @@ const routes = [{
     }, {
         path: '/signup',
         component: SignUpPage
-    },
-    /*{
-            path: '/newclient',
-            component: NewClientFormPage
-        },*/
-    {
+    }, {
+        path: '/newclient',
+        component: NewClientFormPage
+    }, {
         path: '/contact',
         component: ContactUsPage
     }, {
@@ -135,10 +132,7 @@ const homePaperStyle = {
     display: 'inline-block'
 }
 
-
-
-const barStyle={
-}
+const barStyle = {}
 
 const defaultButtonStyle = {
 
@@ -167,13 +161,34 @@ class Main extends React.Component {
             user: {
                 email: '',
                 name: '',
-                employee: false
+                employee: '',
+                registered: '',
             }
         }
     }
 
     componentDidMount() {
         console.log(this.state);
+        // create an AJAX request
+        const xhr = new XMLHttpRequest();
+/*        xhr.open('get', '/auth/token');
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.setRequestHeader('Authorization', `bearer ${Auth.getToken()}`);
+        xhr.responseType = 'json';
+        xhr.addEventListener('load', () => {
+            if (xhr.status === 200) {
+                // success
+
+                // change the component-container state
+                this.setState({
+                    errors: {}
+                });
+
+                
+                
+            } else {}
+        });
+        xhr.send();*/
     }
 
 
@@ -183,12 +198,14 @@ class Main extends React.Component {
       <Card>
         <div style={barStyle} className="top-bar">
             {/*<img src="./images/FidoLogo.png" width="100%" height="auto"/>*/}
+
           <div className="top-bar-left">
 
             <Link to={"/"}><FlatButton primary style={defaultButtonStyle} label="Fido and Tiger"/></Link>
             <Route path="/"/>
             
             <Link to="/contact"><FlatButton style = {defaultButtonStyle} label="Contact Us"/></Link>
+            <Link to="/newclient"><FlatButton style = {defaultButtonStyle} label="New Client Form"/></Link>
 
           </div>
           {Auth.isUserAuthenticated() ? (
@@ -225,5 +242,9 @@ class Main extends React.Component {
 // Main.propTypes = {
 //     children: PropTypes.object.isRequired
 // };
+Main.contextTypes = {
+    router: PropTypes.object.isRequired
+};
+
 
 export default Main;

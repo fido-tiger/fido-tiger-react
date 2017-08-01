@@ -6,20 +6,45 @@ module.exports = function(sequelize, DataTypes) {
             autoIncrement: true,
             primaryKey: true
         },
-        name: {
+        first_name: {
             type: DataTypes.STRING,
             notNull: true,
             allowNull: false
         },
-        password: {
+        last_name: {
             type: DataTypes.STRING,
             notNull: true,
             allowNull: false
         },
-        email: {
+        address: {
             type: DataTypes.STRING,
             notNull: true,
             allowNull: false
+        },
+        city: {
+            type: DataTypes.STRING,
+            notNull: true,
+            allowNull: false
+        },
+        state: {
+            type: DataTypes.STRING,
+            notNull: true,
+            allowNull: false
+        },
+        zip_code: {
+            type: DataTypes.INTEGER,
+            notNull: true,
+            allowNull: false
+        },
+        phone: {
+            type: DataTypes.STRING,
+            notNull: true,
+            allowNull: false
+        },
+        parent_user: {
+            type: DataTypes.STRING,
+/*            notNull: true,
+            allowNull: false*/
         },
         status: {type: DataTypes.ENUM('active','inactive'),defaultValue:'active' }
     });
