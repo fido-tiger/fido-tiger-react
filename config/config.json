@@ -8,7 +8,7 @@
   },
   "test": {
     "user": "root",
-    "password": "root",
+    "password": "caeser",
     "database": "fidoandtiger_db",
     "host": "localhost",
     "dialect": "mysql"

@@ -39,6 +39,7 @@ const ServiceForm = ({
 		<Divider/>
 
 		<div className="field-line">
+
 					<InfiniteCalendar
 						Component={withRange(Calendar)}
 						name="calendar"	
@@ -108,8 +109,8 @@ const ServiceForm = ({
 				floatingLabelText="Event Notes"
 				name="event_notes"
 				multiLine={true}
-				rows={4}
-				rowsMax={6}				
+				rows={4}		
+				rowsMax={6}
 			/>
 		</div>
 

@@ -20,9 +20,9 @@ class NewClientFormPage extends React.Component {
             errors: {},
             successMessage,
             user: {
-                fname: '',
+                name: '',
                 lname: '',
-                strtaddy: '',
+                address: '',
                 city: '',
                 state: '',
                 zip: '',
@@ -38,16 +38,18 @@ class NewClientFormPage extends React.Component {
     processForm(event) {
         event.preventDefault();
 
-        const fname = encodeURIComponent(this.state.user.fname);
-        const lname = encodeURIComponent(this.state.user.lname);
-        const strtaddy = encodeURIComponent(this.state.user.strtaddy);
-        const city = encodeURIComponent(this.state.user.city);
-        const state = encodeURIComponent(this.state.user.state);
-        const zip = encodeURIComponent(this.state.user.zip);
-        const phone = encodeURIComponent(this.state.user.phone);
-        const email = encodeURIComponent(this.state.user.email);
-        const formData = `fname=${fname}&lname=${lname}&strtaddy=${strtaddy}&city=${city}&state=${state}&zip=${zip}&phone=${phone}&email==${email}`;
+        const name = encodeURIComponent(event.target.first_name.value);
+        const lname = encodeURIComponent(event.target.last_name.value);
+        const address = encodeURIComponent(event.target.street_address.value);
+        const city = encodeURIComponent(event.target.city.value);
+        const state = encodeURIComponent(event.target.state.value);
+        const zip = encodeURIComponent(event.target.zip_code.value);
+        const phone = encodeURIComponent(event.target.phone.value);
+        const email = encodeURIComponent(event.target.email.value);
+        const formData = `first_name=${name}&last_name=${name}&street_address=${address}&city=${city}&state=${state}&zip_code=${zip}&phone=${phone}&email=${email}`;
         const self = this;
+
+        console.log("FNAME: " + event.target.name.value);
 
         const xhr = new XMLHttpRequest();
 
@@ -87,7 +89,7 @@ class NewClientFormPage extends React.Component {
 
 
     changeUser(event) {
-        const field = event.target.fname & lname;
+        const field = event.target.fname + " " + event.target.lname;
         const user = this.state.user;
         user[field] = event.target.value;
 

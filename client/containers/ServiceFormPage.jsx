@@ -93,7 +93,7 @@ class ServiceFormPage extends React.Component {
 
     render() {
         return (
-            <ServiceFormPage
+            <ServiceForm
 			onSubmit={this.processForm}
 			handleChange={this.handleChange}
 			/>
