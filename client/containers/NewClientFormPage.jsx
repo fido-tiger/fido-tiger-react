@@ -43,10 +43,10 @@ class NewClientFormPage extends React.Component {
         const address = encodeURIComponent(event.target.street_address.value);
         const city = encodeURIComponent(event.target.city.value);
         const state = encodeURIComponent(event.target.state.value);
-        const zip = encodeURIComponent(event.target.zip_code.value);
+        const zip_code = encodeURIComponent(event.target.zip_code.value);
         const phone = encodeURIComponent(event.target.phone.value);
         const email = encodeURIComponent(event.target.email.value);
-        const formData = `first_name=${name}&last_name=${name}&street_address=${address}&city=${city}&state=${state}&zip_code=${zip}&phone=${phone}&email==${email}`;
+        const formData = `first_name=${name}&last_name=${name}&street_address=${address}&city=${city}&state=${state}&zip_code=${zip_code}&phone=${phone}&email=${email}`;
         const self = this;
 
         console.log("FNAME: " + event.target.name.value);
@@ -84,7 +84,7 @@ class NewClientFormPage extends React.Component {
             }
         });
         xhr.send(formData);
-
+            
     }
 
 

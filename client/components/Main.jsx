@@ -62,10 +62,10 @@ const routes = [{
     }, {
         path: '/signup',
         component: SignUpPage
-    },/*{
+    },{
         path: '/newclient',
         component: NewClientFormPage
-    },*/{
+    },{
         path: '/contact',
         component: ContactUsPage
     }, {
@@ -180,13 +180,14 @@ class Main extends React.Component {
             <Link to="/login"><FlatButton style = {defaultButtonStyle} label="Log In"/></Link>
             <Link to="/signup"><FlatButton style = {defaultButtonStyle}label="Sign Up"/></Link>
             <Link to="/contact"><FlatButton style = {defaultButtonStyle} label="Contact Us"/></Link>
+            <Link to="/newclient"><FlatButton style = {defaultButtonStyle} label="New Client Form"/></Link>
 
           </div>
           {Auth.isUserAuthenticated() ? (
             <div className="top-bar-right">
             <Link to="/logout"><FlatButton style={defaultButtonStyle} label="Log Out"/></Link>
-            <Link to="/client"><FlatButton label="Dashboard"/>
-            </Link><Link to="/client/service"><FlatButton label="Schedule Service"/></Link>
+            <Link to="/client"><FlatButton label="Dashboard"/></Link>
+            <Link to="/client/service"><FlatButton label="Schedule Service"/></Link>
             </div>
           ) : (
             <div className="top-bar-right">
