@@ -100,9 +100,8 @@ const ServiceForm = ({
 			<TextField onChange={onChange} name="event_notes"
 				
 				multiLine={true}
-				rows={4}
+				rows={4}		
 				rowsMax={6}
-				
 			/>
 		</div>
 
