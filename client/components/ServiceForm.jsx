@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { render } from 'react-dom';
+
 import { Card, CardTitle } from 'material-ui/Card';
 import Paper from 'material-ui/Paper';
 import DropDownMenu from 'material-ui/DropDownMenu';
@@ -10,29 +10,33 @@ import Divider from 'material-ui/Divider';
 import { Link } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import DatePicker from 'material-ui/DatePicker';
 import InfiniteCalendar, {
-  Calendar,
-  withRange,
+    Calendar,
+    withMultipleDates,
+    defaultMultipleDateInterpolation
 } from 'react-infinite-calendar';
 import 'react-infinite-calendar/styles.css';
 
 
-const CalendarWithRange = withRange(Calendar);
+// const CalendarWithRange = withRange(Calendar);
 var today = new Date();
 
 const styles = {
-  customWidth: {
-    width: 200,
-  },
+    customWidth: {
+        width: 200,
+    },
 };
 
 const ServiceForm = ({
-	onSubmit,
-	onChange,
-	errors,
-	user,
+    onSubmit,
+    onChange,
+    onCalendarChange,
+    onEndDateChange,
+    errors,
+    user,
 }) => (
-<Card className="container">
+    <Card className="container">
 	<form action ="/client/service" onSubmit={onSubmit}>
 		<h2 className="card-heading">Services Form</h2>		
 		<div className="field-line">
@@ -40,7 +44,8 @@ const ServiceForm = ({
 				floatingLabelText="Name"
 				name="name"
 				rowsMax = {2}
-				onChange={onChange}			
+				onChange={onChange}
+				value={user.name}	
 			/>			
 		</div>
 		
@@ -49,29 +54,54 @@ const ServiceForm = ({
 				floatingLabelText="Pet Name"
 				name="pet_name"
 				rowsMax = {2}
-				onChange={onChange}			
+				onChange={onChange}
+				value={user.pet_name}				
 			/>			
 		</div>
 		
 		<div className="field-line">
 
 			<InfiniteCalendar
-				Component={withRange(Calendar)}
+				Component={withMultipleDates(Calendar)}
 				name="calendar"	
 				width={500}
-				height={350}
-				selected={today}
-				onChange={onChange}
+				height={350}				
+				onSelect={function(val){
+					onCalendarChange(val);
+					console.log(val)
+				}}
 				displayOptions={{
 					layout: 'portrait',
 					showHeader: true,
 					showOverlay: true,
 					showTodayHelper: true
-					}}
+				}}
+			 	interpolateSelection={defaultMultipleDateInterpolation}
+			 	selected={[]}
 			/>
 
 		</div>
-		
+{/*		<div className="field-line">
+			<table>
+			  <tbody>
+			    <tr>
+			      <td>
+			        <DatePicker
+			        name="start_date"  
+			        container="inline" 
+			        value={user.start_date}
+			        onChange={onStartDateChange}
+			        floatingLabelText="Start Date" 			        
+			        />
+			      </td>
+			      <td>
+			        <DatePicker container="inline" floatingLabelText="End Date" />
+			      </td>
+			    </tr>
+			  </tbody>
+			</table>
+		</div>
+		*/}
 
 
 		<div className="field-line">
@@ -98,8 +128,7 @@ const ServiceForm = ({
 		
 
 		<div className="text-field">
-			<TextField onChange={onChange} name="event_notes"
-				
+			<TextField onChange={onChange} name="event_notes"				
 				multiLine={true}
 				rows={4}		
 				rowsMax={6}
@@ -116,10 +145,12 @@ const ServiceForm = ({
 );
 
 ServiceForm.propTypes = {
-	onSubmit: PropTypes.func.isRequired,
-	onChange: PropTypes.func.isRequired,
-	errors: PropTypes.object.isRequired,
-	user: PropTypes.object.isRequired
+    onSubmit: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
+    onCalendarChange: PropTypes.func.isRequired,
+    onEndDateChange: PropTypes.func.isRequired,
+    errors: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired
 };
 
 export default ServiceForm;

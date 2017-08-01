@@ -82,54 +82,54 @@ function validateLoginForm(payload) {
 
 function validateNewClientForm(payload) {
 
-  const errors = {};
-  let isFormValid = true;
-  let message = '';
+    const errors = {};
+    let isFormValid = true;
+    let message = '';
 
- if (!payload || typeof payload.first_name !== 'string' || payload.name.trim().length === 0) {
-    isFormValid = false;
-    errors.name = 'Please provide your first name.';
-  }
+    if (!payload || typeof payload.first_name !== 'string' || payload.first_name.trim().length === 0) {
+        isFormValid = false;
+        errors.first_name = 'Please provide your first name.';
+    }
 
-  if (!payload || typeof payload.last_name !== 'string' || payload.lname.trim().length === 0) {
-    isFormValid = false;
-    errors.name = 'Please provide your ARGH name.';
-  }
+    if (!payload || typeof payload.last_name !== 'string' || payload.last_name.trim().length === 0) {
+        isFormValid = false;
+        errors.last_name = 'Please provide your ARGH name.';
+    }
 
-  if (!payload || typeof payload.street_address !== 'string' || payload.address.trim().length === 0) {
-    isFormValid = false;
-    errors.address = 'Please provide a valid address.';
-  }
+    if (!payload || typeof payload.address !== 'string' || payload.address.trim().length === 0) {
+        isFormValid = false;
+        errors.address = 'Please provide a valid address.';
+    }
 
-  if (!payload || typeof payload.city !== 'string' || payload.city.trim().length === 0) {
-    isFormValid = false;
-    errors.city = 'Please provide a city.';
-  }
+    if (!payload || typeof payload.city !== 'string' || payload.city.trim().length === 0) {
+        isFormValid = false;
+        errors.city = 'Please provide a city.';
+    }
 
-  if (!payload || typeof payload.zip_code !== 'string' || payload.zip_code.trim().length < 5) {
-    isFormValid = false;
-    errors.zip_code = 'Please provide a valid zip code.';
-  }
-  
-  if (!payload || typeof payload.email !== 'string' || payload.email.trim().length === 0) {
-    isFormValid = false;
-    errors.email = 'Please provide your email address.';
-  }  
+    if (!payload || typeof payload.zip_code !== 'string' || payload.zip_code.trim().length < 5) {
+        isFormValid = false;
+        errors.zip_code = 'Please provide a valid zip code.';
+    }
 
-  if (!payload || typeof payload.phone !== 'string' || payload.phone.trim().length < 10) {
-    isFormValid = false;
-    errors.phone = 'Please provide a valid phone number';
-  } 
+    /*  if (!payload || typeof payload.email !== 'string' || payload.email.trim().length === 0) {
+        isFormValid = false;
+        errors.email = 'Please provide your email address.';
+      }  */
 
-  if (!isFormValid) {
-    message = 'Check the form for errors.';
-  }
+    if (!payload || typeof payload.phone !== 'string' || payload.phone.trim().length < 10) {
+        isFormValid = false;
+        errors.phone = 'Please provide a valid phone number';
+    }
 
-  return {
-    success: isFormValid,
-    message,
-    errors
-  };
+    if (!isFormValid) {
+        message = 'Check the form for errors.';
+    }
+
+    return {
+        success: isFormValid,
+        message,
+        errors
+    };
 }
 
 /* Service Form validation */
@@ -176,18 +176,49 @@ function validateNewServiceForm(payload) {
 ≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠
 ≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠**/
 /*
+ * Decode Token
+ *≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
+router.get('/token', (req, res, next) => {
+  console.log(req.headers);
+    let user = {};
+    let split = req.headers.authorization.split(' ');
+    let token = split[1];
+    console.log('token::::::' + token);
+
+    function decodeToken(token) {
+        let decoded = jwt.decode(token, { complete: true });
+        console.log('DECODED TOKEN:\n≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠');
+        console.log(decoded.payload);
+        user = decoded.payload;
+    }
+    if (token === null) {
+        return res.status(200).json({
+            success: false,
+        });
+    }
+    if (token !== null) {
+        decodeToken(token);
+        console.log(user);
+
+       return res.status(200).json({
+            user_info: { user }
+        });
+    }
+
+
+});
+/*
  * Client Dashboard
  *≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
 router.post('/client', (req, res, next) => {
-        /*  Decoded Token
-        ≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/    
-        let split = req.headers.authorization.split(' ');
-        let token = split[1];
-        let decoded = jwt.decode(token,{complete:true});
-        console.log(decoded.payload);
-        /*  DB Call
-        ≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
-    db.Client.findOne({ where: { email: req.body.email } }).then(function(user) {
+    /*  Decoded Token
+    ≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
+    let split = req.headers.authorization.split(' ');
+    let token = split[1];
+    let decoded = jwt.decode(token, { complete: true });
+    console.log('DECODED TOKEN:\n ≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠');
+    console.log(decoded.payload);
+    db.Client.findOne({ where: { email: decoded.payload.email } }).then(function(user) {
         return res.status(200).json({
             message: `How's this for a secret message `,
             name: user.name,
@@ -203,6 +234,15 @@ router.post('/client', (req, res, next) => {
  * New Client
  *≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
 router.post('/newclient', (req, res, next) => {
+    let user = {};
+    let split = req.headers.authorization.split(' ');
+    let token = split[1];
+    /*  Decode Token
+        ≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
+    function decodeToken(token) {
+        let decoded = jwt.decode(token, { complete: true });
+        user = decoded.payload;
+    }
     const validationResult = validateNewClientForm(req.body);
     if (!validationResult.success) {
         return res.status(400).json({
@@ -211,6 +251,29 @@ router.post('/newclient', (req, res, next) => {
             errors: validationResult.errors
         });
     }
+    decodeToken(token);
+    console.log(user);
+    let clientData = {
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        address: req.body.address,
+        city: req.body.city,
+        state: req.body.state,
+        zip_code: req.body.zip_code,
+        phone: req.body.phone,
+        parent_user: user.email
+    }
+    db.ClientInfo.create(clientData).then(function(newClient, created) {
+        if (!newClient) {
+            return done(null, false);
+        }
+        if (newClient) {
+           return res.status(200).json({
+                client_info: newClient,
+                user_info: { user }
+            });
+        }
+    });
 
 });
 /*
@@ -294,7 +357,7 @@ router.post('/login', (req, res, next) => {
 });
 
 /*Service Routes
-*******************************/
+ *******************************/
 router.post('/client/service', (req, res, next) => {
     const validationResult = validateNewServiceForm(req.body);
     if (!validationResult.success) {
