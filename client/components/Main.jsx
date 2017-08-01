@@ -61,12 +61,10 @@ const routes = [{
     }, {
         path: '/signup',
         component: SignUpPage
-    },
-    /*{
-            path: '/newclient',
-            component: NewClientFormPage
-        },*/
-    {
+    },{
+        path: '/newclient',
+        component: NewClientFormPage
+    },{
         path: '/contact',
         component: ContactUsPage
     }, {
@@ -91,6 +89,10 @@ const routes = [{
 
         },{
             // path: '/client/service',
+
+        }, {
+            path: '/client/service',
+
             // component: ServiceFormPage
             path: '/client/service',
             component: ServiceRequest
@@ -146,6 +148,7 @@ const barStyle = {
 const defaultButtonStyle={
     color:'#281004',
     backgroundColor:'#8E694B',
+
     display: 'inline',
     textAlign: 'center',
     padding: '0px',
@@ -189,12 +192,19 @@ class Main extends React.Component {
         <div className="top-bar">
             <img src="./images/FidoLogo.png" width="100%" height="auto"/>
 
+=======
+
+        <div style={barStyle} className="top-bar">
+            {/*<img src="./images/FidoLogo.png" width="100%" height="auto"/>*/}
+
+>>>>>>> 00c957e10664eae7d55fd8a58112d92787da6ac6
           <div className="top-bar-left">
 
             <Link to={"/"}><FlatButton primary style={defaultButtonStyle} label="Fido and Tiger"/></Link>
             <Route path="/"/>
             
             <Link to="/contact"><FlatButton style = {defaultButtonStyle} label="Contact Us"/></Link>
+            <Link to="/newclient"><FlatButton style = {defaultButtonStyle} label="New Client Form"/></Link>
 
           </div>
           {Auth.isUserAuthenticated() ? (
@@ -213,6 +223,11 @@ class Main extends React.Component {
             <Link to="/client"><FlatButton label="Dashboard"/></Link>
             <Link to="/client/service"><FlatButton label="Schedule Service"/></Link>
 
+
+            <Link to="/logout"><FlatButton style={defaultButtonStyle} label="Log Out"/></Link>
+            <Link to="/client"><FlatButton style = {defaultButtonStyle} label="Dashboard"/>
+            </Link><Link to="/client/service"><FlatButton style = {defaultButtonStyle} label="Schedule Service"/></Link>
+  
             </div>
           ) : (
             <div className="top-bar-right">
