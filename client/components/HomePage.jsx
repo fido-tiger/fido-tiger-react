@@ -13,13 +13,16 @@ const homePaperStyle = {
 };
 
 const homeCardStyle = {
-  margin:'20px',
+  margin:0,
   padding:'7px',
   textAlign: 'center',
+  marginLeft:'250px',
+  backgroundColor:'#EDEBE9',
+  background:'url("./images/walk.png")',
 };
 
 const homePageStyle = {
-  background:'url("./images/walk.png")',
+  backgroundColor:'#EDEBE9',
   backgroundSize:'contain',
   display: 'inline',
   textAlign: 'center',
@@ -37,29 +40,69 @@ const styles = {
     justifyContent: 'space-around',
   },
   gridList: {
-    width: 500,
-    height: 450,
-    overflowY: 'auto',
+    display: 'flex',
+    flexWrap: 'nowrap',
+    overflowX: 'auto',
+  },
+  titleStyle: {
+    color: 'rgb(0, 188, 212)',
   },
 };
 
+const styles2 = {
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+  },
+  gridList: {
+    display: 'flex',
+    flexWrap: 'nowrap',
+    overflowX: 'auto',
+  },
+  titleStyle: {
+    color: 'rgb(0, 188, 212)',
+  },
+};
+
+
 const tilesData = [
   {
-    img: 'images/Thomas2.png',
+    img: 'images/boy1.png',
     title: 'Thomas Kearney',
   },
   {
-    img: 'images/Elliott2.png',
+    img: 'images/boy2.png',
     title: 'Elliott Chalmers',
   },
   {
-    img: 'images/Alex2.png',
+    img: 'images/boy3.png',
     title: 'Alex Lovell',
   },
   {
-    img: 'images/Terri2.png',
+    img: 'images/girl.png',
     title: 'Terri Byers',
   },
+  
+];
+
+const tilesData2 = [
+  {
+    img: 'images/dogWalk.png',
+    title: 'DOG WALKING',
+    author: 'You choose the amount of time your dog is walked.'
+  },
+  {
+    img: 'images/inHome.png',
+    title: 'IN HOME CARE',
+    author:'Potty Breaks, feedings, playtime.'
+  },
+  {
+    img: 'images/errands.png',
+    title: 'PET ERRANDS',
+    author:'Driving your pet to the vet, pet supplies dropped off at your home, pet taken to grooming appointments'
+  },
+  
   
 ];
 
@@ -74,6 +117,7 @@ const HomePage = () => (
   <Card style={homeCardStyle} className="container" >
 
     <div className="card-image">
+    <img src="./images/FidoLogo.png" width="65%" height="auto"/>
     <CardTitle  title="Fido and Tiger Pet Sitting" subtitle='"My Favorite Pet App!"' />    
       <div style={homePageStyle} className="col-sm-12">
         <h3>About Us</h3>
@@ -125,6 +169,27 @@ const HomePage = () => (
                       <GridTile
                         key={tile.img}
                         title={tile.title}
+                        actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+                      >
+                     <img src={tile.img} />
+                    </GridTile>
+                 ))}
+                </GridList>
+          </div>
+        </div>
+
+      <div style={homePageStyle}>
+       <h2>OUR SERVICES</h2>
+          <div style={styles.root}>
+              <GridList
+                cellHeight={180}
+                style={styles2.gridList}
+                 >
+                   {tilesData2.map((tile) => (
+                      <GridTile
+                        key={tile.img}
+                        title={tile.title}
+
                         actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
                       >
                      <img src={tile.img} />
