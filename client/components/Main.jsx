@@ -83,19 +83,9 @@ const routes = [{
         routes: [{
             path: '/client/new',
             component: NewClientFormPage
-
         }, {
             path: '/client/service',
-
-        },{
-            // path: '/client/service',
-
-        }, {
-            path: '/client/service',
-
             // component: ServiceFormPage
-            path: '/client/service',
-            component: ServiceRequest
         }, {
             path: '/client/calendar',
             // component: ClientCalendar
@@ -141,14 +131,12 @@ const homePaperStyle = {
     display: 'inline-block'
 }
 
-const barStyle = {
+const barStyle={
 }
 
-
-const defaultButtonStyle={
-    color:'#281004',
-    backgroundColor:'#8E694B',
-
+const defaultButtonStyle = {
+    color: 'blue',
+    backgroundColor: 'Orange',
     display: 'inline',
     textAlign: 'center',
     padding: '0px',
@@ -186,18 +174,10 @@ class Main extends React.Component {
         return (
             <div>
       <Card>
-        <div style={barStyle} className="top-bar">
-            {/*<img src="./images/FidoLogo.png" width="100%" height="auto"/>*/}
-
-        <div className="top-bar">
-            <img src="./images/FidoLogo.png" width="100%" height="auto"/>
-
-=======
 
         <div style={barStyle} className="top-bar">
             {/*<img src="./images/FidoLogo.png" width="100%" height="auto"/>*/}
 
->>>>>>> 00c957e10664eae7d55fd8a58112d92787da6ac6
           <div className="top-bar-left">
 
             <Link to={"/"}><FlatButton primary style={defaultButtonStyle} label="Fido and Tiger"/></Link>
@@ -209,21 +189,6 @@ class Main extends React.Component {
           </div>
           {Auth.isUserAuthenticated() ? (
             <div className="top-bar-right">
-            <Link to="/logout"><FlatButton backgroundColor={red900} style={defaultButtonStyle} label="Log Out"/></Link>
-            <Link to="/client"><FlatButton label="Dashboard"/></Link>
-            <Link to="/client/service"><FlatButton label="Schedule Service"/></Link>
-            <Link to="/logout"><FlatButton backgroundColor={red900} style={defaultButtonStyle} label="Log Out"/></Link>
-            <Link to="/client"><FlatButton label="Dashboard"/>
-            </Link><Link to="/client/service"><FlatButton label="Schedule Service"/></Link>
-            <Link to="/logout"><FlatButton style={defaultButtonStyle} label="Log Out"/></Link>
-            <Link to="/client"><FlatButton style = {defaultButtonStyle} label="Dashboard"/>
-            </Link><Link to="/client/service"><FlatButton style = {defaultButtonStyle} label="Schedule Service"/></Link>
-
-            <Link to="/logout"><FlatButton backgroundColor={red900} style={defaultButtonStyle} label="Log Out"/></Link>
-            <Link to="/client"><FlatButton label="Dashboard"/></Link>
-            <Link to="/client/service"><FlatButton label="Schedule Service"/></Link>
-
-
             <Link to="/logout"><FlatButton style={defaultButtonStyle} label="Log Out"/></Link>
             <Link to="/client"><FlatButton style = {defaultButtonStyle} label="Dashboard"/>
             </Link><Link to="/client/service"><FlatButton style = {defaultButtonStyle} label="Schedule Service"/></Link>
@@ -237,7 +202,7 @@ class Main extends React.Component {
           )}
           
         </div>
-      </div>        
+              
     </Card>
     <div>
     <Paper style={homePaperStyle} zDepth={1}>

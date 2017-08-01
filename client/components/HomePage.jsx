@@ -13,10 +13,9 @@ const homePaperStyle = {
 };
 
 const homeCardStyle = {
-  margin:'175px',
+  margin:'20px',
   padding:'7px',
   textAlign: 'center',
-
 };
 
 const homePageStyle = {
@@ -28,8 +27,6 @@ const homePageStyle = {
   height:'auto',
   width: '100%',
   margin:0,
-  display:'inline-block',
-
  
 };
 
@@ -96,28 +93,24 @@ const HomePage = () => (
             <p><strong>Thomas Kearney</strong></p>
           </div>
         </div>
-
         <div className="col-sm-3">
           <div className="thumbnail">
             <img src="./images/boy.png" alt="Elliott" width="25%" height="auto"/>
             <p><strong>Elliott Chalmers </strong></p>
           </div>
         </div>
-
         <div className="col-sm-3">
          <div className="thumbnail">
            <img src="./images/boy.png" alt="Alex " width="25%" height="auto"/>
            <p><strong>Alex Lovell</strong></p>
          </div>
         </div>
-
         <div className="col-sm-3">
           <div className="thumbnail">
             <img src="./images/girl.png" alt="Terri " width="25%" height="auto"/>
             <p><strong>Terri Byers</strong></p>
           </div>
         </div> 
-
     </div>
   </Card>*/}
 

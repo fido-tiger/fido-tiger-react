@@ -1,5 +1,6 @@
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardTitle } from 'material-ui/Card';
 import Paper from 'material-ui/Paper';
 import DropDownMenu from 'material-ui/DropDownMenu';
@@ -117,9 +118,3 @@ ServiceForm.propTypes = {
 };
 
 export default ServiceForm;
-
-				
-
-
-
-
