@@ -222,7 +222,7 @@ class Main extends React.Component {
           )}
           
         </div>
-              
+      </div>        
     </Card>
     <div>
     <Paper style={homePaperStyle} zDepth={1}>

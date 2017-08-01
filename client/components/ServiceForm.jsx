@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-import React from 'react';
-import PropTypes from 'prop-types';
-=======
+
 import React, { PropTypes } from 'react';
->>>>>>> 4877174f6802ff365746a56ddca12e9f0210c6e6
 import { Card, CardTitle } from 'material-ui/Card';
 import Paper from 'material-ui/Paper';
 import DropDownMenu from 'material-ui/DropDownMenu';
