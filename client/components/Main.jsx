@@ -16,7 +16,10 @@ import DashboardPage from '../containers/DashboardPage.jsx';
 import LoginPage from '../containers/LoginPage.jsx';
 import SignUpPage from '../containers/SignUpPage.jsx';
 import ServiceFormPage from '../containers/ServiceFormPage.jsx';
+<<<<<<< HEAD
+=======
 
+>>>>>>> 4877174f6802ff365746a56ddca12e9f0210c6e6
 
 
 /*
@@ -32,15 +35,15 @@ const clientRoutes = ({ routes }) => (
 )
 
 /*
- ** ROUTES 
+ ** ROUTE CONFIG 
  **********************/
 const routes = [{
         path: '/',
         exact: true,
-        component: NewClientFormPage
+        component: HomePage
 
     }, {
-        path: '/client',
+        path: '/home',
         exact: true,
         render: (location, callback) => {
             if (Auth.isUserAuthenticated()) {
@@ -63,10 +66,12 @@ const routes = [{
     }, {
         path: '/signup',
         component: SignUpPage
-    },/*{
-        path: '/newclient',
-        component: NewClientFormPage
-    },*/{
+    },
+    /*{
+            path: '/newclient',
+            component: NewClientFormPage
+        },*/
+    {
         path: '/contact',
         component: ContactUsPage
     }, {
@@ -85,8 +90,13 @@ const routes = [{
         routes: [{
             path: '/client/new',
             component: NewClientFormPage
+<<<<<<< HEAD
+        }, {
+            path: '/client/service',
+=======
         },{
             // path: '/client/service',
+>>>>>>> 4877174f6802ff365746a56ddca12e9f0210c6e6
             // component: ServiceFormPage
         }, {
             path: '/client/calendar',
@@ -122,7 +132,6 @@ const RouteWithSubRoutes = (route) => (
 />
 )
 
-
 /*
  ** CSS 
  **********************/
@@ -133,65 +142,92 @@ const homePaperStyle = {
     textAlign: 'center',
     display: 'inline-block'
 }
+<<<<<<< HEAD
+const barStyle = {
+=======
+>>>>>>> 4877174f6802ff365746a56ddca12e9f0210c6e6
 
 
 const barStyle={
 }
 
 const defaultButtonStyle = {
+<<<<<<< HEAD
+    color: 'blue',
+    backgroundColor: 'Orange',
+=======
     color:'blue',
     backgroundColor:'Orange',
+>>>>>>> 4877174f6802ff365746a56ddca12e9f0210c6e6
     display: 'inline',
     textAlign: 'center',
     padding: '0px',
-    margin:'5px',
-    verticleAlign:'middle',
-    borderRadius:'10px',
-    height:'auto',
-    width:'auto'
+    margin: '5px',
+    verticleAlign: 'middle',
+    borderRadius: '10px',
+    height: 'auto',
+    width: 'auto'
 
 }
 
 
 /*
-** RENDER
-***************************/
+ ** RENDER
+ ***************************/
 
 class Main extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            user:{
+            user: {
                 email: '',
-                name: ''
+                name: '',
+                employee: false
             }
         }
-    };
+    }
+
+    componentDidMount() {
+        console.log(this.state);
+    }
+
 
     render() {
         return (
             <div>
       <Card>
+<<<<<<< HEAD
+        <div style={barStyle} className="top-bar">
+            {/*<img src="./images/FidoLogo.png" width="100%" height="auto"/>*/}
+=======
         <div className="top-bar">
             <img src="./images/FidoLogo.png" width="100%" height="auto"/>
+>>>>>>> 4877174f6802ff365746a56ddca12e9f0210c6e6
           <div className="top-bar-left">
 
             <Link to={"/"}><FlatButton primary style={defaultButtonStyle} label="Fido and Tiger"/></Link>
             <Route path="/"/>
-            <Link to="/login"><FlatButton style = {defaultButtonStyle} label="Log In"/></Link>
-            <Link to="/signup"><FlatButton style = {defaultButtonStyle}label="Sign Up"/></Link>
+            
             <Link to="/contact"><FlatButton style = {defaultButtonStyle} label="Contact Us"/></Link>
 
           </div>
           {Auth.isUserAuthenticated() ? (
             <div className="top-bar-right">
+<<<<<<< HEAD
+            <Link to="/logout"><FlatButton style={defaultButtonStyle} label="Log Out"/></Link>
+            <Link to="/client"><FlatButton style = {defaultButtonStyle} label="Dashboard"/>
+            </Link><Link to="/client/service"><FlatButton style = {defaultButtonStyle} label="Schedule Service"/></Link>
+=======
 
             <Link to="/logout"><FlatButton backgroundColor={red900} style={defaultButtonStyle} label="Log Out"/></Link>
             <Link to="/client"><FlatButton label="Dashboard"/></Link>
             <Link to="/client/service"><FlatButton label="Schedule Service"/></Link>
+>>>>>>> 4877174f6802ff365746a56ddca12e9f0210c6e6
             </div>
           ) : (
             <div className="top-bar-right">
+            <Link to="/login"><FlatButton style={defaultButtonStyle} label="Log In"/></Link>
+            <Link to="/signup"><FlatButton style={defaultButtonStyle} label="Sign Up"/></Link>
             </div>
           )}
           

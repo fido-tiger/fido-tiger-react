@@ -69,7 +69,7 @@ class ServiceFormPage extends React.Component {
                 // localStorage.setItem('successMessage'), xhr.response.message);
 
                 console.log(this.context);
-                this.context.router.history.replace('/login');
+                this.context.router.history.push('/client');
 
             } else {
 
@@ -94,11 +94,13 @@ class ServiceFormPage extends React.Component {
         });
     }
 
+
  
 
 render() {
 	return (
 		<ServiceForm
+
 			onSubmit={this.processForm}
 			onChange={this.changeUser}
 			errors={this.state.errors}
