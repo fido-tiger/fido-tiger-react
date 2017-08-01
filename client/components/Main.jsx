@@ -136,8 +136,6 @@ const homePaperStyle = {
     display: 'inline-block'
 }
 
-};
-
 
 const barStyle={
 }
