@@ -1,4 +1,3 @@
-
 import React from 'react';
 import PropTypes from 'prop-types'
 import { render } from 'react-dom';
@@ -145,6 +144,29 @@ updateActivity(event, key) {
 	}
 
 }	
+
+
+{/*		<div className="field-line">
+			<table>
+			  <tbody>
+			    <tr>
+			      <td>
+			        <DatePicker
+			        name="start_date"  
+			        container="inline" 
+			        value={user.start_date}
+			        onChange={onStartDateChange}
+			        floatingLabelText="Start Date" 			        
+			        />
+			      </td>
+			      <td>
+			        <DatePicker container="inline" floatingLabelText="End Date" />
+			      </td>
+			    </tr>
+			  </tbody>
+			</table>
+		</div>
+		*/}
 
 
 

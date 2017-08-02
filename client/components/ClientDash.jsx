@@ -25,6 +25,7 @@ const homeCardStyle = {
   margin:'15px',
   padding:'7px',
   textAlign: 'left',
+  background:'url("./images/walk.png")',
 };
 const avatarStyle = {
   margin: '5px'
