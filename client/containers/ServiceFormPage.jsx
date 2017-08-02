@@ -20,9 +20,10 @@ class ServiceFormPage extends React.Component {
         this.state = {
             errors: {},
             successMessage,
+            shouldSubmit: false,
             user: {
                 name: '',
-                calendar: '',
+                dates: [],
                 pet_name: '',
                 temperament: '',
                 medications: '',
@@ -33,8 +34,16 @@ class ServiceFormPage extends React.Component {
 
         this.processForm = this.processForm.bind(this);
         this.changeUser = this.changeUser.bind(this);
+        this.calendarChange = this.calendarChange.bind(this);
+        this.changeEndDate = this.changeEndDate.bind(this);
+
 
     }
+
+shouldComponentUpdate(nextProps, nextState) {
+   
+    return this.state.shouldSubmit;
+  }
 
 
     /*handleChange = (event, index, value) => this.setState({value});
@@ -43,15 +52,16 @@ class ServiceFormPage extends React.Component {
 
     processForm(event) {
         event.preventDefault();
-
+        // console.log(event.target.start_date.value);
+        console.log(this.state.user);
         const name = encodeURIComponent(event.target.name.value);
-        const calendar = encodeURIComponent(event.target.calendar.value);
+        const dates = encodeURIComponent(event.target.calendar.value);
         const pet_name = encodeURIComponent(event.target.pet_name.value);
         const temperament = encodeURIComponent(event.target.temperament.value);
         const medications = encodeURIComponent(event.target.medications.value);
         const event_notes = encodeURIComponent(event.target.event_notes.value);
         const options = encodeURIComponent(event.target.options.value);
-        const formData = `name=${name}&begin_date=${begin_date}&end_date=${end_date}&pet_name=${pet_name}&temperament=${temperament}&medications=${medications}&event_notes=${event_notes}&options=${options}`;
+        const formData = `name=${name}&dates=${dates}&pet_name=${pet_name}&temperament=${temperament}&medications=${medications}&event_notes=${event_notes}&options=${options}`;
 
 
 
@@ -82,34 +92,67 @@ class ServiceFormPage extends React.Component {
             }
         });
         xhr.send(formData)
+        this.setState({
+                    shouldSubmit: true
+                });
     }
 
-    handleChange = (event, index, value) => this.setState({value});
 
+    
+
+    /**
+     * Change the user object.
+     *
+     * @param {object} event - the JavaScript event object
+     */
     changeUser(event) {
-        const field = event.target.name + " " + event.target.calendar + " " + event.target.pet_name + " " + event.target.temperament + " " + event.target.medications + " " + event.target.event_notes + " " + event.target.options;
+        console.log(event.target);
+        const field = event.target.name;
         const user = this.state.user;
         user[field] = event.target.value;
 
-        
 
         this.setState({
             user
         });
     }
 
+    changeStartDate(event, date) {
+        this.setState({
+            start_date: date,
+        });
+    }
 
- 
 
-render() {
-	return (
-		<ServiceForm
+    changeEndDate(event, date) {
+        this.setState({
+            end_date: date,
+        });
+    }
+    calendarChange(event) {
+    	console.log(this.state.user.dates);
+    	var val = this.state.user.dates;
+    	val.push(event);
+    	console.log(val);
+    	// this.setState({
+    	// 	dates: event
+    	// });
+    }
 
+
+
+
+
+    render() {
+        return (
+            <ServiceForm
 			onSubmit={this.processForm}
 			onChange={this.changeUser}
+			onCalendarChange={this.calendarChange}
+			onEndDateChange={this.changeEndDate}
 			errors={this.state.errors}
-			user={this.state.user}
 			/>
+
         );
     }
 

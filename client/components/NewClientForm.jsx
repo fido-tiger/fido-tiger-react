@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Card, CardText } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -15,11 +16,10 @@ const NewClientForm = ({
 			<h2 className="card-heading">Sign Up</h2>
 
 
-{/*			{errors.summary && <p className="error-message">
+			{errors.summary && <p className="error-message">
 				{errors.summary}</p>}
-
 				{errors.summary ? (<p className="error-message">
-				  {errors.summary}</p>) : undefined}*/}
+				  {errors.summary}</p>) : undefined}
 
 
 
@@ -85,15 +85,6 @@ const NewClientForm = ({
 					/>
 			</div>
 
-			<div className="field-line">
-				<TextField
-					floatingLabelText="Email"
-					name="email"
-					errorText={errors.email}
-					onChange={onChange}
-					/>
-			</div>
-
 			<div className="button-line">
 							<RaisedButton type="submit" label="Submit" primary />
 			</div>
@@ -111,20 +102,3 @@ NewClientForm.propTypes = {
 };
 
 export default NewClientForm;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

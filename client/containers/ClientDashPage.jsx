@@ -12,21 +12,22 @@ class ClientDashPage extends React.Component {
                 secretData: '',
                 email: '',
                 name: '',
-                registered: true,
+                registered: false,
             };
         }
-    componentWillMount() {
+    componentDidMount() {
         var received = this.props.location.state;
         console.log(received);
+        console.log(this.state);
 /*        let token = Auth.getToken();
         let decoded = jwt.decode(token,{complete:true});
         console.log(decoded.payload);*/
         /* XHR formData
         ≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
 
-        const email = encodeURIComponent(this.props.location.state.email);
+ /*       const email = encodeURIComponent(this.props.location.state.email);
         const name = encodeURIComponent(this.props.location.state.name);
-        const formData = `email=${email}&name=${name}`;
+        const formData = `email=${email}&name=${name}`;*/
         /* XHR Request
         ≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
         const xhr = new XMLHttpRequest();
@@ -48,7 +49,7 @@ class ClientDashPage extends React.Component {
                 });
             }
         });
-        xhr.send(formData);
+        xhr.send();
     }
 
     /**

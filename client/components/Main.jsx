@@ -17,6 +17,7 @@ import LoginPage from '../containers/LoginPage.jsx';
 import SignUpPage from '../containers/SignUpPage.jsx';
 import ServiceFormPage from '../containers/ServiceFormPage.jsx';
 
+
 /*
  ** ROUTE COMPONENTS
  ** components for subroutes 
@@ -61,10 +62,10 @@ const routes = [{
     }, {
         path: '/signup',
         component: SignUpPage
-    },{
+    }, {
         path: '/newclient',
         component: NewClientFormPage
-    },{
+    }, {
         path: '/contact',
         component: ContactUsPage
     }, {
@@ -128,15 +129,16 @@ const homePaperStyle = {
     width: '100%',
     margin: 0,
     textAlign: 'center',
-    display: 'inline-block'
+    display: 'inline-block',
+    backgroundColor:'#EDEBE9',
+
 }
 
-const barStyle={
-}
+const barStyle = {}
 
 const defaultButtonStyle = {
-    color: 'blue',
-    backgroundColor: 'Orange',
+    color:'#281004',
+    backgroundColor:'#8E694B',
     display: 'inline',
     textAlign: 'center',
     padding: '0px',
@@ -160,13 +162,34 @@ class Main extends React.Component {
             user: {
                 email: '',
                 name: '',
-                employee: false
+                employee: '',
+                registered: '',
             }
         }
     }
 
     componentDidMount() {
         console.log(this.state);
+        // create an AJAX request
+        const xhr = new XMLHttpRequest();
+/*        xhr.open('get', '/auth/token');
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.setRequestHeader('Authorization', `bearer ${Auth.getToken()}`);
+        xhr.responseType = 'json';
+        xhr.addEventListener('load', () => {
+            if (xhr.status === 200) {
+                // success
+
+                // change the component-container state
+                this.setState({
+                    errors: {}
+                });
+
+                
+                
+            } else {}
+        });
+        xhr.send();*/
     }
 
 
@@ -174,7 +197,6 @@ class Main extends React.Component {
         return (
             <div>
       <Card>
-
         <div style={barStyle} className="top-bar">
             {/*<img src="./images/FidoLogo.png" width="100%" height="auto"/>*/}
 
@@ -192,7 +214,6 @@ class Main extends React.Component {
             <Link to="/logout"><FlatButton style={defaultButtonStyle} label="Log Out"/></Link>
             <Link to="/client"><FlatButton style = {defaultButtonStyle} label="Dashboard"/>
             </Link><Link to="/client/service"><FlatButton style = {defaultButtonStyle} label="Schedule Service"/></Link>
-  
             </div>
           ) : (
             <div className="top-bar-right">
@@ -222,5 +243,9 @@ class Main extends React.Component {
 // Main.propTypes = {
 //     children: PropTypes.object.isRequired
 // };
+Main.contextTypes = {
+    router: PropTypes.object.isRequired
+};
+
 
 export default Main;
