@@ -161,9 +161,9 @@ function validateNewServiceForm(payload) {
     }
 
     if (!payload || typeof payload.end_time !== 'string' || payload.end_time.trim().length === 0) {
-    isFormValid = false;
-    errors.end_time = 'Please provide a time.';
-    
+        isFormValid = false;
+        errors.end_time = 'Please provide a time.';
+
     }
 
     if (!payload || typeof payload.activity_value !== 'string' || payload.activity_value.trim().length === 0) {
@@ -196,7 +196,7 @@ function validateNewServiceForm(payload) {
  * Decode Token
  *≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
 router.post('/token', (req, res, next) => {
-  console.log(req.headers);
+    console.log(req.headers);
     let user = {};
     let split = req.headers.authorization.split(' ');
     let token = split[1];
@@ -217,7 +217,7 @@ router.post('/token', (req, res, next) => {
         decodeToken(token);
         console.log(user);
 
-       return res.status(200).json({
+        return res.status(200).json({
             user_info: { user }
         });
     }
@@ -277,7 +277,7 @@ router.post('/newclient', (req, res, next) => {
         city: req.body.city,
         state: req.body.state,
         zip_code: req.body.zip_code,
-        phone: req.body.phone, 
+        phone: req.body.phone,
         parent_user: user.email
     }
     db.ClientInfo.create(clientData).then(function(newClient, created) {
@@ -285,7 +285,7 @@ router.post('/newclient', (req, res, next) => {
             return done(null, false);
         }
         if (newClient) {
-           return res.status(200).json({
+            return res.status(200).json({
                 client_info: newClient,
                 user_info: { user }
             });
@@ -397,15 +397,15 @@ router.post('/service', (req, res, next) => {
     decodeToken(token);
 
     let clientData = {
-      pet_name: req.body.pet_name,
-      start_date: req.body.start_date,
-      start_time: req.body.start_time,
-      end_date: req.body.end_date,
-      end_time: req.body.end_time,
-      activity_value: req.body.activity_value,
-      medications_value: req.body.medications_value,
-      event_notes: req.body.event_notes,
-      parent_client: user.email
+        pet_name: req.body.pet_name,
+        start_date: req.body.start_date,
+        start_time: req.body.start_time,
+        end_date: req.body.end_date,
+        end_time: req.body.end_time,
+        activity_value: req.body.activity_value,
+        medications_value: req.body.medications_value,
+        event_notes: req.body.event_notes,
+        parent_client: user.email
     }
 
     db.Services.create(clientData).then(function(newClient, created) {
@@ -419,6 +419,37 @@ router.post('/service', (req, res, next) => {
             });
         }
     });
+});
+/*    Employee Job Board
+≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
+router.post('/jobboard', (req, res, next) => {
+    let user = {};
+    let split = req.headers.authorization.split(' ');
+    let token = split[1];
+    /*  Decode Token
+        ≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
+    function decodeToken(token) {
+        let decoded = jwt.decode(token, { complete: true });
+        user = decoded.payload;
+    }
+    decodeToken(token);
+    db.Services.findAll({ where: { job_accepted: false } }).then(function(data) {
+        if (!data) {
+            return done(null, false);
+        }
+        console.log(data)
+         return res.status(200).json({
+            message: `How's this for a secret message `,
+            name: user.name,
+            email: user.email,
+            registered: user.registered,
+            employee: user.employee,
+            user_info: { user },
+            jobs: data
+            });
+    })
+
+
 });
 
 

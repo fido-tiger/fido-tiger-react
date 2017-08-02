@@ -17,6 +17,7 @@ import DashboardPage from '../containers/DashboardPage.jsx';
 import LoginPage from '../containers/LoginPage.jsx';
 import SignUpPage from '../containers/SignUpPage.jsx';
 import ServiceFormPage from '../containers/ServiceFormPage.jsx';
+import JobBoardPage from '../containers/JobBoardPage.jsx';
 
 
 /*
@@ -91,7 +92,7 @@ const routes = [{
         component: ClientDashPage
     },{
         path: '/employee/jobboard',
-        component: ClientDashPage
+        component: JobBoardPage
     }
 ];
 
