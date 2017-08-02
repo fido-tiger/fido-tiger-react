@@ -139,24 +139,41 @@ function validateNewServiceForm(payload) {
     let isFormValid = true;
     let message = '';
 
-    if (!payload || typeof payload.name !== 'string' || payload.name.trim().length === 0) {
-        isFormValid = false;
-        errors.name = 'Please provide your full name.';
-    }
 
     if (!payload || typeof payload.pet_name !== 'string' || payload.pet_name.trim().length === 0) {
         isFormValid = false;
         errors.name = 'Please provide your pet name.';
     }
 
-    if (!payload || typeof payload.calendar !== 'string' || payload.calendar.trim().length === 0) {
+    if (!payload || typeof payload.start_date !== 'string' || payload.start_date.trim().length === 0) {
         isFormValid = false;
-        errors.calendar = 'Please provide a date range.';
+        errors.start_date = 'Please provide a date range.';
     }
 
-    if (!payload || typeof payload.options !== 'string' || payload.options.trim().length === 0) {
+    if (!payload || typeof payload.start_time !== 'string' || payload.start_time.trim().length === 0) {
         isFormValid = false;
-        errors.zip = 'Please provide a valid pet option.';
+        errors.start_time = 'Please provide a time.';
+    }
+
+    if (!payload || typeof payload.end_date !== 'string' || payload.end_date.trim().length === 0) {
+        isFormValid = false;
+        errors.end_date = 'Please provide a date range.';
+    }
+
+    if (!payload || typeof payload.end_time !== 'string' || payload.end_time.trim().length === 0) {
+    isFormValid = false;
+    errors.end_time = 'Please provide a time.';
+    
+    }
+
+    if (!payload || typeof payload.activity_value !== 'string' || payload.activity_value.trim().length === 0) {
+        isFormValid = false;
+        errors.activity_value = 'Please provide a date range.';
+    }
+
+    if (!payload || typeof payload.medications_value !== 'string' || payload.medications_value.trim().length === 0) {
+        isFormValid = false;
+        errors.medications_value = 'Please provide a date range.';
     }
 
 
@@ -178,7 +195,7 @@ function validateNewServiceForm(payload) {
 /*
  * Decode Token
  *≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
-router.get('/token', (req, res, next) => {
+router.post('/token', (req, res, next) => {
   console.log(req.headers);
     let user = {};
     let split = req.headers.authorization.split(' ');
@@ -260,7 +277,7 @@ router.post('/newclient', (req, res, next) => {
         city: req.body.city,
         state: req.body.state,
         zip_code: req.body.zip_code,
-        phone: req.body.phone,
+        phone: req.body.phone, 
         parent_user: user.email
     }
     db.ClientInfo.create(clientData).then(function(newClient, created) {
@@ -358,7 +375,17 @@ router.post('/login', (req, res, next) => {
 
 /*Service Routes
  *******************************/
-router.post('/client/service', (req, res, next) => {
+router.post('/service', (req, res, next) => {
+    let user = {};
+    let split = req.headers.authorization.split(' ');
+    let token = split[1];
+    /*  Decode Token
+        ≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
+    function decodeToken(token) {
+        let decoded = jwt.decode(token, { complete: true });
+        user = decoded.payload;
+    }
+
     const validationResult = validateNewServiceForm(req.body);
     if (!validationResult.success) {
         return res.status(400).json({
@@ -367,7 +394,31 @@ router.post('/client/service', (req, res, next) => {
             errors: validationResult.errors
         });
     }
+    decodeToken(token);
 
+    let clientData = {
+      pet_name: req.body.pet_name,
+      start_date: req.body.start_date,
+      start_time: req.body.start_time,
+      end_date: req.body.end_date,
+      end_time: req.body.end_time,
+      activity_value: req.body.activity_value,
+      medications_value: req.body.medications_value,
+      event_notes: req.body.event_notes,
+      parent_client: user.email
+    }
+
+    db.Services.create(clientData).then(function(newClient, created) {
+        if (!newClient) {
+            return done(null, false);
+        }
+        if (newClient) {
+            return res.status(200).json({
+                client_info: newClient,
+                user_info: { user }
+            });
+        }
+    });
 });
 
 

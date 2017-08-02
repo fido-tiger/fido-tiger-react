@@ -5,13 +5,17 @@ import { Card, CardText } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
+const ncForm={
+	marginTop:"50px"
+}
+
 const NewClientForm = ({
 	onSubmit,
 	onChange, 
 	errors,
 	user,
 }) => (
-	<Card className="container">
+	<Card className="container" style={ncForm}>
 		<form action="/" onSubmit={onSubmit}>
 			<h2 className="card-heading">Sign Up</h2>
 

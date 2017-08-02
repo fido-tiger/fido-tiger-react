@@ -166,30 +166,42 @@ class Main extends React.Component {
                 registered: '',
             }
         }
+        this.ifUser = this.ifUser.bind(this);
+    }
+
+    ifUser(bool) {
+        if (this.state.user.email !== '') {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     componentDidMount() {
-        console.log(this.state);
+        
+
         // create an AJAX request
         const xhr = new XMLHttpRequest();
-/*        xhr.open('get', '/auth/token');
+        xhr.open('post', '/auth/token');
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhr.setRequestHeader('Authorization', `bearer ${Auth.getToken()}`);
         xhr.responseType = 'json';
         xhr.addEventListener('load', () => {
             if (xhr.status === 200) {
                 // success
-
+                console.log(xhr);
                 // change the component-container state
                 this.setState({
-                    errors: {}
+                    errors: {},
+                    user: xhr.response.user_info.user
                 });
 
-                
+                console.log(this.state);
                 
             } else {}
         });
-        xhr.send();*/
+        xhr.send();
+
     }
 
 
@@ -197,6 +209,7 @@ class Main extends React.Component {
         return (
             <div>
       <Card>
+
         <div style={barStyle} className="top-bar">
             {/*<img src="./images/FidoLogo.png" width="100%" height="auto"/>*/}
 
@@ -207,9 +220,11 @@ class Main extends React.Component {
             
             <Link to="/contact"><FlatButton style = {defaultButtonStyle} label="Contact Us"/></Link>
             <Link to="/newclient"><FlatButton style = {defaultButtonStyle} label="New Client Form"/></Link>
-
+            
           </div>
+          {this.state.user.employee ? (<h3>{this.state.user.name}</h3>) : (null)}
           {Auth.isUserAuthenticated() ? (
+
             <div className="top-bar-right">
             <Link to="/logout"><FlatButton style={defaultButtonStyle} label="Log Out"/></Link>
             <Link to="/client"><FlatButton style = {defaultButtonStyle} label="Dashboard"/>
@@ -226,11 +241,14 @@ class Main extends React.Component {
               
     </Card>
     <div>
+    
+
     <Paper style={homePaperStyle} zDepth={1}>
-        {routes.map((route, i) => (
+            {routes.map((route, i) => (
             <Route key={i} {...route}/>
           ))}
         <div>
+
         {clientRoutes}
         </div>
     </Paper>
