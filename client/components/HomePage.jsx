@@ -7,6 +7,7 @@ import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 
 
+
 const homePaperStyle = {
   height: '100vh',
   width: '100%',
@@ -16,7 +17,7 @@ const homeCardStyle = {
   margin:0,
   padding:'7px',
   textAlign: 'center',
-  marginLeft:'250px',
+  width:'100%',
   backgroundColor:'#EDEBE9',
   background:'url("./images/walk.png")',
 };
@@ -50,6 +51,22 @@ const styles = {
 };
 
 const styles2 = {
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+  },
+  gridList: {
+    display: 'flex',
+    flexWrap: 'nowrap',
+    overflowX: 'auto',
+  },
+  titleStyle: {
+    color: 'rgb(0, 188, 212)',
+  },
+};
+
+const styles3 = {
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -103,8 +120,27 @@ const tilesData2 = [
     author:'Driving your pet to the vet, pet supplies dropped off at your home, pet taken to grooming appointments'
   },
   
+];
+
+const tilesData3 = [
+  {
+    img: 'images/comment1.png',
+    title: 'Happy Pet Owner',
+    author: ', Chapel Hill, NC.'
+  },
+  {
+    img: 'images/comment2.png',
+    title: "Fiona's Mommy",
+    author:"Raleigh, NC"
+  },
+  {
+    img: 'images/comment3.png',
+    title: 'Pet Lover',
+    author:'Durham, NC'
+  }, 
   
 ];
+
 
 /**
  * A simple example of a scrollable `GridList` containing a [Subheader](/#/components/subheader).
@@ -190,7 +226,7 @@ const HomePage = () => (
                         key={tile.img}
                         title={tile.title}
 
-                        actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+                        actionIcon={<IconButton><StarBorder color="yellow" /></IconButton>}
                       >
                      <img src={tile.img} />
                     </GridTile>
@@ -198,6 +234,29 @@ const HomePage = () => (
                 </GridList>
           </div>
         </div>
+     
+     <div style={homePageStyle}>
+       <h2>WHAT OUR CUSTOMERS SAY </h2>
+          <div style={styles.root}>
+              <GridList
+                cellHeight={180}
+                style={styles3.gridList}
+                 >
+                   {tilesData3.map((tile) => (
+                      <GridTile
+                        key={tile.img}
+                        title={tile.title}
+                         actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+                                              >
+                     <img src={tile.img} />
+                    </GridTile>
+                 ))}
+                </GridList>
+          </div>
+        </div>
+
+
+
    </Card>
 
   </Paper>
