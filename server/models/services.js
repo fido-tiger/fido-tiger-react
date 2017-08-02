@@ -29,7 +29,13 @@ module.exports = function(sequelize, DataTypes) {
         },
         parent_employee: {
             type: DataTypes.STRING
-        }  
+        },
+        job_accepted: {
+            type: DataTypes.BOOLEAN,
+            notNull: true,
+            allowNull: false,
+            defaultValue: false
+        },  
 
     });
     return Services;
