@@ -22,7 +22,7 @@ class ServiceFormPage extends React.Component {
             successMessage,
             user: {
                 name: '',
-                dates: [],
+                calendar: [],
                 pet_name: '',
                 temperament: '',
                 medications: '',
@@ -98,9 +98,9 @@ class ServiceFormPage extends React.Component {
         const user = this.state.user;
         user[field] = event.target.value;
 
-        this.setState({
-            user
-        });
+        // this.setState({
+        //     user
+        // });
     }
 
     changeStartDate(event, date) {
@@ -118,7 +118,7 @@ class ServiceFormPage extends React.Component {
     calendarChange(event) {
     	console.log(this.state.user.dates);
     	var val = this.state.user.dates;
-    	val.push(event);
+    	// val.push(event);
     	console.log(val);
     	// this.setState({
     	// 	dates: event

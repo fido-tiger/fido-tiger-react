@@ -27,6 +27,10 @@ const styles = {
         width: 200,
     },
 };
+const serviceCardStyle = {
+	margin: "50px",
+	padding: "20px"
+}
 
 const ServiceForm = ({
     onSubmit,
@@ -36,7 +40,7 @@ const ServiceForm = ({
     errors,
     user,
 }) => (
-    <Card className="container">
+    <Card style={serviceCardStyle} className="container">
 	<form action ="/client/service" onSubmit={onSubmit}>
 		<h2 className="card-heading">Services Form</h2>		
 		<div className="field-line">
@@ -60,10 +64,11 @@ const ServiceForm = ({
 		</div>
 		
 		<div className="field-line">
-
+		
 			<InfiniteCalendar
 				Component={withMultipleDates(Calendar)}
 				name="calendar"	
+				selected={[]}
 				width={500}
 				height={350}				
 				onSelect={function(val){
@@ -76,32 +81,25 @@ const ServiceForm = ({
 					showOverlay: true,
 					showTodayHelper: true
 				}}
+				keyboardSupport={false}
 			 	interpolateSelection={defaultMultipleDateInterpolation}
 			 	selected={[]}
 			/>
 
 		</div>
-{/*		<div className="field-line">
-			<table>
-			  <tbody>
-			    <tr>
-			      <td>
+		<div className="field-line">
+			
 			        <DatePicker
 			        name="start_date"  
-			        container="inline" 
-			        value={user.start_date}
-			        onChange={onStartDateChange}
 			        floatingLabelText="Start Date" 			        
 			        />
-			      </td>
-			      <td>
-			        <DatePicker container="inline" floatingLabelText="End Date" />
-			      </td>
-			    </tr>
-			  </tbody>
-			</table>
+			  
+			        <DatePicker 
+			        name="end_date"
+			        floatingLabelText="End Date" />
+
 		</div>
-		*/}
+		
 
 
 		<div className="field-line">
