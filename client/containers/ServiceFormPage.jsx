@@ -20,6 +20,7 @@ class ServiceFormPage extends React.Component {
         this.state = {
             errors: {},
             successMessage,
+            shouldSubmit: false,
             user: {
                 name: '',
                 dates: [],
@@ -36,7 +37,13 @@ class ServiceFormPage extends React.Component {
         this.calendarChange = this.calendarChange.bind(this);
         this.changeEndDate = this.changeEndDate.bind(this);
 
+
     }
+
+shouldComponentUpdate(nextProps, nextState) {
+   
+    return this.state.shouldSubmit;
+  }
 
 
     /*handleChange = (event, index, value) => this.setState({value});
@@ -85,7 +92,13 @@ class ServiceFormPage extends React.Component {
             }
         });
         xhr.send(formData)
+        this.setState({
+                    shouldSubmit: true
+                });
     }
+
+
+    
 
     /**
      * Change the user object.
@@ -97,6 +110,7 @@ class ServiceFormPage extends React.Component {
         const field = event.target.name;
         const user = this.state.user;
         user[field] = event.target.value;
+
 
         this.setState({
             user
@@ -137,7 +151,6 @@ class ServiceFormPage extends React.Component {
 			onCalendarChange={this.calendarChange}
 			onEndDateChange={this.changeEndDate}
 			errors={this.state.errors}
-			user={this.state.user}
 			/>
 
         );
