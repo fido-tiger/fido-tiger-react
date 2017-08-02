@@ -8,6 +8,7 @@ import Paper from 'material-ui/Paper';
 import { red900 } from 'material-ui/styles/colors';
 
 import HomePage from './HomePage.jsx';
+import ClientNav from './ClientNav.jsx';
 import ContactUsPage from '../containers/ContactUsPage.jsx';
 import NewClientFormPage from '../containers/NewClientFormPage.jsx';
 import ClientDashPage from '../containers/ClientDashPage.jsx';
@@ -62,10 +63,7 @@ const routes = [{
     }, {
         path: '/signup',
         component: SignUpPage
-    }, {
-        path: '/newclient',
-        component: NewClientFormPage
-    }, {
+    },  {
         path: '/contact',
         component: ContactUsPage
     }, {
@@ -80,33 +78,20 @@ const routes = [{
     }, {
         path: '/client',
         exact: true,
-        component: ClientDashPage,
-        routes: [{
-            path: '/client/new',
-            component: NewClientFormPage
-        }, {
-            path: '/client/service',
-            // component: ServiceFormPage
-        }, {
-            path: '/client/calendar',
-            // component: ClientCalendar
-        }, {
-            path: '/client/profile',
-            // component: Profile
-        }]
+        component: ClientDashPage,        
     }, {
         path: '/client/service',
         component: ServiceFormPage,
-        routes: [{
-            path: '/employee/schedule',
-            // component: Schedule
-        }, {
-            path: '/employee/calendar',
-            // component: EmployeeCalendar
-        }, {
-            path: '/employee/profile',
-            // component: Profile
-        }]
+    },{
+        path: '/newclient',
+        component: NewClientFormPage
+    },{
+        path: '/employee',
+        exact: true,
+        component: ClientDashPage
+    },{
+        path: '/employee/jobboard',
+        component: ClientDashPage
     }
 ];
 
@@ -163,7 +148,7 @@ class Main extends React.Component {
                 email: '',
                 name: '',
                 employee: '',
-                registered: '',
+                registered: ''
             }
         }
         this.ifUser = this.ifUser.bind(this);
@@ -178,8 +163,6 @@ class Main extends React.Component {
     }
 
     componentDidMount() {
-        
-
         // create an AJAX request
         const xhr = new XMLHttpRequest();
         xhr.open('post', '/auth/token');
@@ -201,7 +184,7 @@ class Main extends React.Component {
             } else {}
         });
         xhr.send();
-
+ 
     }
 
 
@@ -222,14 +205,11 @@ class Main extends React.Component {
             <Link to="/newclient"><FlatButton style = {defaultButtonStyle} label="New Client Form"/></Link>
             
           </div>
-          {this.state.user.employee ? (<h3>{this.state.user.name}</h3>) : (null)}
           {Auth.isUserAuthenticated() ? (
-
-            <div className="top-bar-right">
-            <Link to="/logout"><FlatButton style={defaultButtonStyle} label="Log Out"/></Link>
-            <Link to="/client"><FlatButton style = {defaultButtonStyle} label="Dashboard"/>
-            </Link><Link to="/client/service"><FlatButton style = {defaultButtonStyle} label="Schedule Service"/></Link>
-            </div>
+                <ClientNav
+                user={this.state.user}
+                shouldUpdate={this.state.updateClientNav}
+                />
           ) : (
             <div className="top-bar-right">
             <Link to="/login"><FlatButton style={defaultButtonStyle} label="Log In"/></Link>
