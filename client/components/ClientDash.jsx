@@ -59,7 +59,6 @@ const ClientDash = ({secretData, name, email, registered}) => (
   </Card>
   <Card style={homeCardStyle} className="container">
   <div>
-  <h2>More Stuff</h2>
   {!registered ? (
   <NewClientFormPage/> ) : (null)} 
   </div>

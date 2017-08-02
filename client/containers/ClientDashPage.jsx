@@ -12,7 +12,8 @@ class ClientDashPage extends React.Component {
                 secretData: '',
                 email: '',
                 name: '',
-                registered: false,
+                registered: null,
+                employee: null
             };
         }
     componentDidMount() {

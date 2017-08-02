@@ -8,6 +8,7 @@ import Paper from 'material-ui/Paper';
 import { red900 } from 'material-ui/styles/colors';
 
 import HomePage from './HomePage.jsx';
+import ClientNav from './ClientNav.jsx';
 import ContactUsPage from '../containers/ContactUsPage.jsx';
 import NewClientFormPage from '../containers/NewClientFormPage.jsx';
 import ClientDashPage from '../containers/ClientDashPage.jsx';
@@ -62,10 +63,7 @@ const routes = [{
     }, {
         path: '/signup',
         component: SignUpPage
-    }, {
-        path: '/newclient',
-        component: NewClientFormPage
-    }, {
+    },  {
         path: '/contact',
         component: ContactUsPage
     }, {
@@ -80,33 +78,20 @@ const routes = [{
     }, {
         path: '/client',
         exact: true,
-        component: ClientDashPage,
-        routes: [{
-            path: '/client/new',
-            component: NewClientFormPage
-        }, {
-            path: '/client/service',
-            // component: ServiceFormPage
-        }, {
-            path: '/client/calendar',
-            // component: ClientCalendar
-        }, {
-            path: '/client/profile',
-            // component: Profile
-        }]
+        component: ClientDashPage,        
     }, {
         path: '/client/service',
         component: ServiceFormPage,
-        routes: [{
-            path: '/employee/schedule',
-            // component: Schedule
-        }, {
-            path: '/employee/calendar',
-            // component: EmployeeCalendar
-        }, {
-            path: '/employee/profile',
-            // component: Profile
-        }]
+    },{
+        path: '/newclient',
+        component: NewClientFormPage
+    },{
+        path: '/employee',
+        exact: true,
+        component: ClientDashPage
+    },{
+        path: '/employee/jobboard',
+        component: ClientDashPage
     }
 ];
 
@@ -163,33 +148,43 @@ class Main extends React.Component {
                 email: '',
                 name: '',
                 employee: '',
-                registered: '',
+                registered: ''
             }
+        }
+        this.ifUser = this.ifUser.bind(this);
+    }
+
+    ifUser(bool) {
+        if (this.state.user.email !== '') {
+            return true;
+        } else {
+            return false;
         }
     }
 
     componentDidMount() {
-        console.log(this.state);
         // create an AJAX request
         const xhr = new XMLHttpRequest();
-/*        xhr.open('get', '/auth/token');
+        xhr.open('post', '/auth/token');
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhr.setRequestHeader('Authorization', `bearer ${Auth.getToken()}`);
         xhr.responseType = 'json';
         xhr.addEventListener('load', () => {
             if (xhr.status === 200) {
                 // success
-
+                console.log(xhr);
                 // change the component-container state
                 this.setState({
-                    errors: {}
+                    errors: {},
+                    user: xhr.response.user_info.user
                 });
 
-                
+                console.log(this.state);
                 
             } else {}
         });
-        xhr.send();*/
+        xhr.send();
+ 
     }
 
 
@@ -197,6 +192,7 @@ class Main extends React.Component {
         return (
             <div>
       <Card>
+
         <div style={barStyle} className="top-bar">
             {/*<img src="./images/FidoLogo.png" width="100%" height="auto"/>*/}
 
@@ -207,14 +203,13 @@ class Main extends React.Component {
             
             <Link to="/contact"><FlatButton style = {defaultButtonStyle} label="Contact Us"/></Link>
             <Link to="/newclient"><FlatButton style = {defaultButtonStyle} label="New Client Form"/></Link>
-
+            
           </div>
           {Auth.isUserAuthenticated() ? (
-            <div className="top-bar-right">
-            <Link to="/logout"><FlatButton style={defaultButtonStyle} label="Log Out"/></Link>
-            <Link to="/client"><FlatButton style = {defaultButtonStyle} label="Dashboard"/>
-            </Link><Link to="/client/service"><FlatButton style = {defaultButtonStyle} label="Schedule Service"/></Link>
-            </div>
+                <ClientNav
+                user={this.state.user}
+                shouldUpdate={this.state.updateClientNav}
+                />
           ) : (
             <div className="top-bar-right">
             <Link to="/login"><FlatButton style={defaultButtonStyle} label="Log In"/></Link>
@@ -226,11 +221,14 @@ class Main extends React.Component {
               
     </Card>
     <div>
+    
+
     <Paper style={homePaperStyle} zDepth={1}>
-        {routes.map((route, i) => (
+            {routes.map((route, i) => (
             <Route key={i} {...route}/>
           ))}
         <div>
+
         {clientRoutes}
         </div>
     </Paper>

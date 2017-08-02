@@ -9,6 +9,8 @@ import Divider from 'material-ui/Divider';
 import { Link } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import DatePicker from 'material-ui/DatePicker';
+
 import InfiniteCalendar, {
   Calendar,
   withRange,
@@ -29,19 +31,33 @@ const styles = {
     width: 200,
   },
 };
+const serviceCardStyle = {
+	padding: "20px"
+}
+const instructionsStyle = {
+	textAlign: "left"
+}
+
 
 class ServiceForm extends React.Component {
 	constructor(props, context) {
         super(props, context);
-        this.state = {medicationsvalue:1,activityvalue:1}
+        this.state = {
+        	medicationsvalue:1,
+        	activityvalue:1,
+        	start_date: null,
+        	end_date: null
+        }
         // this.updateDropdown = this.updateDropdown.bind(this);
         this.updateMeds = this.updateMeds.bind(this);
         this.updateActivity = this.updateActivity.bind(this);
+        this.updateStart = this.updateStart.bind(this);
+        this.updateEnd = this.updateEnd.bind(this);
 
 	}
 
 updateMeds(event, key) {
-	this.props.onChange(event);
+	// this.props.onChange(event);
 	console.log(arguments);
 	console.log(event.target.name);
 		this.setState({
@@ -55,33 +71,49 @@ updateActivity(event, key) {
 	this.setState({
             activityvalue: key+1})
 }
+updateStart(event, key) {
+	console.log(arguments);
+	console.log(key);
+	this.setState({
+					start_date: key
+	}, function(){
+		console.log(this.state);
+		console.log(event.target)
+	});
+}
+updateEnd(event, key) {
+	console.log(arguments);
+	console.log(key);
+	this.setState({
+					end_date: key
+	}, function(){
+		console.log(this.state);
+	});
+}
 
 	render () {
 		return(
-			<Card className="container">
+			<Card style={serviceCardStyle} className="container">
 			<form action ="/client/service" onSubmit={this.props.onSubmit}>
-				<h2 className="card-heading">Services Form</h2>		
-				<div className="field-line">
+				<h2 className="card-heading">Schedule Service</h2>		
+				
 					<TextField
 						floatingLabelText="Name"
 						name="name"
 						rowsMax = {2}
 						onChange={this.props.onChange}			
 					/>			
-				</div>
-				
-				<div className="field-line">
+					<br/>			
 					<TextField
 						floatingLabelText="Pet Name"
 						name="pet_name"
 						rowsMax = {2}
 						onChange={this.props.onChange}			
 					/>			
-				</div>
-				
+					<br/>		
 				<div className="field-line">
 
-					<InfiniteCalendar
+{/*					<InfiniteCalendar
 						Component={withRange(Calendar)}
 						name="calendar"	
 						width={500}
@@ -96,13 +128,36 @@ updateActivity(event, key) {
 							showOverlay: true,
 							showTodayHelper: true
 							}}
-					/>
+					/>*/}
 
+					<DatePicker 
+					name="start_date" 
+					floatingLabelText="Start Date" 
+					onChange={this.updateStart}
+					/>
+					<TextField
+						name="start_time"				
+						type="time"
+						onChange={this.props.onChange}
+					/>			
+					<br/>
+					<DatePicker 
+					name="end_date" 
+					floatingLabelText="End Date"
+					onChange={this.updateEnd} 
+					/>
+					<TextField
+						name="end_time"				
+						type="time"
+						onChange={this.props.onChange}
+					/>			
+					<br/>
 				</div>
+				<br/>
 				
 
 
-				<div className="field-line">
+				
 					<DropDownMenu name="medications" value={this.state.medicationsvalue}
 					onChange={this.updateMeds} autoWidth={true}>
 						<MenuItem value={1} primaryText="Anti-Anxiety" />
@@ -111,10 +166,11 @@ updateActivity(event, key) {
 						<MenuItem value={4} primaryText="Daily Vitamin" />
 						<MenuItem value={5} primaryText= "Cancer Treatment" />
 					</DropDownMenu>
-				</div>
+					<br/>
+				
 				
 
-				<div className="field-line">
+				
 					<DropDownMenu  name="activity" value={this.state.activityvalue}
 					onChange={this.updateActivity} autoWidth={true}>
 						<MenuItem value={1} primaryText="Walking" />
@@ -122,21 +178,26 @@ updateActivity(event, key) {
 						<MenuItem value={3} primaryText="Pet-Sitting" />
 						<MenuItem value={4} primaryText="Feeding" />
 					</DropDownMenu>
-				</div>
+					<br/>
+				
 				
 
-				<div className="text-field">
+				
 					<TextField onChange={this.props.onChange} name="event_notes"
 						multiLine={true}
-						rows={4}		
+						rows={2}		
 						rowsMax={6}
+						floatingLabelText="Special Instructions"
+						hintText="Notes"
+						style={instructionsStyle}
 					/>
-				</div>
+					<br/>
+				
 
-				<div className="button-line">
+				
 					<RaisedButton type="submit"
 						label="Submit" />
-				</div>
+				
 				</form>
 			</Card>
 ); 
@@ -146,37 +207,13 @@ updateActivity(event, key) {
 }	
 
 
-{/*		<div className="field-line">
-			<table>
-			  <tbody>
-			    <tr>
-			      <td>
-			        <DatePicker
-			        name="start_date"  
-			        container="inline" 
-			        value={user.start_date}
-			        onChange={onStartDateChange}
-			        floatingLabelText="Start Date" 			        
-			        />
-			      </td>
-			      <td>
-			        <DatePicker container="inline" floatingLabelText="End Date" />
-			      </td>
-			    </tr>
-			  </tbody>
-			</table>
-		</div>
-		*/}
-
-
-
 ServiceForm.propTypes = {
 	onSubmit: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
 	errors: PropTypes.object.isRequired,
 };
 
-export default ServiceForm;
+export default ServiceForm; 
 
 				
 
