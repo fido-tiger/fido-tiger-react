@@ -28,6 +28,7 @@ const styles = {
     },
 };
 
+
 const ServiceForm = ({
     onSubmit,
     onChange,
@@ -59,7 +60,7 @@ const ServiceForm = ({
 			/>			
 		</div>
 		
-		<div className="field-line">
+		<div className="field-line" >
 
 			<InfiniteCalendar
 				Component={withMultipleDates(Calendar)}
