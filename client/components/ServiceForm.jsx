@@ -78,7 +78,6 @@ updateStart(event, key) {
 					start_date: key
 	}, function(){
 		console.log(this.state);
-		console.log(event.target)
 	});
 }
 updateEnd(event, key) {

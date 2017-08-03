@@ -13,7 +13,7 @@ const session = require('express-session');
 const db = require('./server/models/');
 
 
-var ENV = require('./env');
+// var ENV = require('./env');
 
 // Express
 // =============================================================
