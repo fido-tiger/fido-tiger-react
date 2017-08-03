@@ -196,7 +196,7 @@ function validateNewServiceForm(payload) {
  * Decode Token
  *≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
 router.post('/token', (req, res, next) => {
-    console.log(req.headers);
+    
     let user = {};
     let split = req.headers.authorization.split(' ');
     let token = split[1];
@@ -215,7 +215,7 @@ router.post('/token', (req, res, next) => {
     }
     if (token !== null) {
         decodeToken(token);
-        console.log(user);
+        
 
         return res.status(200).json({
             user_info: { user }
@@ -233,8 +233,7 @@ router.post('/client', (req, res, next) => {
     let split = req.headers.authorization.split(' ');
     let token = split[1];
     let decoded = jwt.decode(token, { complete: true });
-    console.log('DECODED TOKEN:\n ≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠');
-    console.log(decoded.payload);
+
     db.Client.findOne({ where: { email: decoded.payload.email } }).then(function(user) {
         return res.status(200).json({
             message: `How's this for a secret message `,
@@ -269,7 +268,7 @@ router.post('/newclient', (req, res, next) => {
         });
     }
     decodeToken(token);
-    console.log(user);
+
     let clientData = {
         first_name: req.body.first_name,
         last_name: req.body.last_name,
@@ -422,7 +421,7 @@ router.post('/service', (req, res, next) => {
 });
 /*    Employee Job Board
 ≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
-router.post('/jobboard', (req, res, next) => {
+router.get('/jobboard', (req, res, next) => {
     let user = {};
     let split = req.headers.authorization.split(' ');
     let token = split[1];
@@ -437,7 +436,40 @@ router.post('/jobboard', (req, res, next) => {
         if (!data) {
             return done(null, false);
         }
-        console.log(data)
+        
+         return res.status(200).json({
+            message: `How's this for a secret message `,
+            name: user.name,
+            email: user.email,
+            registered: user.registered,
+            employee: user.employee,
+            user_info: { user },
+            jobs: data
+            });
+    })
+
+
+});
+router.post('/joboard', (req, res, next) => {
+    console.log(req.body);
+    let user = {};
+    let split = req.headers.authorization.split(' ');
+    let token = split[1];
+    /*  Decode Token
+        ≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠≠*/
+    function decodeToken(token) {
+        let decoded = jwt.decode(token, { complete: true });
+        user = decoded.payload;
+    }
+    decodeToken(token);
+    db.Services.findOne({ where: { id: req.body.selected} }).then(function(data) {
+        if (!data) {
+            return done(null, false);
+        }
+        data.update({
+            parent_employee: req.body.email,
+            job_accepted: true
+        })
          return res.status(200).json({
             message: `How's this for a secret message `,
             name: user.name,

@@ -49,78 +49,86 @@ class JobBoard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            jobs:[],
+            jobs: [],
+            selected: [],
             secretData: '',
             name: '',
             email: '',
             registered: null,
             employee: null
         };
-        this.renderJob = this.renderJob.bind(this);
+
     }
     componentDidMount() {
-      console.log(this.state);
-      this.setState({
-                jobs: this.props.jobs,
-                email: this.props.email
-              });
+        console.log(this.props);
+        this.setState({
+            
+            jobs: this.props.jobs,
+            email: this.props.email
+        });
     }
-    componentDidUpdate(prevProps, prevState) {
+
+    isSelected = (index) => {
+
+      return this.props.selected.indexOf(index) !== -1;
+    }
+
+    handleRowSelection = (selectedRows) => {
+      this.props.setSelected(selectedRows);
+        this.setState({
+            selected: selectedRows
+        });
         
-       console.log(this.state);
-    }
-    componentWillUpdate(nextProps, nextState) {
-      console.log(nextProps,nextState);
-          
     }
 
-    renderJob(job) {
-      return this.props.jobs.map(function(job, index) {
-        return(
-          <TableRow key={index} >
-            <TableRowColumn>{index}</TableRowColumn>
-            <TableRowColumn>{job.pet_name}</TableRowColumn>
-            <TableRowColumn>{job.start_time}</TableRowColumn>
-          </TableRow>
-          )
-      });
+    renderJob = (job) => {
+      let select = this;
+        return this.props.jobs.map(function(job, index) {
+            return (
+              <TableRow striped={true} key={job.id} selected={select.isSelected(index)} >
+                <TableRowColumn>{job.id}</TableRowColumn>
+                <TableRowColumn>{job.pet_name}</TableRowColumn>
+                <TableRowColumn>{job.start_date}</TableRowColumn>
+                <TableRowColumn>{job.start_time}</TableRowColumn>
+                <TableRowColumn>{job.end_date}</TableRowColumn>
+                <TableRowColumn>{job.end_time}</TableRowColumn>
+                <TableRowColumn>{job.event_notes}</TableRowColumn>
+              </TableRow>
+            )
+        });
     }
 
-    isSelected(index) {
-      return this.state.selected.indexOf(index) !== -1;
-   };
-
-    handleRowSelection(selectedRows) {
-      this.setState({
-        selected: selectedRows,
-      });
-    };
 
     render() {
-      console.log(this.props);
+
         return (
             <div>
   <Card style={homeCardStyle} className="container">
     <CardTitle title="Job Board"/>    
     <div className="col-sm-8"> 
      <List>
-    {this.state.email && <ListItem
+    {this.props.email && <ListItem
     disabled={true}
-    leftAvatar={<Avatar>{name[0]}</Avatar>}
+    leftAvatar={<Avatar>{this.props.name[0]}</Avatar>}
     >
-    {this.state.name}{this.state.email}{`${this.state.registered}`}
+    {this.props.name}{this.props.email}{`${this.props.registered}`}
     </ListItem>  }
-       {this.state.secretData && <CardText>{this.state.secretData}{this.state.name}</CardText>}
+       {this.props.secretData && <CardText>{this.props.secretData}{this.props.name}</CardText>}
     </List>
     </div>
   </Card>
   <Card style={homeCardStyle} className="container">
+      <form onSubmit={this.props.onSubmit}>
         <Table onRowSelection={this.handleRowSelection}>
-        <TableHeader>
+        <TableHeader multiSelectable={true} >
           <TableRow>
-            <TableHeaderColumn>ID</TableHeaderColumn>
-            <TableHeaderColumn>Name</TableHeaderColumn>
-            <TableHeaderColumn>Status</TableHeaderColumn>
+            <TableHeaderColumn>Job ID</TableHeaderColumn>
+            <TableHeaderColumn>Pet Name</TableHeaderColumn>
+            <TableHeaderColumn>Start Date</TableHeaderColumn>
+            <TableHeaderColumn>Start Time</TableHeaderColumn>
+            <TableHeaderColumn>End Date</TableHeaderColumn>
+            <TableHeaderColumn>End Time</TableHeaderColumn>
+            <TableHeaderColumn>Client Notes</TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -128,6 +136,8 @@ class JobBoard extends React.Component {
           {this.renderJob()}
         </TableBody>
         </Table>
+        <FlatButton formAction="/" type="submit" label="Submit" primary />
+      </form>
   </Card>
   </div>
         );
@@ -135,10 +145,12 @@ class JobBoard extends React.Component {
 }
 JobBoard.propTypes = {
     jobs: PropTypes.array.isRequired,
+    selected: PropTypes.array.isRequired,
     secretData: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
-    registered: PropTypes.bool.isRequired
+    registered: PropTypes.bool,
+    onSubmit: PropTypes.func.isRequired
 };
 
 export default JobBoard;

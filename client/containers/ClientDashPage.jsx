@@ -6,16 +6,16 @@ import Auth from '../modules/Auth';
 
 import ClientDash from '../components/ClientDash.jsx';
 class ClientDashPage extends React.Component {
-        constructor(props) {
-            super(props);
-            this.state = {
-                secretData: '',
-                email: '',
-                name: '',
-                registered: null,
-                employee: null
-            };
-        }
+      constructor(props) {
+          super(props);
+          this.state = {
+              secretData: '',
+              email: '',
+              name: '',
+              registered: null,
+              employee: null
+          };
+      }
     componentDidMount() {
         var received = this.props.location.state;
         console.log(received);

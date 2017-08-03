@@ -1,11 +1,14 @@
+import webpack from 'webpack';  
+import path from 'path';
+
 module.exports = {
 
-    // This is the entry point or start of our react applicaton
     entry: "./client/app.jsx",
 
     output: {
         path: __dirname + '/public',
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        publicPath: '/public/'
     },
 
     module: {

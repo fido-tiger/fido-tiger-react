@@ -67,7 +67,7 @@ class ClientNav extends React.Component {
               <Link to="/logout"><FlatButton style={defaultButtonStyle} label="Log Out"/></Link>
               <Link to="/employee"><FlatButton style = {defaultButtonStyle} label="Dashboard"/>
               </Link>
-              <Link to="/employee/jobboard"><FlatButton style = {defaultButtonStyle} label="Job List"/></Link>
+              <Link to="/employee/jobboard"><FlatButton style = {defaultButtonStyle} label="Job Board"/></Link>
             </div>
           ):(
           <div className="top-bar-right">
