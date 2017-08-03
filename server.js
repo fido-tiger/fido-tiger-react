@@ -11,7 +11,7 @@ const session = require('express-session');
 
 // db
 const db = require('./server/models/');
-// const routes = require('./app/config/routes');
+
 
 var ENV = require('./env');
 
