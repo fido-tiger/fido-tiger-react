@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const passport = require('passport');
 const session = require('express-session');
-const methodOverride = require('method-override');
+
 // db
 const db = require('./server/models/');
 // const routes = require('./app/config/routes');
@@ -29,8 +29,7 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 // Cookie-Parser / Express Validator
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser());
-// Method Override
-app.use(methodOverride('_method'));
+
 // Static directory
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(require('./app/config/routes.js'));
