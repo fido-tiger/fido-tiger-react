@@ -68,9 +68,6 @@ class NewClientFormPage extends React.Component {
 
                 localStorage.setItem('successMessage', xhr.response.message);
 
-                console.log(this.context);
-                console.log(xhr.response);
-
                 this.context.router.history.push({
                     pathname: '/client',
                     state: {
@@ -107,8 +104,7 @@ class NewClientFormPage extends React.Component {
 
 
     render() {
-        console.log('ERRORS:', this.state.errors);
-        return (
+           	return (
             <NewClientForm
                 onSubmit={this.processForm}
                 onChange={this.changeUser}

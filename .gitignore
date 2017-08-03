@@ -2,5 +2,4 @@ env.js
 client_secret.json
 node_modules
 notes
-public/bundle.js
 .DS_Store
