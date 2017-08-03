@@ -27,6 +27,6 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx']
     },
-    devtool: "eval-source-map",
+    devtool: "source-map",
     watch: true
 };
